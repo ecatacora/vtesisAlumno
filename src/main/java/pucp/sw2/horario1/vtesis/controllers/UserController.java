@@ -19,7 +19,7 @@ import pucp.sw2.horario1.vtesis.dao.UserDAO;
  *
  * @author Hiroshi
  */
-@Controller(value = "userControler")
+@Controller(value = "userController")
 public class UserController {
     @Autowired
     UserDAO userDao;
@@ -29,6 +29,6 @@ public class UserController {
     @RequestMapping(value = "inicio")
     public String inicial(){
         log.info("/inicio");
-        return "index.jsp";
+        return "login";
     }
 }

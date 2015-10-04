@@ -12,7 +12,7 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
        ">
 
-    <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
+    
 
     <!--
     Most controllers will use the ControllerClassNameHandlerMapping above, but

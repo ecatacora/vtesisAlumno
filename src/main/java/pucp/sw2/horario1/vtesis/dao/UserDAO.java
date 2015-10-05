@@ -17,6 +17,10 @@ import org.springframework.stereotype.Repository;
 public class UserDAO {
     @Autowired
     DataSource datasource;
+
+    public boolean isValidUser(String username, String password) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 }

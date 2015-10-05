@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -331,7 +332,7 @@
                                             <!-- end of image cropping -->
 
                                         </div>
-                                        <h4>Giotoku Rejas, Iván Hiroshi</h4>
+                                        <h4>Giotoku Rejas, IvÃ¡n Hiroshi</h4>
 
                                         <ul class="list-unstyled user_data">
                                             <li>hiroshigiotoku@gmail.com

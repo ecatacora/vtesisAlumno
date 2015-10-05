@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -156,7 +157,7 @@
 
                           	<div class="row x_title">
                                 <div class="col-md-12">
-                                  <h3>Criterio de Búsqueda: &nbsp;</h3><h3 id="criterios"><small>Curso: Tesis 1</small></h3>
+                                  <h3>Criterio de BÃºsqueda: &nbsp;</h3><h3 id="criterios"><small>Curso: Tesis 1</small></h3>
                                 </div>
                          	</div>
 							<div class="dashboard_graph">

@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -251,7 +252,7 @@
                                     </br>
                                     <p>Comentarios del Asesor:</p>
                                     </br>
-                            <p style="color:#000000">&nbsp;&nbsp;Es un buen avance, habría que corregir el orden del indice y también colocar las referencias debidas...</p>
+                            <p style="color:#000000">&nbsp;&nbsp;Es un buen avance, habrÃ­a que corregir el orden del indice y tambiÃ©n colocar las referencias debidas...</p>
                                     </br>
                                     <div class="col-md-3 center-block">
                                     </div>

@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -251,7 +252,7 @@
                                         <thead>
                                             <tr>
                                                 <th style="text-align:center;">Entregables</th>
-                                                <th style="text-align:center;">Fecha Límite</th>
+                                                <th style="text-align:center;">Fecha LÃ­mite</th>
                                                 <th style="text-align:center;">Avance</th>
                                                 <th style="text-align:center;">Estado</th>
                                             </tr>

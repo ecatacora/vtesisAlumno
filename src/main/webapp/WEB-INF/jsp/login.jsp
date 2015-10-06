@@ -30,13 +30,13 @@
                         <form:form >
                             <h1>V-Tesis</h1>
                             <div>
-                                <form:input path="" id="username" name="username" class="form-control" placeholder="Usuario" />
+                                <input type="text" path="" id="username" name="username" class="form-control" placeholder="Usuario" />
                             </div>
                             <div>
-                                <form:password path="" id="password" name="password" class="form-control" placeholder="Contraseña"/>
+                                <input type="password" path="" id="password" name="password" class="form-control" placeholder="Contraseña"/>
                             </div>
                             <div>         
-                                <input type="submit" class="btn btn-default" value="Acceder"/>
+                                <button type="submit" class="btn btn-default">Acceder</button>
                                 <a class="reset_pass" href="#">¿Olvidó su contraseña?</a>
                             </div>
                             <div class="clearfix"></div>

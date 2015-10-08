@@ -6,3 +6,16 @@ los avances de tesis de sus alumnos.
 
 Además ayuda a los alumnos a poder estar más en contacto con su asesor, ya que todo feedback se haría de manera remota, evitando
 de esta manera, que se pierda tiempo en estar coordinando una reunión personal.
+
+Integrantes:
+
+David Macedo
+Hiroshi Giotoku
+Lissett Merino
+Estefany Kuong
+Kristel Añazgo
+Henry Gamboa
+José Suejiro
+Rosario Orna
+Alexandra Reyes
+Eudomar Catacora

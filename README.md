@@ -9,13 +9,13 @@ de esta manera, que se pierda tiempo en estar coordinando una reunión personal.
 
 Integrantes:
 
-David Macedo
-Hiroshi Giotoku
-Lissett Merino
-Estefany Kuong
-Kristel Añazgo
-Henry Gamboa
-José Suejiro
-Rosario Orna
-Alexandra Reyes
-Eudomar Catacora
+David Macedo <br>
+Hiroshi Giotoku <br>
+Lissett Merino <br>
+Estefany Kuong <br>
+Kristel Añazgo <br>
+Henry Gamboa <br>
+José Suejiro <br>
+Rosario Orna <br>
+Alexandra Reyes <br>
+Eudomar Catacora <br>

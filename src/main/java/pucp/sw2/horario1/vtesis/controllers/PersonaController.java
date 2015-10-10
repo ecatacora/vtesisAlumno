@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +27,7 @@ import pucp.sw2.horario1.vtesis.ui.UserLogin;
  * @author Hiroshi
  */
 @Controller(value = "userController")
-public class UserController {
+public class PersonaController {
 
     @Autowired
     UserDAO userDao;
@@ -37,6 +38,11 @@ public class UserController {
     public String inicial() {
         log.info("/inicio");
         return "login";
+    }
+    
+    @RequestMapping(value = "acceder")
+    public String acceder(Model model, HttpSession sesion){
+        return "";
     }
 
     

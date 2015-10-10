@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
  * @author Hiroshi
  */
 @Repository(value = "userDAO")
-public class UserDAO {
+public class PersonaDAO {
     @Autowired
     DataSource datasource;
 

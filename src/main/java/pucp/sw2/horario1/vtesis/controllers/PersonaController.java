@@ -19,20 +19,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import pucp.sw2.horario1.vtesis.dao.UserDAO;
+import pucp.sw2.horario1.vtesis.dao.PersonaDAO;
 import pucp.sw2.horario1.vtesis.ui.UserLogin;
 
 /**
  *
  * @author Hiroshi
  */
-@Controller(value = "userController")
+@Controller(value = "personaController")
 public class PersonaController {
 
     @Autowired
-    UserDAO userDao;
+    PersonaDAO userDao;
 
-    private static final Logger log = Logger.getLogger("UserController");
+    private static final Logger log = Logger.getLogger("PersonaController");
 
     @RequestMapping(value = "inicio")
     public String inicial() {

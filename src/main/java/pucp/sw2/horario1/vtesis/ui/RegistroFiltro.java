@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pucp.sw2.horario1.vtesis.modelos;
+package pucp.sw2.horario1.vtesis.ui;
 
 /**
  *
  * @author josesuk
  */
-public class Avances {
+public class RegistroFiltro {
     
 }

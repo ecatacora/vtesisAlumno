@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pucp.sw2.horario1.vtesis.controllers;
+package pucp.sw2.horario1.vtesis.dao;
 
 /**
  *
  * @author josesuk
  */
-public class AsesorController {
+public class AsesorDAO {
     
 }

@@ -9,6 +9,6 @@ package pucp.sw2.horario1.vtesis.controllers;
  *
  * @author josesuk
  */
-public class AsesorController {
+public class AvanceController {
     
 }

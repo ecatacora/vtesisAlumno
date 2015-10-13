@@ -26,62 +26,6 @@ public class PersonaFiltro  implements Serializable{
         this.idRol = idRol;
         this.todos = todos;
     }
-
-    /**
-     * @return the nombres
-     */
-    public String getNombres() {
-        return nombres;
-    }
-
-    /**
-     * @param nombres the nombres to set
-     */
-    public void setNombres(String nombres) {
-        this.nombres = nombres;
-    }
-
-    /**
-     * @return the apellidos
-     */
-    public String getApellidos() {
-        return apellidos;
-    }
-
-    /**
-     * @param apellidos the apellidos to set
-     */
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
-    }
-
-    /**
-     * @return the idRol
-     */
-    public Integer getIdRol() {
-        return idRol;
-    }
-
-    /**
-     * @param idRol the idRol to set
-     */
-    public void setIdRol(Integer idRol) {
-        this.idRol = idRol;
-    }
-
-    /**
-     * @return the todos
-     */
-    public Integer getTodos() {
-        return todos;
-    }
-
-    /**
-     * @param todos the todos to set
-     */
-    public void setTodos(Integer todos) {
-        this.todos = todos;
-    }
     
     
     

@@ -16,18 +16,18 @@ public class Persona implements Serializable {
     private String  nombres;
     private String apellidos;
     private Integer codigo;
-    private Integer contraseña;
+    private Integer contrasena;
     private Integer idRol;
 
     public Persona() {
     }
 
-    public Persona(Integer idPersona, String nombres, String apellidos, Integer codigo, Integer contraseña, Integer idRol) {
+    public Persona(Integer idPersona, String nombres, String apellidos, Integer codigo, Integer contrasena, Integer idRol) {
         this.idPersona = idPersona;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.codigo = codigo;
-        this.contraseña = contraseña;
+        this.contrasena = contrasena;
         this.idRol = idRol;
     }
 
@@ -90,15 +90,15 @@ public class Persona implements Serializable {
     /**
      * @return the contraseña
      */
-    public Integer getContraseña() {
-        return contraseña;
+    public Integer getContrasena() {
+        return contrasena;
     }
 
     /**
-     * @param contraseña the contraseña to set
+     * @param contrasena the contraseña to set
      */
-    public void setContraseña(Integer contraseña) {
-        this.contraseña = contraseña;
+    public void setContrasena(Integer contrasena) {
+        this.contrasena = contrasena;
     }
 
     /**

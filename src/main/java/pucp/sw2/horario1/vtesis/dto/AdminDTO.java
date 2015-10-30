@@ -5,10 +5,65 @@
  */
 package pucp.sw2.horario1.vtesis.dto;
 
-/**
- *
- * @author josesuk
- */
-public class AdminDTO {
+import java.io.Serializable;
+
+
+public class AdminDTO implements Serializable{
     
-}
+    private Integer id;
+    private String nombres;
+    private String apellidos;
+    private Integer codigo;
+    private String contrasena;
+    private Integer idRol;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNombres() {
+        return nombres;
+    }
+
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    public Integer getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(Integer codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
+    public Integer getIdRol() {
+        return idRol;
+    }
+
+    public void setIdRol(Integer idRol) {
+        this.idRol = idRol;
+    }
+
+  
+    }

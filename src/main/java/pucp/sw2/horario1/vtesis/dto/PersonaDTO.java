@@ -16,7 +16,7 @@ public class PersonaDTO implements Serializable{
     private String  nombres;
     private String apellidos;
     private Integer codigo;
-    private Integer contraseña;
+    private Integer contrasena;
     private Integer idRol;
 
     public Integer getIdPersona() {
@@ -51,12 +51,12 @@ public class PersonaDTO implements Serializable{
         this.codigo = codigo;
     }
 
-    public Integer getContraseña() {
-        return contraseña;
+    public Integer getContrasena() {
+        return contrasena;
     }
 
-    public void setContraseña(Integer contraseña) {
-        this.contraseña = contraseña;
+    public void setContrasena(Integer contrasena) {
+        this.contrasena = contrasena;
     }
 
     public Integer getIdRol() {
@@ -66,6 +66,10 @@ public class PersonaDTO implements Serializable{
     public void setIdRol(Integer idRol) {
         this.idRol = idRol;
     }
+
+   
+
+   
     
     
 

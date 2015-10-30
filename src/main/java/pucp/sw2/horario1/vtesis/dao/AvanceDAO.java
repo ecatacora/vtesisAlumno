@@ -65,7 +65,7 @@ public class AvanceDAO {
     public void actualizar(Avance avance){
         
         StringBuilder sb = new StringBuilder();
-        sb.append(" update avance ");
+        sb.append(" update Avances ");
         sb.append(" fecha_inicio = ? ");
         sb.append(" fecha_fin = ? ");
         sb.append(" obs_asesor = ? ");
@@ -78,5 +78,51 @@ public class AvanceDAO {
         jdbcTemplate.update(sb.toString(),new Object[]{avance.getNombre(),avance.getIdAvance(), avance.getFecha_inicio(),avance.getFecha_fin(),avance.getObs_asesor(),avance.getObs_alumno(), avance.getRegistro_alumno(), avance.getRegistro_asesor()});
         
     }
+    
+    
+    /*  private Integer idAvance;
+    private String nombre;
+    private Integer version;
+    private Integer idRegistro;
+    private Integer fecha_inicio;
+    private Integer fecha_fin;
+    private Integer idEstado;
+    private String obs_asesor;
+    private String obs_alumno;
+    private String registro_alumno;
+    private String registro_asesor;*/
+    
+    
+     public Avance obtener(Integer id) {
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT av.idAvances, av.nombre,av.version, av.historial_idHistorial, av.fecha_inicio, av.fecha_fin, av.Estado_idEstado, av.obs_asesor, av.obs_alumno, av.archivo_alumno, av.archivo_asesor");
+        sql.append(" FROM Avances av ");
+        sql.append(" where av.idAvances = ? ");
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
+        Avance resultado = jdbcTemplate.queryForObject(sql.toString(), new Object[]{id}, new RowMapper<Avance>() {
+            @Override
+            public Avance mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Avance avance = new Avance();    
+                avance.setIdAvance(rs.getInt("av.idAvances"));
+                avance.setNombre(rs.getString("av.nombre"));
+                avance.setVersion(rs.getInt("av.version"));
+                avance.setIdRegistro(rs.getInt("av.historial_idHistorial"));
+                avance.setFecha_inicio(rs.getInt("av.fecha_inicio"));
+                avance.setFecha_fin(rs.getInt("av.fecha_fin"));
+                avance.setIdEstado(rs.getInt("av.Estado_idEstado"));
+                avance.setObs_asesor(rs.getString("av.obs_asesor"));
+                avance.setObs_alumno(rs.getString("av.obs_alumno"));
+                avance.setRegistro_alumno(rs.getString("av.archivo_alumno"));
+                avance.setRegistro_asesor(rs.getString("av.archivo_asesor"));
+                
+                return avance;
+            }
+        });
+        return resultado;
+    }
+    
+    
+    
+    
 }
 

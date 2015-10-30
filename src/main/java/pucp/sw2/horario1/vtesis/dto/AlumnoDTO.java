@@ -5,24 +5,24 @@
  */
 package pucp.sw2.horario1.vtesis.dto;
 
+import java.io.Serializable;
+
 /**
  *
  * @author josesuk
  */
-public class AlumnoDTO {
-
-    private int idPersona;
+public class AlumnoDTO implements Serializable{
+    private Integer id;
     private String nombres;
     private String apellidos;
-    private String codigo;
-    private String foto;
+    private Integer codigo;
 
-    public int getIdPersona() {
-        return idPersona;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdPersona(int idPersona) {
-        this.idPersona = idPersona;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNombres() {
@@ -41,20 +41,15 @@ public class AlumnoDTO {
         this.apellidos = apellidos;
     }
 
-    public String getCodigo() {
+    public Integer getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(String codigo) {
+    public void setCodigo(Integer codigo) {
         this.codigo = codigo;
     }
-
-    public String getFoto() {
-        return foto;
-    }
-
-    public void setFoto(String foto) {
-        this.foto = foto;
-    }
-
+  
+    
+   
+    
 }

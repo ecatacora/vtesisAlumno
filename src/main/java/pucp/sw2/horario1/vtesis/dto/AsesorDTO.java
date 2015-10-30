@@ -5,16 +5,26 @@
  */
 package pucp.sw2.horario1.vtesis.dto;
 
+import java.io.Serializable;
+
 /**
  *
  * @author josesuk
  */
-public class AsesorDTO {
-    
+public class AsesorDTO implements Serializable{
+    private Integer id;
     private String nombres;
     private String apellidos;
     private Integer codigo;
+    
+     public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    
     public String getNombres() {
         return nombres;
     }
@@ -38,6 +48,8 @@ public class AsesorDTO {
     public void setCodigo(Integer codigo) {
         this.codigo = codigo;
     }
+
+   
     
     
     

@@ -9,6 +9,6 @@ package pucp.sw2.horario1.vtesis.dao;
  *
  * @author josesuk
  */
-public class AdminDAO {
+public class AdminDAO extends PersonaDAO{
     
 }

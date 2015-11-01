@@ -5,10 +5,20 @@
  */
 package pucp.sw2.horario1.vtesis.dao;
 
+import javax.sql.DataSource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 /**
  *
  * @author josesuk
  */
+@Repository(value = "alumnoDAO")
 public class AlumnoDAO {
+    @Autowired
+    DataSource datasource;
+    
+   //Metodos del alumno
+    
     
 }

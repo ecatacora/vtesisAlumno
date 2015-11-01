@@ -11,7 +11,9 @@
     <%@include file = "/WEB-INF/jsp/comun/recursos.jsp" %>
     <title>Virtual Tesis! | </title>
  
-    <script src="js/nprogress.js"></script>
+    <%@include file = "/WEB-INF/jsp/comun/recursos.jsp" %>
+    
+    <script src="<spring:url value="js/nprogress.js"/>"></script>
     <script>
         NProgress.start();
     </script>

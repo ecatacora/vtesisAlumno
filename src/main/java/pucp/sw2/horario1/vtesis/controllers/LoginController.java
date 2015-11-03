@@ -31,7 +31,7 @@ public class LoginController {
     public String showLogin(HttpSession session) {
         EmployeeBean employeeBean = (EmployeeBean) session.getAttribute("employeeBean");
         if (employeeBean != null) {
-            if (employeeBean.getRole().equalsIgnoreCase("ADMINISTRATOR")) {
+            if (employeeBean.getRole().equalsIgnoreCase("ADMIN")) {
                 return "/admin/lista";
             } else {
                 return "/user/index";

@@ -43,7 +43,7 @@ public class PersonaDAO {
                 + "e.Enabled "
                 + "from employees e "
                 + "where e.Enabled = 1";
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(hola);
+        JdbcTemplate jdbcTemplate = new JdbcTemplate();
         List<EmployeeBean> employee_list = jdbcTemplate.query(query, new EmployeeMapper());
         return employee_list;
 

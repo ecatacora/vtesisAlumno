@@ -13,6 +13,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import pucp.sw2.horario1.vtesis.dto.PersonaDTO;
 import pucp.sw2.horario1.vtesis.modelos.Persona;
 
 /**
@@ -23,37 +24,6 @@ import pucp.sw2.horario1.vtesis.modelos.Persona;
 public class PersonaDAO {
     @Autowired
     DataSource datasource;
-
-    public List<EmployeeBean> listemployeexmanager(EmployeeBean manager, EmployeeBean employee) {
-
-        String query = "select e.EmployeeID, "
-                + "e.Title, "
-                + "e.FirstName, "
-                + "e.LastName, "
-                + "e.Email, "
-                + "e.HomePhone, "
-                + "e.Extension, "
-                + "e.PostalCode, "
-                + "e.Region, "
-                + "e.Role, "
-                + "e.Address, "
-                + "e.City, "
-                + "e.Country, "
-                + "e.Enabled "
-                + "from persona e, "
-                + "employees ee "
-                + "where e.ReportsTo = ee.EmployeeID "
-                + "and ee.EmployeeID= ? "
-                + "and ee.Enabled = 1";
-
-        List<Object> parametros = new ArrayList<Object>();
-        parametros.add(manager.getEmployeeID());
-
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        List<EmployeeBean> employee_list = jdbcTemplate.query(query, parametros.toArray(), new EmployeeMapper());
-        return employee_list;
-
-    }
 
     public List<EmployeeBean> listemployees() {
 
@@ -77,33 +47,9 @@ public class PersonaDAO {
         List<EmployeeBean> employee_list = jdbcTemplate.query(query, new EmployeeMapper());
         return employee_list;
 
-    }
-
-  public EmployeeBean info(int id) {
-
-        String query = "select e.EmployeeID, "
-                + "e.Title, "
-                + "e.FirstName, "
-                + "e.LastName, "
-                + "e.Email, "
-                + "e.HomePhone, "
-                + "e.Extension, "
-                + "e.PostalCode, "
-                + "e.Region, "
-                + "e.Role, "
-                + "e.Address, "
-                + "e.City, "
-                + "e.Country, "
-                + "e.Enabled "
-                + "from employees e "
-                + "where e.EmployeeID = ?";
-
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        EmployeeBean employee = jdbcTemplate.queryForObject(query, new Object[]{id}, new EmployeeMapper());
-        return employee;
-    }    
+    }  
     
-    public EmployeeBean get(String email) {
+    public PersonaDTO get(String email) {
 
         String query = "select e.EmployeeID, "
                 + "e.Title, "

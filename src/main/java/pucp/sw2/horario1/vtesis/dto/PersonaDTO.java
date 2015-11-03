@@ -15,8 +15,8 @@ public class PersonaDTO implements Serializable{
     private Integer idPersona;
     private String  nombres;
     private String apellidos;
-    private Integer codigo;
-    private Integer contrasena;
+    private String codigo;
+    private String contrasena;
     private Integer idRol;
 
     public Integer getIdPersona() {
@@ -43,19 +43,19 @@ public class PersonaDTO implements Serializable{
         this.apellidos = apellidos;
     }
 
-    public Integer getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(Integer codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
-    public Integer getContrasena() {
+    public String getContrasena() {
         return contrasena;
     }
 
-    public void setContrasena(Integer contrasena) {
+    public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
     }
 

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import pucp.sw2.horario1.vtesis.dao.PersonaDAO;
+import pucp.sw2.horario1.vtesis.dto.PersonaDTO;
 
 @Controller
 @SessionAttributes("employeeBean")
@@ -29,9 +30,9 @@ public class LoginController {
 
     @RequestMapping(value = {"/login.do", "/"}, method = RequestMethod.GET)
     public String showLogin(HttpSession session) {
-        EmployeeBean employeeBean = (EmployeeBean) session.getAttribute("employeeBean");
-        if (employeeBean != null) {
-            if (employeeBean.getRole().equalsIgnoreCase("ADMIN")) {
+        PersonaDTO personaDTO = (PersonaDTO) session.getAttribute("personaDTO");
+        if (personaDTO != null) {
+            if (personaDTO.getIdRol() == 1) {
                 return "/admin/lista";
             } else {
                 return "/user/index";
@@ -45,11 +46,11 @@ public class LoginController {
     public String home(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();
-        EmployeeBean employee = personaDAO.get(email);
-        model.addAttribute("employeeBean", employee);
-        if (employee.getRole().equalsIgnoreCase("ADMIN")) {
+        PersonaDTO persona = personaDAO.get(email);
+        model.addAttribute("personaDTO", employee);
+        if (persona.getIdRol() == 1) {
             return "/admin/lista";
-        } else if(employee.getRole().equalsIgnoreCase("ASESOR")){
+        } else if(persona.getIdRol() == 2){
             return "/asesor/profile";
         }
     }

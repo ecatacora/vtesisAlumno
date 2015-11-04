@@ -12,7 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import pucp.sw2.horario1.vtesis.dao.AlumnoDAO;
+import pucp.sw2.horario1.vtesis.dao.PersonaDAO;
+
 
 /**
  *
@@ -23,7 +24,7 @@ import pucp.sw2.horario1.vtesis.dao.AlumnoDAO;
 public class AlumnoController {
 
     @Autowired
-    AlumnoDAO alumnoDAO;
+    PersonaDAO personaDAO;
 
     /* se configura un log para este controlador*/
     private static final Logger log = Logger.getLogger("PersonaController");

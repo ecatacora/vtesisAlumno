@@ -56,54 +56,45 @@ public class PersonaDAO {
         return lstPersonas;
     }
 
-    public PersonaDTO get(String email) {
-
-        String query = "select e.EmployeeID, "
-                + "e.Title, "
-                + "e.FirstName, "
-                + "e.LastName, "
-                + "e.Email, "
-                + "e.HomePhone, "
-                + "e.Extension, "
-                + "e.PostalCode, "
-                + "e.Region, "
-                + "e.Role, "
-                + "e.Address, "
-                + "e.City, "
-                + "e.Country, "
-                + "e.Enabled "
-                + "from employees e "
-                + "where e.Email = ?";
-
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        EmployeeBean employee = jdbcTemplate.queryForObject(query, new Object[]{email}, new EmployeeMapper());
-        return employee;
-    }
-
-    public void update(EmployeeBean employee) {
+    public void actualizarPersona(Persona persona) {
         StringBuilder sql = new StringBuilder();
-        sql.append("UPDATE employees SET FirstName = ?,"
-                + " LastName = ? ,"
-                + " HomePhone = ? ,"
-                + " Extension = ? ,"
-                + " Address = ? ,"
-                + " City = ? ,"
-                + " Country = ?, "
-                + " Region = ? "
-                + " WHERE EmployeeID = ?");
 
         try {
-            JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+            JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
+            sql.append("UPDATE persona SET nombres = ?,"
+                    + " apellidos = ? ,"
+                    + " codigo = ? ,"
+                    + " contraseña = ? ,"
+                    + " foto = ? ,"
+                    + " Rol_idRol = ? ,"
+                    + " WHERE idPersona = ?");
+
             List<Object> parametros = new ArrayList<Object>();
-            parametros.add(employee.getFirstName());
-            parametros.add(employee.getLastName());
-            parametros.add(employee.getHomePhone());
-            parametros.add(employee.getExtension());
-            parametros.add(employee.getAddress());
-            parametros.add(employee.getCity());
-            parametros.add(employee.getCountry());
-            parametros.add(employee.getRegion());
-            parametros.add(employee.getEmployeeID());
+            parametros.add(persona.getNombres());
+            parametros.add(persona.getApellidos());
+            parametros.add(persona.getCodigo());
+            parametros.add(persona.getContrasena());
+            parametros.add(persona.getFoto());
+            parametros.add(persona.getIdRol());
+            parametros.add(persona.getIdPersona());
+
+            jdbcTemplate.update(sql.toString(), parametros.toArray());
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+        }
+    }
+
+    public void borrarPersona(Persona persona) {
+        StringBuilder sql = new StringBuilder();
+        sql.append("DELETE from persona"
+                + " WHERE idPersona = ?");
+
+        try {
+            JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
+            List<Object> parametros = new ArrayList<Object>();
+            parametros.add(persona.getIdPersona());
+
             jdbcTemplate.update(sql.toString(), parametros.toArray());
         } catch (Exception ex) {
             System.out.println(ex.toString());

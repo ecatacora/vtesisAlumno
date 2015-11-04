@@ -16,7 +16,16 @@ public class AvanceDTO {
     private String ciclo;
     private String idAlumno;
     private String idAsesor;
+    private String nombre;
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
     public int getIdHistorial() {
         return idHistorial;
     }

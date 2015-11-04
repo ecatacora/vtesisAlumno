@@ -29,34 +29,6 @@ public class PersonaDAO {
     @Autowired
     DataSource datasource;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public PersonaDTO get(String email) {
 
         String query = "select e.EmployeeID, "
@@ -77,107 +49,20 @@ public class PersonaDAO {
                 + "where e.Email = ?";
 
         JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
-        PersonaDTO employee = jdbcTemplate.queryForObject(query, new Object[]{email}, new RowMapper<PersonaDTO>() {            @Override
+        PersonaDTO employee = jdbcTemplate.queryForObject(query, new Object[]{email}, new RowMapper<PersonaDTO>() {
+            @Override
             public PersonaDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
-        } );
+        });
         return employee;
     }
 
     public void update(PersonaDTO employee) {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         StringBuilder sql = new StringBuilder();
 
         try {
-
 
             JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
             sql.append("UPDATE persona SET nombres = ?,"
@@ -188,9 +73,6 @@ public class PersonaDAO {
                     + " Rol_idRol = ? ,"
                     + " WHERE idPersona = ?");
 
-=======
-            JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
-            JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
             List<Object> parametros = new ArrayList<Object>();
             parametros.add(persona.getNombres());
             parametros.add(persona.getApellidos());
@@ -216,15 +98,16 @@ public class PersonaDAO {
             List<Object> parametros = new ArrayList<Object>();
             parametros.add(persona.getIdPersona());
 
-/*            parametros.add(employee.getFirstName());
-            parametros.add(employee.getLastName());
-            parametros.add(employee.getHomePhone());
-            parametros.add(employee.getExtension());
-            parametros.add(employee.getAddress());
-            parametros.add(employee.getCity());
-            parametros.add(employee.getCountry());
-            parametros.add(employee.getRegion());
-            parametros.add(employee.getEmployeeID()); */
-=======
-
-
+            /*            parametros.add(employee.getFirstName());
+             parametros.add(employee.getLastName());
+             parametros.add(employee.getHomePhone());
+             parametros.add(employee.getExtension());
+             parametros.add(employee.getAddress());
+             parametros.add(employee.getCity());
+             parametros.add(employee.getCountry());
+             parametros.add(employee.getRegion());
+             parametros.add(employee.getEmployeeID()); */
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+        }
+    }

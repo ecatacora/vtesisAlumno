@@ -25,10 +25,11 @@ import pucp.sw2.horario1.vtesis.modelos.Persona;
  */
 @Repository(value = "personaDAO")
 public class PersonaDAO {
+
     @Autowired
     DataSource datasource;
 
-   public List<PersonaDTO> ListarPersona() {
+    public List<PersonaDTO> ListarPersona() {
 
         List<PersonaDTO> lstPersonas = null;
         JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
@@ -53,8 +54,8 @@ public class PersonaDAO {
                 });
 
         return lstPersonas;
-    }  
-    
+    }
+
     public PersonaDTO get(String email) {
 
         String query = "select e.EmployeeID, "
@@ -90,8 +91,8 @@ public class PersonaDAO {
                 + " Country = ?, "
                 + " Region = ? "
                 + " WHERE EmployeeID = ?");
-        
-        try{
+
+        try {
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
             List<Object> parametros = new ArrayList<Object>();
             parametros.add(employee.getFirstName());
@@ -104,12 +105,9 @@ public class PersonaDAO {
             parametros.add(employee.getRegion());
             parametros.add(employee.getEmployeeID());
             jdbcTemplate.update(sql.toString(), parametros.toArray());
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             System.out.println(ex.toString());
         }
     }
 
-    
-    
-    
 }

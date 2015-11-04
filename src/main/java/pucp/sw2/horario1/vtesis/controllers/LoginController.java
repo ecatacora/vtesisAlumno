@@ -47,11 +47,13 @@ public class LoginController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();
         PersonaDTO persona = personaDAO.get(email);
-        model.addAttribute("personaDTO", employee);
+        model.addAttribute("personaDTO", persona);
         if (persona.getIdRol() == 1) {
             return "/admin/lista";
         } else if(persona.getIdRol() == 2){
             return "/asesor/profile";
+        } else {
+            return "alumno/alumnoprofile";
         }
     }
     

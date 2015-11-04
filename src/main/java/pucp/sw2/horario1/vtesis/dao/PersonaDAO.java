@@ -29,36 +29,34 @@ public class PersonaDAO {
     @Autowired
     DataSource datasource;
 
-    public List<PersonaDTO> ListarPersona() {
 
-        List<PersonaDTO> lstPersonas = null;
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
-        StringBuilder sql = new StringBuilder();
 
-        sql.append(" select p.idPersona, p.nombres, p.apellidos,p.codigo, p.contraseña, p.rol from persona p left join rol r ");
-        sql.append(" on (p.Rol_idRol=r.idRol)");
 
-        lstPersonas = jdbcTemplate.query(sql.toString(),
-                new RowMapper<PersonaDTO>() {
-                    @Override
-                    public PersonaDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
-                        PersonaDTO persona = new PersonaDTO();
-                        persona.setIdPersona(rs.getInt(1));
-                        persona.setNombres(rs.getString(2));
-                        persona.setApellidos(rs.getString(3));
-                        persona.setCodigo(rs.getString(4));
-                        persona.setContrasena(rs.getString(5));
-                        persona.setIdRol(rs.getInt(6));
-                        return persona;
-                    }
-                });
 
-        return lstPersonas;
-    }
 
-<<<<<<< HEAD
-    public void actualizarPersona(Persona persona) {
-=======
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public PersonaDTO get(String email) {
 
         String query = "select e.EmployeeID, "
@@ -88,11 +86,98 @@ public class PersonaDAO {
     }
 
     public void update(PersonaDTO employee) {
->>>>>>> origin/master
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         StringBuilder sql = new StringBuilder();
 
         try {
-<<<<<<< HEAD
+
 
             JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
             sql.append("UPDATE persona SET nombres = ?,"
@@ -105,9 +190,8 @@ public class PersonaDAO {
 
 =======
             JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
->>>>>>> origin/master
+            JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
             List<Object> parametros = new ArrayList<Object>();
-<<<<<<< HEAD
             parametros.add(persona.getNombres());
             parametros.add(persona.getApellidos());
             parametros.add(persona.getCodigo());
@@ -132,7 +216,6 @@ public class PersonaDAO {
             List<Object> parametros = new ArrayList<Object>();
             parametros.add(persona.getIdPersona());
 
-=======
 /*            parametros.add(employee.getFirstName());
             parametros.add(employee.getLastName());
             parametros.add(employee.getHomePhone());
@@ -142,11 +225,6 @@ public class PersonaDAO {
             parametros.add(employee.getCountry());
             parametros.add(employee.getRegion());
             parametros.add(employee.getEmployeeID()); */
->>>>>>> origin/master
-            jdbcTemplate.update(sql.toString(), parametros.toArray());
-        } catch (Exception ex) {
-            System.out.println(ex.toString());
-        }
-    }
+=======
 
-}
+

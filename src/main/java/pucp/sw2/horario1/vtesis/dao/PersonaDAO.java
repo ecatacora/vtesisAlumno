@@ -28,28 +28,31 @@ public class PersonaDAO {
     @Autowired
     DataSource datasource;
 
-    public List<EmployeeBean> listemployees() {
+   public List<PersonaDTO> ListarPersona() {
 
-        String query = "select e.EmployeeID, "
-                + "e.Title, "
-                + "e.FirstName, "
-                + "e.LastName, "
-                + "e.Email, "
-                + "e.HomePhone, "
-                + "e.Extension, "
-                + "e.PostalCode, "
-                + "e.Region, "
-                + "e.Role, "
-                + "e.Address, "
-                + "e.City, "
-                + "e.Country, "
-                + "e.Enabled "
-                + "from employees e "
-                + "where e.Enabled = 1";
+        List<PersonaDTO> lstPersonas = null;
         JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
-        List<EmployeeBean> employee_list = jdbcTemplate.query(query, new EmployeeMapper());
-        return employee_list;
+        StringBuilder sql = new StringBuilder();
 
+        sql.append(" select p.idPersona, p.nombres, p.apellidos,p.codigo, p.contraseña, p.rol from persona p left join rol r ");
+        sql.append(" on (p.Rol_idRol=r.idRol)");
+
+        lstPersonas = jdbcTemplate.query(sql.toString(),
+                new RowMapper<PersonaDTO>() {
+                    @Override
+                    public PersonaDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+                        PersonaDTO persona = new PersonaDTO();
+                        persona.setIdPersona(rs.getInt(1));
+                        persona.setNombres(rs.getString(2));
+                        persona.setApellidos(rs.getString(3));
+                        persona.setCodigo(rs.getString(4));
+                        persona.setContrasena(rs.getString(5));
+                        persona.setIdRol(rs.getInt(6));
+                        return persona;
+                    }
+                });
+
+        return lstPersonas;
     }  
     
     public PersonaDTO get(String email) {

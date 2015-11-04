@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -129,7 +130,7 @@
 
 
             <!-- page content -->
-          <div class="right_col" role="main">
+            <div class="right_col" role="main">
 
                 <!-- top tiles -->
                 
@@ -138,64 +139,59 @@
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="dashboard_graph">
-
-                          	<div class="row x_title">
+                            <div class="row x_title">
                                 <div class="col-md-12">
-                                  <h3>Criterio de BÃºsqueda: &nbsp;</h3><h3 id="criterios"><small>Curso: Tesis 1</small></h3>
+                                  <h3>Lista de Alumnos</h3>
                                 </div>
-                         	</div>
-							<div class="dashboard_graph">
-                            	<h4>Lista de alumnos: </h4><br>
+                            </div>
+                            <div class="dashboard_graph">
+                            	<!--<h4>Lista de alumnos: </h4><br>-->
                                 <form>
-                                <div class="x_content">
-                                <table class="table table-bordered">
-	<tr>
-		<th>C&oacute;digo</th> 
-                <th>Nombre y Apellido</th> 
-                <th>Curso</th> 
-                <th>Entregables</th> 
-                <th>&Uacute;ltima Actualizaci&oacute;n</th>
-	</tr>
-	<tr>
-		<td>20111456</td> 
-                <td>Hiroshi Dospa Titos</td> 
-                <td>Tesis 1</td> 
-                <td> <a href="Asesor_vista_de_entregable.html"> Ver </a></td>
-                <td>10-08-2015</td>
-	</tr>
-	<tr>
-		<td>20112548</td>
-                <td>Luis Pacheco Ortega</td> <td>Tesis 1</td> <td><a href="#Ver ">Ver</a></td> <td>17-08-2015</td>
-	</tr>
-        <tr>
-		<td>20124156</td> <td>Karina Veliz Davalos</td> <td>Tesis 1</td> <td><a href="#Ver ">Ver</a></td> <td>12-08-2015</td>
-	</tr>
-        <tr>
-		<td>20145987</td> <td>Lucia Jara Koc</td> <td>Tesis 1</td> <td><a href="#Ver ">Ver</a></td> <td>17-08-2015</td>
-	</tr>
-</table>
-							</div>
-                            </form>
-                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <div class="x_content">
+                                        <table class="table table-bordered">
+                                            
+                                            <thead>
+                                                <th>C&oacute;digo</th>
+                                                <th>Nombre y Apellido</th>  
+                                                <th>Curso</th>
+                                                <th>Entregables</th>
+                                                <th>&Uacute;ltima Actualizaci&oacute;n</th> 
+                                            </thead>
+                                            
+                                            <tbody>
+                                                <c:forEach items="${lstAlumnos}" var="p">
+                                                    <tr>
+                                                        <td>${p.codigo}</td>
+                                                        <td><!--nombre y apellido--></td>                                
+                                                        <td>${p.curso}</td>
+                                                        <td><a href="<c:url value= "/asesor/vistaEntregables"/>"> ${p.avance}</a></td>
+                                                        <td><!--fecha de actualizacion--></td>
+                                                    </tr> 
+                                                </c:forEach>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </form>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
                                     <label for="uploadbtn">&nbsp;</label><br>
                                     <a href="Asesor-llenar-calendario.html">
                                     <span class="btn btn-primary" id="uploadbtn" name="uploadbtn">Llenar calendario</span>
                                     </a>
                                     <br>
-                                    </div>
-                                    <div class="col-md-6 col-sm-6 col-xs-6" align="right">
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6" align="right">
                                     
                                     <label for="registrar">&nbsp;</label><br>
                                     <a href="profile.html">
                                     <span class="btn btn-primary" id="registrar" name="registrar">Regresar</span>
                                     </a>
-                                    </div>
+                                </div>
                             </div>
                             
                         </div>
                     </div>
 
-              </div>
+                </div>
                 
 <br />
 <!-- footer content -->
@@ -205,16 +201,16 @@
                       <p class="pull-right"><font color="#5a738e">Virtual Tesis - plataforma virtual de entrega de tesis - PUCP</font>. | <span class="lead"> V - Tesis</span></p>
                     </div>
                     <div class="clearfix"></div>
-              </footer>
+                </footer>
                 <!-- /footer content -->
-          </div>
+            </div>
             <!-- /page content -->
 
         </div>
 
     </div>
-<script src="js/bootstrap.min.js"></script>
-
+    <script src="js/bootstrap.min.js"></script>
+    
     <!-- gauge js -->
     <script type="text/javascript" src="js/gauge/gauge.min.js"></script>
     <script type="text/javascript" src="js/gauge/gauge_demo.js"></script>

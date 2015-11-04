@@ -43,6 +43,19 @@ public class AsesorController {
         return "asesor/lista_alumnos";
     }
     
+    @RequestMapping(value = "asesor/vistaEntregables")
+    public String vistaEntregable(Model model){
+        
+        return "asesor/vista_de_entregables";
+    }
+    
+    @RequestMapping(value = "asesor/registro")
+    public String Registrar(Model model){
+       
+        return "....";
+    }
+    
+    
     
     
     

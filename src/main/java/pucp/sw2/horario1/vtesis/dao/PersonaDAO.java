@@ -75,12 +75,16 @@ public class PersonaDAO {
                 + "from employees e "
                 + "where e.Email = ?";
 
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        EmployeeBean employee = jdbcTemplate.queryForObject(query, new Object[]{email}, new EmployeeMapper());
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
+        PersonaDTO employee = jdbcTemplate.queryForObject(query, new Object[]{email}, new RowMapper<PersonaDTO>() {            @Override
+            public PersonaDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        } );
         return employee;
     }
 
-    public void update(EmployeeBean employee) {
+    public void update(PersonaDTO employee) {
         StringBuilder sql = new StringBuilder();
         sql.append("UPDATE employees SET FirstName = ?,"
                 + " LastName = ? ,"
@@ -93,9 +97,9 @@ public class PersonaDAO {
                 + " WHERE EmployeeID = ?");
 
         try {
-            JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+            JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
             List<Object> parametros = new ArrayList<Object>();
-            parametros.add(employee.getFirstName());
+/*            parametros.add(employee.getFirstName());
             parametros.add(employee.getLastName());
             parametros.add(employee.getHomePhone());
             parametros.add(employee.getExtension());
@@ -103,7 +107,7 @@ public class PersonaDAO {
             parametros.add(employee.getCity());
             parametros.add(employee.getCountry());
             parametros.add(employee.getRegion());
-            parametros.add(employee.getEmployeeID());
+            parametros.add(employee.getEmployeeID()); */
             jdbcTemplate.update(sql.toString(), parametros.toArray());
         } catch (Exception ex) {
             System.out.println(ex.toString());

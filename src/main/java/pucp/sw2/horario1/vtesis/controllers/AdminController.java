@@ -5,10 +5,23 @@
  */
 package pucp.sw2.horario1.vtesis.controllers;
 
+import java.util.logging.Logger;
+import javax.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import pucp.sw2.horario1.vtesis.dao.PersonaDAO;
+
 /**
  *
  * @author josesuk
  */
+@Controller
 public class AdminController {
+    @Autowired
+    PersonaDAO personaDAO;
+    
     
 }

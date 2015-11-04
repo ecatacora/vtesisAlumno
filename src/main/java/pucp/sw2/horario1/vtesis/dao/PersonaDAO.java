@@ -56,10 +56,43 @@ public class PersonaDAO {
         return lstPersonas;
     }
 
+<<<<<<< HEAD
     public void actualizarPersona(Persona persona) {
+=======
+    public PersonaDTO get(String email) {
+
+        String query = "select e.EmployeeID, "
+                + "e.Title, "
+                + "e.FirstName, "
+                + "e.LastName, "
+                + "e.Email, "
+                + "e.HomePhone, "
+                + "e.Extension, "
+                + "e.PostalCode, "
+                + "e.Region, "
+                + "e.Role, "
+                + "e.Address, "
+                + "e.City, "
+                + "e.Country, "
+                + "e.Enabled "
+                + "from employees e "
+                + "where e.Email = ?";
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
+        PersonaDTO employee = jdbcTemplate.queryForObject(query, new Object[]{email}, new RowMapper<PersonaDTO>() {            @Override
+            public PersonaDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        } );
+        return employee;
+    }
+
+    public void update(PersonaDTO employee) {
+>>>>>>> origin/master
         StringBuilder sql = new StringBuilder();
 
         try {
+<<<<<<< HEAD
 
             JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
             sql.append("UPDATE persona SET nombres = ?,"
@@ -70,7 +103,11 @@ public class PersonaDAO {
                     + " Rol_idRol = ? ,"
                     + " WHERE idPersona = ?");
 
+=======
+            JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
+>>>>>>> origin/master
             List<Object> parametros = new ArrayList<Object>();
+<<<<<<< HEAD
             parametros.add(persona.getNombres());
             parametros.add(persona.getApellidos());
             parametros.add(persona.getCodigo());
@@ -95,6 +132,17 @@ public class PersonaDAO {
             List<Object> parametros = new ArrayList<Object>();
             parametros.add(persona.getIdPersona());
 
+=======
+/*            parametros.add(employee.getFirstName());
+            parametros.add(employee.getLastName());
+            parametros.add(employee.getHomePhone());
+            parametros.add(employee.getExtension());
+            parametros.add(employee.getAddress());
+            parametros.add(employee.getCity());
+            parametros.add(employee.getCountry());
+            parametros.add(employee.getRegion());
+            parametros.add(employee.getEmployeeID()); */
+>>>>>>> origin/master
             jdbcTemplate.update(sql.toString(), parametros.toArray());
         } catch (Exception ex) {
             System.out.println(ex.toString());

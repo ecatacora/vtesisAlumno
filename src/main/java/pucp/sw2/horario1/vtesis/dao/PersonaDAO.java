@@ -58,7 +58,7 @@ public class PersonaDAO {
         return employee;
     }
 
-    public void update(PersonaDTO employee) {
+    public void update(PersonaDTO persona) {
 
         StringBuilder sql = new StringBuilder();
 
@@ -69,18 +69,18 @@ public class PersonaDAO {
                     + " apellidos = ? ,"
                     + " codigo = ? ,"
                     + " contraseña = ? ,"
-                    + " foto = ? ,"
+//                    + " foto = ? ,"
                     + " Rol_idRol = ? ,"
                     + " WHERE idPersona = ?");
 
             List<Object> parametros = new ArrayList<Object>();
-            parametros.add(persona.getNombres());
-            parametros.add(persona.getApellidos());
-            parametros.add(persona.getCodigo());
-            parametros.add(persona.getContrasena());
-            parametros.add(persona.getFoto());
-            parametros.add(persona.getIdRol());
-            parametros.add(persona.getIdPersona());
+             parametros.add(persona.getNombres());
+             parametros.add(persona.getApellidos());
+             parametros.add(persona.getCodigo());
+             parametros.add(persona.getContrasena());
+//             parametros.add(persona.getFoto());
+             parametros.add(persona.getIdRol());
+             parametros.add(persona.getIdPersona());
 
             jdbcTemplate.update(sql.toString(), parametros.toArray());
         } catch (Exception ex) {
@@ -89,25 +89,15 @@ public class PersonaDAO {
     }
 
     public void borrarPersona(Persona persona) {
+
         StringBuilder sql = new StringBuilder();
-        sql.append("DELETE from persona"
-                + " WHERE idPersona = ?");
 
-        try {
-            JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
-            List<Object> parametros = new ArrayList<Object>();
-            parametros.add(persona.getIdPersona());
+        sql.append("DELETE from persona");
+        sql.append(" WHERE idPersona = ?");
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
+        List<Object> parametros = new ArrayList<Object>();
+        parametros.add(persona.getIdPersona());
+        jdbcTemplate.update(sql.toString(), parametros.toArray());
 
-            /*            parametros.add(employee.getFirstName());
-             parametros.add(employee.getLastName());
-             parametros.add(employee.getHomePhone());
-             parametros.add(employee.getExtension());
-             parametros.add(employee.getAddress());
-             parametros.add(employee.getCity());
-             parametros.add(employee.getCountry());
-             parametros.add(employee.getRegion());
-             parametros.add(employee.getEmployeeID()); */
-        } catch (Exception ex) {
-            System.out.println(ex.toString());
-        }
     }
+}

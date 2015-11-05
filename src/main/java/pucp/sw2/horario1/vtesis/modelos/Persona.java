@@ -17,19 +17,23 @@ public class Persona implements Serializable {
     private String apellidos;
     private Integer codigo;
     private Integer contrasena;
+    private String foto;
     private Integer idRol;
 
     public Persona() {
     }
 
-    public Persona(Integer idPersona, String nombres, String apellidos, Integer codigo, Integer contrasena, Integer idRol) {
+    public Persona(Integer idPersona, String nombres, String apellidos, Integer codigo, Integer contrasena, String foto, Integer idRol) {
         this.idPersona = idPersona;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.codigo = codigo;
         this.contrasena = contrasena;
+        this.foto = foto;
         this.idRol = idRol;
     }
+
+   
 
     /**
      * @return the idPersona
@@ -113,6 +117,14 @@ public class Persona implements Serializable {
      */
     public void setIdRol(Integer idRol) {
         this.idRol = idRol;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
     
     

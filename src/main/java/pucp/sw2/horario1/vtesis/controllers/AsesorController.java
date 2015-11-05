@@ -10,8 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import pucp.sw2.horario1.vtesis.dao.AsesorDao;
+import pucp.sw2.horario1.vtesis.dao.AvanceDAO;
 import pucp.sw2.horario1.vtesis.dao.PersonaDAO;
+import pucp.sw2.horario1.vtesis.modelos.Avance;
 
 /**
  *
@@ -24,6 +27,8 @@ public class AsesorController {
     
     @Autowired
     AsesorDao asesorDao;
+    @Autowired
+    AvanceDAO avanceDAO;
     
     
     /* se configura un log para este controlador*/
@@ -55,11 +60,12 @@ public class AsesorController {
         return "....";
     }
     
-    
-    
-    
-    
-    
+    @RequestMapping(value = "asesor/editarFechas")
+    public String registrarFechas(Model model, @RequestParam Integer idAvance){
+       Avance avance = avanceDAO.obtener(idAvance); 
+       model.addAttribute("avance", avance);
+       return "asesor/editarFechas?idAvance=34";
+    }
     
     
     

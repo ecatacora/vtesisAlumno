@@ -42,14 +42,12 @@
                             <div class="control-group">
                                 <label class="control-label">Password</label>
                                 <div class="controls">
-                                    <input type="password" name="password">
+                                    <input type="password" name="password" placeholder="*******">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <div class="controls">
-                                    <label class="checkbox">
-                                        <input type="checkbox"> Recordar cuenta
-                                    </label>
+                                   
                                     &nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-success">Ingresar</button>
                                 </div>
                             </div>
@@ -58,9 +56,9 @@
 
                     </div>
                     <div class="modal-footer">
-                        <a href="#">Registrarse en Northwind</a><br>
+                       
                         <a href="#">Recuperar Contraseña</a><br>
-                        <a href="#">Reenviar Código de Activación</a>
+                        
                     </div>
                 </div>
 

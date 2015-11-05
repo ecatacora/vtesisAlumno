@@ -27,19 +27,47 @@
             <div id="wrapper">
                 <div id="login" class="animate form">
                     <section class="login_content">
-                        <form:form >
+                        <form:form modelAttribute="userLogin" method="POST" action="login">
                             <h1>V-Tesis</h1>
-                            <div>
-                                <input type="text" path="" id="username" name="username" class="form-control" placeholder="Usuario" />
+                           <div class="modal-body">
+                        <spring:url value="/dologin.do" var="url" />
+                        <form class="well form-inline" role="form" action="${url}" method="POST">
+                            <% if (request.getParameter("error") != null) {%><div class="alert alert-error">Los datos ingresados son incorrectos</div> <% }%>
+                            <div class="control-group">
+                                <label class="control-label">Código</label>
+                                <div class="controls">
+                                    <input type="text" name="codigo" placeholder="coodigo">
+                                </div>
                             </div>
-                            <div>
-                                <input type="password" path="" id="password" name="password" class="form-control" placeholder="Contraseña"/>
+                            <div class="control-group">
+                                <label class="control-label">Password</label>
+                                <div class="controls">
+                                    <input type="password" name="password">
+                                </div>
                             </div>
-                            <div>         
-                                <button type="submit" class="btn btn-default">Acceder</button>
-                                <a class="reset_pass" href="#">¿Olvidó su contraseña?</a>
+                            <div class="control-group">
+                                <div class="controls">
+                                    <label class="checkbox">
+                                        <input type="checkbox"> Recordar cuenta
+                                    </label>
+                                    &nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-success">Ingresar</button>
+                                </div>
                             </div>
-                            <div class="clearfix"></div>
+
+                        </form> 
+
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#">Registrarse en Northwind</a><br>
+                        <a href="#">Recuperar Contraseña</a><br>
+                        <a href="#">Reenviar Código de Activación</a>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
 
                         </form:form>
                         <!-- form -->

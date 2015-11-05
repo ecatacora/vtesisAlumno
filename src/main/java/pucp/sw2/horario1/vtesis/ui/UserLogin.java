@@ -5,11 +5,13 @@
  */
 package pucp.sw2.horario1.vtesis.ui;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Hiroshi
  */
-public class UserLogin {
+public class UserLogin implements Serializable{
 
     private String username;
 

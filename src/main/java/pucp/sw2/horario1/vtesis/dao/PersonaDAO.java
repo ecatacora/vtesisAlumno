@@ -40,10 +40,9 @@ public class PersonaDAO {
                 + "e.nombres, "
                 + "e.apellidos, "
                 + "e.codigo, "
-                + "e.password, "
-                
+                + "e.password, "                
                 + "e.enabled, "
-                + "e.Rol_idRol, "
+                + "e.Rol_idRol "
                 + "from persona e "
                 + "where e.codigo = ?";
 

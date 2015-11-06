@@ -28,7 +28,7 @@
             <div id="wrapper">
                 <div id="login" class="animate form">
                     <section class="login_content">
-                        <form:form modelAttribute="userLogin" method="POST" action="login">
+                        
                             <h1>V-Tesis</h1>
                             <div class="modal-body">
                                 <spring:url value="/dologin.do" var="url" />
@@ -68,7 +68,7 @@
 
             </div>
 
-        </form:form>
+       
         <!-- form -->
     </section>
     <!-- content -->

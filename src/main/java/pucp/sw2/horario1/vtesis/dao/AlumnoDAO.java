@@ -32,7 +32,7 @@ public class AlumnoDAO {
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT idHistorial,ciclo,idCurso,alumno_idPersona,asesor_idPersona1");
         sql.append(" FROM historial ");
-        sql.append(" where ciclo = ?,idCurso=?,alumno_idPersona=? ");
+        sql.append(" where ciclo = ? AND idCurso=? AND alumno_idPersona=? ");
         JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
         HistorialDTO resultado = jdbcTemplate.queryForObject(sql.toString(), new Object[]{ciclo,idCurso,idAlumno}, new RowMapper<HistorialDTO>() {
             @Override

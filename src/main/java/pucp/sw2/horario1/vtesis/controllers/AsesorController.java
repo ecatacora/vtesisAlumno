@@ -93,7 +93,7 @@ public class AsesorController {
     public String registrarFechas(Model model, @RequestParam Integer idAvance){
        Avance avance = avanceDAO.obtener(idAvance); 
        model.addAttribute("avance", avance);
-       return "asesor/editarFechas?idAvance=34";
+       return "asesor/editarFechas";
     }
     
     @RequestMapping(value = "asesor/vistaEntregables")

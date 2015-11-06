@@ -68,7 +68,7 @@ public class AsesorDao {
         StringBuilder sql = new StringBuilder();
 
         sql.append("SELECT h.ciclo ");
-        sql.append("FROM historial h");
+        sql.append("FROM historial h ");
         sql.append("where asesor_idPersona = ? ");
         parametros.add(idPersona);
         lstResultados = jdbcTemplate.query(sql.toString(), parametros.toArray(),

@@ -42,7 +42,7 @@ public class PersonaDAO {
                 + "e.codigo, "
                 + "e.password, "                
                 + "e.enabled, "
-                + "e.Rol_idRol "
+                + "e.idRol "
                 + "from persona e "
                 + "where e.codigo = ?";
 
@@ -121,7 +121,7 @@ public class PersonaDAO {
                     + " codigo = ? ,"
                     + " contraseña = ? ,"
                     //                    + " foto = ? ,"
-                    + " Rol_idRol = ? ,"
+                    + " idRol = ? "
                     + " WHERE idPersona = ?");
 
             List<Object> parametros = new ArrayList<Object>();

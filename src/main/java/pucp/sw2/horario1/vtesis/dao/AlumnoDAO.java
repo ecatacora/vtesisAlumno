@@ -15,6 +15,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import pucp.sw2.horario1.vtesis.dto.AlumnoDTO;
+import pucp.sw2.horario1.vtesis.dto.CursoDTO;
+import pucp.sw2.horario1.vtesis.dto.HistorialDTO;
 
 /**
  *
@@ -45,17 +47,6 @@ public class AlumnoDAO {
                     @Override
                     public AlumnoDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
                         
-                        /*
-                            private Integer idPersona;
-                            private String  nombres;
-                            private String apellidos;
-                            private String codigo;
-                            private String correo;
-                            private String contrasena;
-                            private String foto;
-                            private int enabled;
-                            private Integer Rol_idRol;
-                        */
                         AlumnoDTO m = new AlumnoDTO();
                         m.setIdPersona(rs.getInt(1));
                         m.setNombres(rs.getString(2));
@@ -72,12 +63,71 @@ public class AlumnoDAO {
 
         return lstResultados;
     }
-    
+
     //Cursos de un alumno
-    
-    
-    
+    public List<CursoDTO> listarCursos() {
+        List<CursoDTO> lstResultados = null;
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
+        List<Object> parametros = new ArrayList<Object>();
+        StringBuilder sql = new StringBuilder();
+
+        sql.append("select c.idCurso, c.nombre ");
+        sql.append("from curso c ");
+        sql.append("inner join historial h on (c.idCurso = h.idHistorial) ");
+        sql.append("inner join persona p on (h.alumno_idPersona = p.idPersona) ");
+
+        lstResultados = jdbcTemplate.query(sql.toString(), parametros.toArray(),
+                new RowMapper<CursoDTO>() {
+                    @Override
+                    public CursoDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+                        /*
+                            private int idCurso;
+                            private String nombre;
+                        */
+                        CursoDTO m = new CursoDTO();
+                        m.setIdCurso(rs.getInt(1));
+                        m.setNombre(rs.getString(2));
+                        return m;
+                    }
+                });
+
+        return lstResultados;
+    } 
     
     //Ciclos de un alumno
-    
+
+        public List<HistorialDTO> listarCiclos() {
+        List<HistorialDTO> lstResultados = null;
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
+        List<Object> parametros = new ArrayList<Object>();
+        StringBuilder sql = new StringBuilder();
+
+        sql.append("select c.idCurso, c.nombre ");
+        sql.append("from curso c ");
+        sql.append("inner join historial h on (c.idCurso = h.idHistorial) ");
+        sql.append("inner join persona p on (h.alumno_idPersona = p.idPersona) ");
+
+        lstResultados = jdbcTemplate.query(sql.toString(), parametros.toArray(),
+                new RowMapper<HistorialDTO>() {
+                    @Override
+                    public HistorialDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+                        /*
+                                private int idHistorial;
+                                private int curso_idCurso;
+                                private String ciclo;
+                                private int alumno_idPersona;
+                                private int asesor_idPersona;
+                        */
+                        HistorialDTO m = new HistorialDTO();
+                        m.setIdHistorial(rs.getInt(1));
+                        m.setCurso_idCurso(rs.getInt(2));
+                        m.setCiclo(rs.getString(3));
+                        m.setAlumno_idPersona(rs.getInt(4));
+                        m.setAsesor_idPersona(rs.getInt(5));
+                        return m;
+                    }
+                });
+
+        return lstResultados;
+    } 
 }

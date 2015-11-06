@@ -5,11 +5,13 @@
  */
 package pucp.sw2.horario1.vtesis.dto;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Eudomar
  */
-public class AlumnoDTO {
+public class AlumnoDTO implements Serializable{
     
     private Integer idPersona;
     private String  nombres;

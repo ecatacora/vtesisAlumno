@@ -34,8 +34,11 @@ public class LoginController {
         if (personaDTO != null) {
             if (personaDTO.getIdRol() == 1) {
                 return "/admin/lista";
+            } else if (personaDTO.getIdRol() == 2) {
+                return "/asesor/profile";
             } else {
-                return "/user/index";
+                return "/alumno/profile";
+
             }
         } else {
             return "login";
@@ -50,13 +53,13 @@ public class LoginController {
         model.addAttribute("personaDTO", persona);
         if (persona.getIdRol() == 1) {
             return "/admin/lista";
-        } else if(persona.getIdRol() == 2){
+        } else if (persona.getIdRol() == 2) {
             return "/asesor/profile";
         } else {
-            return "alumno/alumnoprofile";
+            return "/alumno/profile";
         }
     }
-    
+
     @RequestMapping(value = {"/accessdenied.do"}, method = RequestMethod.GET)
     public String denied() {
         return "/denied";

@@ -22,7 +22,7 @@ import pucp.sw2.horario1.vtesis.dao.PersonaDAO;
 import pucp.sw2.horario1.vtesis.dto.PersonaDTO;
 
 @Controller
-@SessionAttributes("employeeBean")
+@SessionAttributes("personaDTO")
 public class LoginController {
 
     @Autowired

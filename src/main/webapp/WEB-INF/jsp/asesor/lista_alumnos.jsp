@@ -63,13 +63,13 @@
                             <ul class="nav side-menu">
                                 <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="profile.html">Perfil</a></li>
+                                        <li><a href="<c:url value= "/asesor/profile"/>">Perfil</a></li>
                                                                          
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-calendar"></i> Acciones <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="Asesor-llenar-calendario.html">Llenar calendario</a>
+                                        <li><a href="<c:url value= "/asesor/llenar_calendario"/>">Llenar calendario</a>
                                         </li>
                                         
                                     </ul>
@@ -105,7 +105,7 @@
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
-                                    <li><a href="profile.html">  Profile</a>
+                                    <li><a href="<c:url value= "/asesor/profile"/>">  Profile</a>
                                     </li>
                                     <!-- <li>
                                         <a href="javascript:;">
@@ -116,7 +116,7 @@
                                     <li>
                                         <a href="javascript:;">Help</a>
                                     </li> -->
-                                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                    <li><a href="<c:url value= "/login.do"/>"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                                     </li>
                                 </ul>
                             </li>
@@ -162,7 +162,7 @@
                                                 <c:forEach items="${lstAlumnos}" var="p">
                                                     <tr>
                                                         <td>${p.codigo}</td>
-                                                        <td>${p.nombres} ${p.apellidos}</td>                                
+                                                        <td>${p.nombres}</td>                                
                                                         <td>${p.curso}</td>
                                                         <td><a href="<c:url value= "/asesor/vistaEntregables"/>"> ${p.avance}</a></td>
                                                         <td><!--fecha de actualizacion--></td>
@@ -174,15 +174,15 @@
                                 </form>
                                 <div class="col-md-6 col-sm-6 col-xs-6">
                                     <label for="uploadbtn">&nbsp;</label><br>
-                                    <a href="Asesor-llenar-calendario.html">
-                                    <span class="btn btn-primary" id="uploadbtn" name="uploadbtn">Llenar calendario</span>
+                                    <a href="<c:url value= "/asesor/llenar_calendario"/>">
+                                        <span class="btn btn-primary" id="uploadbtn" name="uploadbtn">Llenar calendario</span>
                                     </a>
                                     <br>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-6" align="right">
                                     
                                     <label for="registrar">&nbsp;</label><br>
-                                    <a href="profile.html">
+                                    <a href="<c:url value= "/asesor/profile"/>">
                                     <span class="btn btn-primary" id="registrar" name="registrar">Regresar</span>
                                     </a>
                                 </div>

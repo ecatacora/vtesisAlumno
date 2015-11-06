@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import pucp.sw2.horario1.vtesis.dto.CursoDTO;
 import pucp.sw2.horario1.vtesis.dto.PersonaDTO;
 import pucp.sw2.horario1.vtesis.modelos.Avance;
 import pucp.sw2.horario1.vtesis.modelos.Curso;
@@ -37,9 +38,10 @@ public class AsesorDao {
                 + "p.nombres, "
                 + "p.apellidos, "
                 + "p.codigo, "
-                + "p.contraseña "
+                + "p.contraseña, "
+                + "p.email,"
                 + "p.foto, "
-                + "p.Rol_idRol, "
+                + "p.idRol, "
                 + "from persona p "
                 + "where p.idPersona = ?";
 
@@ -54,8 +56,8 @@ public class AsesorDao {
     }
     
     
-    public List<Curso> listarCursos(){
-        List<Curso> lstCursos = null;
+    public List<CursoDTO> listarCursos(){
+        List<CursoDTO> lstCursos = null;
         
         JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);                
         StringBuilder sql = new StringBuilder();
@@ -65,10 +67,10 @@ public class AsesorDao {
               
         
         lstCursos = jdbcTemplate.query(sql.toString(),
-                        new RowMapper<Curso>() {
+                        new RowMapper<CursoDTO>() {
                             @Override
-                            public Curso mapRow(ResultSet rs, int rowNum) throws SQLException {
-                                Curso curso = new Curso();
+                            public CursoDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+                                CursoDTO curso = new CursoDTO();
                                 curso.setIdCurso(rs.getInt(1));
                                 curso.setNombre(rs.getString(2));
                                
@@ -88,8 +90,8 @@ public class AsesorDao {
         sql.append(" select p.codigo, concat(p.nombres,' ',p.apellidos), c.nombre");
         sql.append(" from persona p");
         sql.append(" inner join historial h on (p.idPersona = h.alumno_idPersona)");
-        sql.append(" inner join curso c on (h.curso_idCurso = c.idCurso)");
-        sql.append(" where Rol_idRol=3 AND p.idPersona = ?"); //Falta obtener idPersona
+        sql.append(" inner join curso c on (h.idCurso = c.idCurso)");
+        sql.append(" where idRol=3 AND p.idPersona = ?"); //Falta obtener idPersona
         
         if (filtros.getIdCurso()!= null){        
             sql.append(" AND c.idCurso = ?");

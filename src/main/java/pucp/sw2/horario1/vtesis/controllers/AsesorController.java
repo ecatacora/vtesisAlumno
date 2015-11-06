@@ -42,8 +42,8 @@ public class AsesorController {
     @RequestMapping(value = "asesor/profile")
     public String profileAsesor(Model model, int id){
         
-        PersonaDTO persona = asesorDao.getInfo(id);
-        model.addAttribute("personaDatos", persona);
+        PersonaDTO persona = asesorDao.getInfo(id); //editar 
+        model.addAttribute("personaDatos", persona); 
         return "asesor/profile";
     }
     
@@ -60,7 +60,7 @@ public class AsesorController {
         
         model.addAttribute("filtros", filtros);
         model.addAttribute("lstCursos",asesorDao.listarCursos());
-        model.addAttribute("lstPersonas", lstAlumnos);
+        model.addAttribute("lstAlumnos", lstAlumnos);
         
         
         //model.addAttribute("lstAlumnos",asesorDao.listarAlumnos());

@@ -45,8 +45,8 @@ public class LoginController {
     @RequestMapping(value = {"/home.do"}, method = RequestMethod.GET)
     public String home(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String email = auth.getName();
-        PersonaDTO persona = personaDAO.get(email);
+        String codigo = auth.getName();
+        PersonaDTO persona = personaDAO.get(codigo);
         model.addAttribute("personaDTO", persona);
         if (persona.getIdRol() == 1) {
             return "/admin/lista";

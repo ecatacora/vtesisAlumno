@@ -22,6 +22,15 @@ public class PersonaDTO implements Serializable{
     private Integer idRol;
     private Curso curso;
     private Avance avance;
+    private Integer enabled;
+
+    public Integer getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Integer enabled) {
+        this.enabled = enabled;
+    }
 
     public Avance getAvance() {
         return avance;

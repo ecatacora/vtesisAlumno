@@ -25,7 +25,7 @@
         <security:intercept-url pattern="/home.do"
                                         access="hasAnyRole('ROLE_ASESOR', 'ROLE_ALUMNO', 'ROLE_ADMIN')" />
                 
-        <security:intercept-url pattern="/admin/list"
+        <security:intercept-url pattern="/admin/lista"
                                         access="hasRole('ROLE_ADMIN')" />                
                 
         <security:intercept-url pattern="/asesor/**" access="hasRole('ROLE_ASESOR')" />
@@ -43,8 +43,8 @@
             <security:password-encoder hash="sha-256" />
             <security:jdbc-user-service
                 data-source-ref="dataSource" role-prefix="ROLE_"
-                users-by-username-query="select codigo, password, CASE enabled WHEN 1 THEN 'true' ELSE 'false' END from persona where codigo=?"
-                authorities-by-username-query="select e.codigo, e.rol from persona e where e.codigo =? and e.enabled = 1" />
+                users-by-username-query="SELECT codigo, password, CASE enabled WHEN 1 THEN 'true' ELSE 'false' END FROM persona WHERE codigo = ?"
+                authorities-by-username-query="SELECT e.codigo, e.Rol_idRol from persona e WHERE e.codigo = ? and e.enabled = 1" />
         </security:authentication-provider>
     </security:authentication-manager>
 </beans>

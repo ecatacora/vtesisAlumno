@@ -15,6 +15,11 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import pucp.sw2.horario1.vtesis.dto.PersonaDTO;
 import pucp.sw2.horario1.vtesis.modelos.Persona;
@@ -29,30 +34,32 @@ public class PersonaDAO {
     @Autowired
     DataSource datasource;
 
-    public PersonaDTO get(String email) {
+    public PersonaDTO get(String codigo) {
 
-        String query = "select e.EmployeeID, "
-                + "e.Title, "
-                + "e.FirstName, "
-                + "e.LastName, "
-                + "e.Email, "
-                + "e.HomePhone, "
-                + "e.Extension, "
-                + "e.PostalCode, "
-                + "e.Region, "
-                + "e.Role, "
-                + "e.Address, "
-                + "e.City, "
-                + "e.Country, "
-                + "e.Enabled "
-                + "from employees e "
-                + "where e.Email = ?";
+        String query = "select e.idPersona, "
+                + "e.nombres, "
+                + "e.apellidos, "
+                + "e.codigo, "
+                + "e.password, "
+                
+                + "e.enabled, "
+                + "e.Rol_idRol, "
+                + "from persona e "
+                + "where e.codigo = ?";
 
         JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
-        PersonaDTO employee = jdbcTemplate.queryForObject(query, new Object[]{email}, new RowMapper<PersonaDTO>() {
+        PersonaDTO employee = jdbcTemplate.queryForObject(query, new Object[]{codigo}, new RowMapper<PersonaDTO>() {
             @Override
             public PersonaDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                PersonaDTO p = new PersonaDTO();
+                p.setIdPersona(rs.getInt(1));
+                p.setNombres(rs.getString(2));
+                p.setApellidos(rs.getString(3));
+                p.setCodigo(rs.getString(4));
+                p.setContrasena(rs.getString(5));
+                p.setEnabled(rs.getInt(6));
+                p.setIdRol(rs.getInt(7));
+                return p;
             }
         });
         return employee;
@@ -64,8 +71,8 @@ public class PersonaDAO {
         List<Object> parametros = new ArrayList<Object>();
         StringBuilder sql = new StringBuilder();
 
-        sql.append("select p.codigo, p.nombres, p.apellidos from persona p where Rol_idRol=3 or Rol_idRol=2 or Rol_idRol=1 ;");
-                    //Listando todos los alumnos, asesores o administradores
+        sql.append("select p.codigo, p.nombres, p.apellidos from persona p;");
+        //Listando todos los alumnos, asesores o administradores
         //cursos, entregable y fecha de actualizacion.              
 
         lstResultados = jdbcTemplate.query(sql.toString(), parametros.toArray(),
@@ -81,6 +88,26 @@ public class PersonaDAO {
                 });
 
         return lstResultados;
+    }
+
+    public void registrarPersona(PersonaDTO persona) {
+        StringBuilder sb = new StringBuilder();
+        Map params = new HashMap();
+        sb.append(" insert into persona (nombres, apellidos, codigo, password, idRol) values(:nombres, :apellidos, :codigo, contraseña, :idRol); ");
+        params.put("nombres", persona.getNombres());
+        params.put("apellidos", persona.getApellidos());
+        params.put("codigo", persona.getCodigo());
+        params.put("password", persona.getContrasena());
+        params.put("idRol", persona.getIdRol());
+
+        NamedParameterJdbcTemplate jdbcTemplate = new NamedParameterJdbcTemplate(datasource);
+        SqlParameterSource paramSource = new MapSqlParameterSource(params);
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+
+        jdbcTemplate.update(sb.toString(), paramSource, keyHolder);
+        //seteamos el id generado
+        persona.setIdPersona(keyHolder.getKey().intValue());
+
     }
 
     public void update(PersonaDTO persona) {
@@ -125,4 +152,9 @@ public class PersonaDAO {
         jdbcTemplate.update(sql.toString(), parametros.toArray());
 
     }
+    
+    
+    
+    
+    
 }

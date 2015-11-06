@@ -8,26 +8,28 @@ package pucp.sw2.horario1.vtesis.dto;
 /**
  *
  * @author josesuk
+ * modified by Eudomar
  */
 public class AvanceDTO {
-
-    private int idAvance;
+    
+    private int idAvances;
     private String nombre;
     private String version;
-    private String idHistorial;
-    private String archivo;
+    private int historial_idHistorial;
+    private String archivo_alumno;
     private String fecha_inicio;
     private String fecha_fin;
-    private String idEstado;
+    private String Estado_idEstado;
     private String obs_asesor;
     private String obs_alumno;
+    private String archivo_asesor;
 
-    public int getIdAvance() {
-        return idAvance;
+    public int getIdAvances() {
+        return idAvances;
     }
 
-    public void setIdAvance(int idAvance) {
-        this.idAvance = idAvance;
+    public void setIdAvances(int idAvances) {
+        this.idAvances = idAvances;
     }
 
     public String getNombre() {
@@ -46,20 +48,20 @@ public class AvanceDTO {
         this.version = version;
     }
 
-    public String getIdHistorial() {
-        return idHistorial;
+    public int getHistorial_idHistorial() {
+        return historial_idHistorial;
     }
 
-    public void setIdHistorial(String idHistorial) {
-        this.idHistorial = idHistorial;
+    public void setHistorial_idHistorial(int historial_idHistorial) {
+        this.historial_idHistorial = historial_idHistorial;
     }
 
-    public String getArchivo() {
-        return archivo;
+    public String getArchivo_alumno() {
+        return archivo_alumno;
     }
 
-    public void setArchivo(String archivo) {
-        this.archivo = archivo;
+    public void setArchivo_alumno(String archivo_alumno) {
+        this.archivo_alumno = archivo_alumno;
     }
 
     public String getFecha_inicio() {
@@ -78,12 +80,12 @@ public class AvanceDTO {
         this.fecha_fin = fecha_fin;
     }
 
-    public String getIdEstado() {
-        return idEstado;
+    public String getEstado_idEstado() {
+        return Estado_idEstado;
     }
 
-    public void setIdEstado(String idEstado) {
-        this.idEstado = idEstado;
+    public void setEstado_idEstado(String Estado_idEstado) {
+        this.Estado_idEstado = Estado_idEstado;
     }
 
     public String getObs_asesor() {
@@ -102,6 +104,12 @@ public class AvanceDTO {
         this.obs_alumno = obs_alumno;
     }
 
-    
+    public String getArchivo_asesor() {
+        return archivo_asesor;
+    }
 
+    public void setArchivo_asesor(String archivo_asesor) {
+        this.archivo_asesor = archivo_asesor;
+    }   
+    
 }

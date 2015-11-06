@@ -5,7 +5,7 @@
 <html lang="en">
 
     <head>
-       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!-- Meta, title, CSS, favicons, etc. -->
         <%@include file="/WEB-INF/jsp/comun/recursos.jsp" %>
         <meta charset="utf-8">
@@ -14,13 +14,13 @@
 
         <title>Virtual Tesis</title>
 
-    <%@include file = "/WEB-INF/jsp/comun/recursos.jsp" %>
+        <%@include file = "/WEB-INF/jsp/comun/recursos.jsp" %>
 
     </head>
 
 
     <body class="nav-md">
-     
+
         <div class="container body">
 
 
@@ -38,7 +38,7 @@
                         <div class="profile">
                             <div class="profile_pic">
                                 <c:if test="${persona.id != null}">
-                                <img src="${persona.foto}" alt="..." class="img-circle profile_img">
+                                    <img src="${persona.foto}" alt="..." class="img-circle profile_img">
                                 </c:if>
                             </div>
 
@@ -115,7 +115,7 @@
                             <div class="nav toggle">
                                 <a id="menu_toggle"><i class="fa fa-bars"></i></a>
                             </div>                                                      
-                                                        
+
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="">
                                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -351,26 +351,22 @@
                                                 <div class="col-md-5">
 
 
-                                                    <form:select path="idPersona" class="form-control">
-                                                        <h2>Busqueda:</h2>  
+                                                    <form class="well form-inline" modelAttribute="busquedaFiltro" role="form" action="l_entrega" method="POST">      
+                                                        <h2>Busqueda</h2>
                                                         <h3>Ciclo: </h3>
-                                                        <c:forEach items="${lstCiclos}" var="c">
-
-                                                            <option value="${c}"  ${c==persona.ciclo?"selected":""}>${c} </option>
-
-                                                        </c:forEach>
-                                                    </form:select>
-                                                    <br>
-
-                                                    <form:select path="idPersona" class="form-control">
+                                                        <form:select path="idCurso" class="form-control">
+                                                            <c:forEach items="${lstCiclos}" var="c">
+                                                                <option value="${c}"  ${c==persona.ciclo?"selected":""}>${c} </option>
+                                                            </c:forEach>
+                                                        </form:select>
+                                                        <br>
                                                         <h3>Curso: </h3>
-                                                        <c:forEach items="${lstCursos}" var="lc">
-
-                                                            <option value="${lc}"  ${lc==persona.curso?"selected":""}>${lc} </option>
-
-                                                        </c:forEach>
-                                                    </form:select>
-
+                                                        <form:select path="ciclo" class="form-control">                                                            
+                                                            <c:forEach items="${lstCursos}" var="lc">
+                                                                <option value="${lc}"  ${lc==persona.curso?"selected":""}>${lc} </option>
+                                                            </c:forEach>
+                                                        </form:select>
+                                                    </form> 
 
                                                     <br>
 

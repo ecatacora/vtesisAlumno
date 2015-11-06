@@ -5,49 +5,22 @@
  */
 package pucp.sw2.horario1.vtesis.dto;
 
-import java.io.Serializable;
-import pucp.sw2.horario1.vtesis.modelos.Avance;
-import pucp.sw2.horario1.vtesis.modelos.Curso;
-
 /**
  *
- * @author josesuk
+ * @author Eudomar
  */
-public class PersonaDTO implements Serializable{
+public class AlumnoDTO {
+    
     private Integer idPersona;
     private String  nombres;
     private String apellidos;
     private String codigo;
+    private String correo;
     private String contrasena;
-    private Integer idRol;
-    private Curso curso;
-    private Avance avance;
-    private Integer enabled;
+    private String foto;
+    private int enabled;
+    private Integer Rol_idRol;
 
-    public Integer getEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(Integer enabled) {
-        this.enabled = enabled;
-    }
-
-    public Avance getAvance() {
-        return avance;
-    }
-
-    public void setAvance(Avance avance) {
-        this.avance = avance;
-    }
-    
-    public Curso getCurso() {
-        return curso;
-    }
-
-    public void setCurso(Curso curso) {
-        this.curso = curso;
-    }
-    
     public Integer getIdPersona() {
         return idPersona;
     }
@@ -80,6 +53,14 @@ public class PersonaDTO implements Serializable{
         this.codigo = codigo;
     }
 
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
     public String getContrasena() {
         return contrasena;
     }
@@ -88,24 +69,28 @@ public class PersonaDTO implements Serializable{
         this.contrasena = contrasena;
     }
 
-    public Integer getIdRol() {
-        return idRol;
+    public String getFoto() {
+        return foto;
     }
 
-    public void setIdRol(Integer idRol) {
-        this.idRol = idRol;
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 
-   
+    public int getEnabled() {
+        return enabled;
+    }
 
-   
-    
-    
+    public void setEnabled(int enabled) {
+        this.enabled = enabled;
+    }
 
-  
+    public Integer getRol_idRol() {
+        return Rol_idRol;
+    }
 
-    
-    
-    
-    
+    public void setRol_idRol(Integer Rol_idRol) {
+        this.Rol_idRol = Rol_idRol;
+    }
+        
 }

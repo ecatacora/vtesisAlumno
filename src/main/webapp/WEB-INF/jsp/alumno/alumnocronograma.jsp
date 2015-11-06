@@ -59,13 +59,13 @@
                                 <ul class="nav side-menu">
                                     <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">                                    
-                                            <li><a href="<c:url value="alumnoperfil">">Perfil</a>
+                                            <li><a href="<c:url value="/alumnoperfil"/>">Perfil</a>
                                                 </li>
                                             </ul>
                                         </li>
                                         <li><a><i class="fa fa-edit"></i> Avances <span class="fa fa-chevron-down"></span></a>
                                             <ul class="nav child_menu" style="display: none">
-                                                <li><a href="<c:url value="l_entrega">">Cronograma Avances</a>
+                                                <li><a href="<c:url value="/l_entrega"/>">Cronograma Avances</a>
                                                     </li>
                                                     <!--<li><a href="form_advanced.html">Advanced Components</a>
                                                      </li>
@@ -117,7 +117,7 @@
                                                 <li><a href="javascript:;">  Profile</a>
                                                 </li>                                   
 
-                                                <li><a href="<c:url value="logout.do">"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                                <li><a href="<c:url value="/logout.do"/>"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                                                     </li>
                                                 </ul>
                                             </li>
@@ -251,7 +251,7 @@
                                                                     <td scope="row" style="text-align:center;">Entregable <%=contador%></td>
                                                                     <td style="text-align:center;">${p.fecha}</td>
                                                                     <td style="text-align:center;">${p.nombre}</td>
-                                                                    <td style="text-align:center;">
+                                                                    <td style="text-align:center;"> <!-- Cambiar Descargar archivo-->
                                                                         <a href="<c:url value='avance?idavance=${p.idavance}'/>">${p.estado}</a>
                                                                     </td>
                                                                 </tr> 
@@ -262,7 +262,7 @@
                                                     <div class="col-md-5 center-block">
                                                     </div>
                                                     <div class="col-md-3 center-block">
-                                                        <a href="alumnoprofile.html"><button type="button" class="btn btn-default">Regresar</button></a>
+                                                        <a href="<c:url value='/alumnoperfil'/>"><button type="button" class="btn btn-default">Regresar</button></a>
                                                     </div>
                                                 </div>                                  
 

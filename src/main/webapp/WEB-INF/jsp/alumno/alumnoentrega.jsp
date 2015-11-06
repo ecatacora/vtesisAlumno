@@ -63,13 +63,13 @@
                                 <ul class="nav side-menu">
                                     <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">                                      
-                                          <li><a href="<c:url value="alumnoperfil">">Perfil</a>
+                                          <li><a href="<c:url value="/alumnoperfil"/>">Perfil</a>
                                             </li>
                                         </ul>
                                     </li>
                                     <li><a><i class="fa fa-edit"></i> Avances <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
-                                            <li><a href="<c:url value="l_entrega">">Cronograma Avances</a>
+                                            <li><a href="<c:url value="/l_entrega"/>">Cronograma Avances</a>
                                             </li>
                                             <!--<li><a href="form_advanced.html">Advanced Components</a>
                                              </li>

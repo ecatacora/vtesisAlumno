@@ -62,7 +62,7 @@
                                 <ul class="nav side-menu">
                                     <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">                                        
-                                            <li><a href="<c:url value="alumnoperfil">">Perfil</a>
+                                            <li><a href="<c:url value="/alumnoperfil"/>">Perfil</a>
                                             </li>
                                             <!--<li><a href="index2.html">Dashboard2</a>
                                             </li>
@@ -73,7 +73,7 @@
                                     </li>
                                     <li><a><i class="fa fa-edit"></i> Avances <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
-                                            <li><a href="<c:url value="l_entrega">">Cronograma Avances</a>
+                                            <li><a href="<c:url value="/l_entrega"/>">Cronograma Avances</a>
                                             </li>
                                             <!--<li><a href="form_advanced.html">Advanced Components</a>
                                              </li>
@@ -126,7 +126,7 @@
                                         <li><a href="javascript:;">  Profile</a>
                                         </li>                                   
 
-                                        <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                        <li><a href=<c:url value='/login.do'/>><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                                         </li>
                                     </ul>
                                 </li>

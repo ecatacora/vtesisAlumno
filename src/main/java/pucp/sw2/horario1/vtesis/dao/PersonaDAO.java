@@ -91,11 +91,11 @@ public class PersonaDAO {
     public void registrarPersona(PersonaDTO persona) {
         StringBuilder sb = new StringBuilder();
         Map params = new HashMap();
-        sb.append(" insert into persona (nombres, apellidos, codigo, contraseña, idRol) values(:nombres, :apellidos, :codigo, contraseña, :idRol); ");
+        sb.append(" insert into persona (nombres, apellidos, codigo, password, idRol) values(:nombres, :apellidos, :codigo, contraseña, :idRol); ");
         params.put("nombres", persona.getNombres());
         params.put("apellidos", persona.getApellidos());
         params.put("codigo", persona.getCodigo());
-        params.put("contraseña", persona.getContrasena());
+        params.put("password", persona.getContrasena());
         params.put("idRol", persona.getIdRol());
 
         NamedParameterJdbcTemplate jdbcTemplate = new NamedParameterJdbcTemplate(datasource);

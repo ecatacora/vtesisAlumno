@@ -12,25 +12,27 @@
                                      login-processing-url="/dologin.do"
                                      default-target-url="/home.do"
                                      authentication-failure-url="/login.do?error=true" 
-                                     username-parameter="email"
-                                     password-parameter="identification"
+                                     username-parameter="codigo"
+                                     password-parameter="password"
                                      always-use-default-target="true" />
             
         <security:intercept-url pattern="/login.do"
                                         access="permitAll" />
                 
         <security:intercept-url pattern="/accessdenied.do"
-                                        access="hasAnyRole('ROLE_EMPLOYEE', 'ROLE_MANAGER', 'ROLE_ADMINISTRATOR')" />
+                                        access="hasAnyRole('ROLE_ASESOR', 'ROLE_ALUMNO', 'ROLE_ADMIN')" />
                 
         <security:intercept-url pattern="/home.do"
-                                        access="hasAnyRole('ROLE_EMPLOYEE', 'ROLE_MANAGER', 'ROLE_ADMINISTRATOR')" />
+                                        access="hasAnyRole('ROLE_ASESOR', 'ROLE_ALUMNO', 'ROLE_ADMIN')" />
                 
-        <security:intercept-url pattern="/employee/list"
-                                        access="hasRole('ROLE_MANAGER')" />                
+        <security:intercept-url pattern="/admin/list"
+                                        access="hasRole('ROLE_ADMIN')" />                
                 
-        <security:intercept-url pattern="/user/**" access="hasRole('ROLE_MANAGER')" />                
+        <security:intercept-url pattern="/asesor/**" access="hasRole('ROLE_ASESOR')" />
+        
+        <security:intercept-url pattern="/alumno/**" access="hasRole('ROLE_ALUMNO')" />
             
-        <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMINISTRATOR')" />
+        <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
                                                 
         <security:access-denied-handler error-page="/accessdenied.do" />
 
@@ -41,8 +43,8 @@
             <security:password-encoder hash="sha-256" />
             <security:jdbc-user-service
                 data-source-ref="dataSource" role-prefix="ROLE_"
-                users-by-username-query="select Email, password, CASE enabled WHEN 1 THEN 'true' ELSE 'false' END from employees where Email=?"
-                authorities-by-username-query="select e.Email, e.Role from employees e where e.Email =? and e.Enabled = 1" />
+                users-by-username-query="select codigo, password, CASE enabled WHEN 1 THEN 'true' ELSE 'false' END from persona where codigo=?"
+                authorities-by-username-query="select e.codigo, e.rol from persona e where e.codigo =? and e.enabled = 1" />
         </security:authentication-provider>
     </security:authentication-manager>
 </beans>

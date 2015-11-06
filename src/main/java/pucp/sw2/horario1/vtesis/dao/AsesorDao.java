@@ -87,8 +87,9 @@ public class AsesorDao {
     }
     
     
-    /*public List<CargoDTO> listarCargos(){
-        List<CargoDTO> lstResultados = null;
+    public List<PersonaDTO> listarCargos(){
+        List<PersonaDTO> lstResultados = null;
+        /*
         JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);                
         StringBuilder sql = new StringBuilder();
         
@@ -107,8 +108,8 @@ public class AsesorDao {
                                 return cargo;
                             }
                         });        
-        
+        */
         return lstResultados;
-    }*/
+    }
     
 }

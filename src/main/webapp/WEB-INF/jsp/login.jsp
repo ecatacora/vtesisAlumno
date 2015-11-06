@@ -29,52 +29,52 @@
                     <section class="login_content">
                         <form:form modelAttribute="userLogin" method="POST" action="login">
                             <h1>V-Tesis</h1>
-                           <div class="modal-body">
-                        <spring:url value="/dologin.do" var="url" />
-                        <form class="well form-inline" role="form" action="${url}" method="POST">
-                            <% if (request.getParameter("error") != null) {%><div class="alert alert-error">Los datos ingresados son incorrectos</div> <% }%>
-                            <div class="control-group">
-                                <label class="control-label">Código</label>
-                                <div class="controls">
-                                    <input type="text" name="codigo" placeholder="coodigo">
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">Password</label>
-                                <div class="controls">
-                                    <input type="password" name="password" placeholder="*******">
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <div class="controls">
-                                   
-                                    &nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-success">Ingresar</button>
-                                </div>
-                            </div>
+                            <div class="modal-body">
+                                <spring:url value="/dologin.do" var="url" />
+                                <form class="well form-inline" role="form" action="${url}" method="POST">
+                                    <% if (request.getParameter("error") != null) {%><div class="alert alert-error">Los datos ingresados son incorrectos</div> <% }%>
+                                    <div class="control-group">
+                                        <label class="control-label">Código</label>
+                                        <div class="controls">
+                                            <input type="text" name="codigo" placeholder="coodigo">
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Password</label>
+                                        <div class="controls">
+                                            <input type="password" name="password" placeholder="*******">
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <div class="controls">
 
-                        </form> 
+                                            &nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-success">Ingresar</button>
+                                        </div>
+                                    </div>
 
+                                </form> 
+
+                            </div>
+                            <div class="modal-footer">
+
+                                <a href="#">Recuperar Contraseña</a><br> <!-- Mas adelante implementacion -->
+
+                            </div>
                     </div>
-                    <div class="modal-footer">
-                       
-                        <a href="#">Recuperar Contraseña</a><br>
-                        
-                    </div>
-                </div>
 
 
-            </div>
-
-        </div>
-
-                        </form:form>
-                        <!-- form -->
-                    </section>
-                    <!-- content -->
                 </div>
 
             </div>
-        </div>
 
-    </body>
+        </form:form>
+        <!-- form -->
+    </section>
+    <!-- content -->
+</div>
+
+</div>
+</div>
+
+</body>
 </html>

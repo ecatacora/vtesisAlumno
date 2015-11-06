@@ -20,8 +20,7 @@
 
 
     <body class="nav-md">
-        <%@include file="/WEB-INF/jsp/comun/cabecera.jsp" %>
-
+     
         <div class="container body">
 
 
@@ -31,14 +30,16 @@
                     <div class="left_col scroll-view">
 
                         <div class="navbar nav_title" style="border: 0;">
-                            <a href="index.html" class="site_title"><img src="images/logo_mini.png" alt="Logo"><span>V-Tesis</span></a>
+                            <a href="index.html" class="site_title"><img src="images/vtesis-logo.jpg" alt="Logo"><span>V-Tesis</span></a>
                         </div>
-                        <div class="clearfix"></div>
+                        <div class="clearfix"></div>|
 
                         <!-- menu prile quick info -->
                         <div class="profile">
                             <div class="profile_pic">
-                                <img src="images/Hiro.jpg" alt="..." class="img-circle profile_img">
+                                <c:if test="${persona.id != null}">
+                                <img src="${persona.foto}" alt="..." class="img-circle profile_img">
+                                </c:if>
                             </div>
 
                             <div class="profile_info">
@@ -61,7 +62,7 @@
                                 <ul class="nav side-menu">
                                     <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">                                        
-                                            <li><a href="alumnoprofile.html">Perfil</a>
+                                            <li><a href="<c:url value="/alumnoperfil"/>">Perfil</a>
                                             </li>
                                             <!--<li><a href="index2.html">Dashboard2</a>
                                             </li>
@@ -72,7 +73,7 @@
                                     </li>
                                     <li><a><i class="fa fa-edit"></i> Avances <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
-                                            <li><a href="alumnoentrega.html">Entregar Avances</a>
+                                            <li><a href="<c:url value="/l_entrega"/>">Cronograma Avances</a>
                                             </li>
                                             <!--<li><a href="form_advanced.html">Advanced Components</a>
                                              </li>
@@ -113,19 +114,19 @@
                         <nav class="" role="navigation">
                             <div class="nav toggle">
                                 <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-                            </div>
-
+                            </div>                                                      
+                                                        
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="">
                                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <img src="images/Hiro.jpg" alt="">Hiroshi G.  <!--   Cambiar -->
+                                        <img src="${persona.foto}" alt="">${persona.nombre}  <!--   Cambio -->
                                         <span class=" fa fa-angle-down"></span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
                                         <li><a href="javascript:;">  Profile</a>
                                         </li>                                   
 
-                                        <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                        <li><a href=<c:url value='/login.do'/>><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                                         </li>
                                     </ul>
                                 </li>

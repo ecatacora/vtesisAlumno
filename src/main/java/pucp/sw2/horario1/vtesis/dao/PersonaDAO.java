@@ -58,6 +58,31 @@ public class PersonaDAO {
         return employee;
     }
 
+    public List<PersonaDTO> listarPersona() {
+        List<PersonaDTO> lstResultados = null;
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
+        List<Object> parametros = new ArrayList<Object>();
+        StringBuilder sql = new StringBuilder();
+
+        sql.append("select p.codigo, p.nombres, p.apellidos from persona p where Rol_idRol=3 or Rol_idRol=2 or Rol_idRol=1 ;");
+                    //Listando todos los alumnos, asesores o administradores
+        //cursos, entregable y fecha de actualizacion.              
+
+        lstResultados = jdbcTemplate.query(sql.toString(), parametros.toArray(),
+                new RowMapper<PersonaDTO>() {
+                    @Override
+                    public PersonaDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+                        PersonaDTO p = new PersonaDTO();
+                        p.setCodigo(rs.getString(1));
+                        p.setNombres(rs.getString(2));
+                        p.setApellidos(rs.getString(3));
+                        return p;
+                    }
+                });
+
+        return lstResultados;
+    }
+
     public void update(PersonaDTO persona) {
 
         StringBuilder sql = new StringBuilder();
@@ -69,18 +94,18 @@ public class PersonaDAO {
                     + " apellidos = ? ,"
                     + " codigo = ? ,"
                     + " contraseña = ? ,"
-//                    + " foto = ? ,"
+                    //                    + " foto = ? ,"
                     + " Rol_idRol = ? ,"
                     + " WHERE idPersona = ?");
 
             List<Object> parametros = new ArrayList<Object>();
-             parametros.add(persona.getNombres());
-             parametros.add(persona.getApellidos());
-             parametros.add(persona.getCodigo());
-             parametros.add(persona.getContrasena());
+            parametros.add(persona.getNombres());
+            parametros.add(persona.getApellidos());
+            parametros.add(persona.getCodigo());
+            parametros.add(persona.getContrasena());
 //             parametros.add(persona.getFoto());
-             parametros.add(persona.getIdRol());
-             parametros.add(persona.getIdPersona());
+            parametros.add(persona.getIdRol());
+            parametros.add(persona.getIdPersona());
 
             jdbcTemplate.update(sql.toString(), parametros.toArray());
         } catch (Exception ex) {

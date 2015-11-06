@@ -10,13 +10,25 @@ package pucp.sw2.horario1.vtesis.dto;
  * @author josesuk
  */
 public class AvanceDTO {
-    
-    private int idHistorial;
-    private String idCurso;
-    private String ciclo;
-    private String idAlumno;
-    private String idAsesor;
+
+    private int idAvance;
     private String nombre;
+    private String version;
+    private String idHistorial;
+    private String archivo;
+    private String fecha_inicio;
+    private String fecha_fin;
+    private String idEstado;
+    private String obs_asesor;
+    private String obs_alumno;
+
+    public int getIdAvance() {
+        return idAvance;
+    }
+
+    public void setIdAvance(int idAvance) {
+        this.idAvance = idAvance;
+    }
 
     public String getNombre() {
         return nombre;
@@ -25,46 +37,71 @@ public class AvanceDTO {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
-    public int getIdHistorial() {
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    public String getIdHistorial() {
         return idHistorial;
     }
 
-    public void setIdHistorial(int idHistorial) {
+    public void setIdHistorial(String idHistorial) {
         this.idHistorial = idHistorial;
     }
 
-    public String getIdCurso() {
-        return idCurso;
+    public String getArchivo() {
+        return archivo;
     }
 
-    public void setIdCurso(String idCurso) {
-        this.idCurso = idCurso;
+    public void setArchivo(String archivo) {
+        this.archivo = archivo;
     }
 
-    public String getCiclo() {
-        return ciclo;
+    public String getFecha_inicio() {
+        return fecha_inicio;
     }
 
-    public void setCiclo(String ciclo) {
-        this.ciclo = ciclo;
+    public void setFecha_inicio(String fecha_inicio) {
+        this.fecha_inicio = fecha_inicio;
     }
 
-    public String getIdAlumno() {
-        return idAlumno;
+    public String getFecha_fin() {
+        return fecha_fin;
     }
 
-    public void setIdAlumno(String idAlumno) {
-        this.idAlumno = idAlumno;
+    public void setFecha_fin(String fecha_fin) {
+        this.fecha_fin = fecha_fin;
     }
 
-    public String getIdAsesor() {
-        return idAsesor;
+    public String getIdEstado() {
+        return idEstado;
     }
 
-    public void setIdAsesor(String idAsesor) {
-        this.idAsesor = idAsesor;
+    public void setIdEstado(String idEstado) {
+        this.idEstado = idEstado;
     }
+
+    public String getObs_asesor() {
+        return obs_asesor;
+    }
+
+    public void setObs_asesor(String obs_asesor) {
+        this.obs_asesor = obs_asesor;
+    }
+
+    public String getObs_alumno() {
+        return obs_alumno;
+    }
+
+    public void setObs_alumno(String obs_alumno) {
+        this.obs_alumno = obs_alumno;
+    }
+
     
-    
+
 }

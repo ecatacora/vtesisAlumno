@@ -15,6 +15,11 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import pucp.sw2.horario1.vtesis.dto.PersonaDTO;
 import pucp.sw2.horario1.vtesis.modelos.Persona;
@@ -65,7 +70,7 @@ public class PersonaDAO {
         StringBuilder sql = new StringBuilder();
 
         sql.append("select p.codigo, p.nombres, p.apellidos from persona p where Rol_idRol=3 or Rol_idRol=2 or Rol_idRol=1 ;");
-                    //Listando todos los alumnos, asesores o administradores
+        //Listando todos los alumnos, asesores o administradores
         //cursos, entregable y fecha de actualizacion.              
 
         lstResultados = jdbcTemplate.query(sql.toString(), parametros.toArray(),
@@ -81,6 +86,26 @@ public class PersonaDAO {
                 });
 
         return lstResultados;
+    }
+
+    public void registrarPersona(PersonaDTO persona) {
+        StringBuilder sb = new StringBuilder();
+        Map params = new HashMap();
+        sb.append(" insert into persona (nombres, apellidos, codigo, contraseña, idRol) values(:nombres, :apellidos, :codigo, contraseña, :idRol); ");
+        params.put("nombres", persona.getNombres());
+        params.put("apellidos", persona.getApellidos());
+        params.put("codigo", persona.getCodigo());
+        params.put("contraseña", persona.getContrasena());
+        params.put("idRol", persona.getIdRol());
+
+        NamedParameterJdbcTemplate jdbcTemplate = new NamedParameterJdbcTemplate(datasource);
+        SqlParameterSource paramSource = new MapSqlParameterSource(params);
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+
+        jdbcTemplate.update(sb.toString(), paramSource, keyHolder);
+        //seteamos el id generado
+        persona.setIdPersona(keyHolder.getKey().intValue());
+
     }
 
     public void update(PersonaDTO persona) {

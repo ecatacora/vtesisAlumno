@@ -483,25 +483,35 @@
                                             <div class="col-md-12">
                                                 <div class="col-md-2"></div>
                                                 <div class="col-md-6">
+                                                    
                                                     <h2>Busqueda</h2>
                                                 
                                                     <div id="reportrange" class="pull-left" style="margin-top: 5px; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #E6E9ED">
-                                                        <form:select path="*******" class="form-control">
-                                                            <option value="">Seleccione</option>
-                                                            <c:forEach items="*****" var="c">
-                                                                <option value="*****">****** </option>
-                                                            </c:forEach>
-                                                        </form:select>
-                                                    <!--<span>2015-1</span> <b class="caret"></b>-->
+                                                        <form:form  class="form-inline" role="form" modelAttribute="filtros" method="POST">
+                                                            <div class="form-group">
+                                                                <form:select path="idCurso" class="form-control">
+                                                                    <option value="">Seleccione</option>
+                                                                    <c:forEach items="${lstCursos}" var="c">
+                                                                        <option value="${c.idCurso}">${c.nombre} </option>
+                                                                    </c:forEach>
+                                                                </form:select>
+                                                            </div>
+                                                            <!--<button type="submit" class="btn btn-primary">Buscar</button>-->
+                                                            <br>
+                                                            <br>
+                                                            <a href=" LISTA ALUMNOS" class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Ver Alumnos</a>
+                                                        </form:form>
                                                     </div>
+                                                    
+                                                    <!--
                                                     <br>
-                                                     <br>
-                                                    <a href="asesor_busqueda.html" class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Ver Alumnos</a>
-                                                     <br>
+                                                    <br>
+                                                    <a href="asesor_busqueda.html" class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Ver Alumnos</a>-->
+                                                    <br>
                                                     <a href="" class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Busqueda Avanzada</a>
-                                                    </div>
-                                                    <div class="col-md-4"></div>   
                                                 </div>
+                                                <div class="col-md-4"></div>   
+                                            </div>
                                                     
                                             
                                         </div>

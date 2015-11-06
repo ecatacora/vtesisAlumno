@@ -5,6 +5,7 @@
  */
 package pucp.sw2.horario1.vtesis.controllers;
 
+import java.util.List;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,8 @@ import pucp.sw2.horario1.vtesis.dao.AvanceDAO;
 import pucp.sw2.horario1.vtesis.dao.PersonaDAO;
 import pucp.sw2.horario1.vtesis.dto.PersonaDTO;
 import pucp.sw2.horario1.vtesis.modelos.Avance;
+import pucp.sw2.horario1.vtesis.ui.AlumnoFiltro;
+
 
 /**
  *
@@ -45,9 +48,22 @@ public class AsesorController {
     }
     
     @RequestMapping(value = "asesor/lista_alumnos")
-    public String listarAlumnos(Model model){
+    public String listarAlumnos(Model model, @RequestParam(required = false) Integer idCurso){
         
-        model.addAttribute("lstAlumnos",asesorDao.listarAlumnos());
+        AlumnoFiltro filtros = new AlumnoFiltro();
+        List<PersonaDTO> lstAlumnos;
+        
+        filtros.setIdCurso(idCurso);
+        
+        lstAlumnos = asesorDao.busqueda(filtros);
+        
+        
+        model.addAttribute("filtros", filtros);
+        model.addAttribute("lstCursos",asesorDao.listarCursos());
+        model.addAttribute("lstPersonas", lstAlumnos);
+        
+        
+        //model.addAttribute("lstAlumnos",asesorDao.listarAlumnos());
         return "asesor/lista_alumnos";
     }
     

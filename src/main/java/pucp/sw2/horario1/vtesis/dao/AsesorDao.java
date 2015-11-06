@@ -17,6 +17,7 @@ import org.springframework.stereotype.Repository;
 import pucp.sw2.horario1.vtesis.dto.PersonaDTO;
 import pucp.sw2.horario1.vtesis.modelos.Avance;
 import pucp.sw2.horario1.vtesis.modelos.Curso;
+import pucp.sw2.horario1.vtesis.ui.AlumnoFiltro;
 
 /**
  *
@@ -29,40 +30,6 @@ public class AsesorDao {
 
     @Autowired
     DataSource datasource;
-    
-    public List<PersonaDTO> listarAlumnos(){
-        List<PersonaDTO> lstResultados = null;
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);        
-        List<Object> parametros = new ArrayList<Object>();
-        StringBuilder sql = new StringBuilder();
-        
-        sql.append("select p.codigo, p.nombres, p.apellidos from persona p where Rol_idRol=3;");
-                    //Listando todos los alumnos, falta restringir los alumnos de cada profe y especificar
-                    //cursos, entregable y fecha de actualizacion.              
-        
-        lstResultados = jdbcTemplate.query(sql.toString(), parametros.toArray(),
-                        new RowMapper<PersonaDTO>() {
-                            @Override
-                            public PersonaDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
-                                PersonaDTO p = new PersonaDTO();
-                                p.setCodigo(rs.getString(1));
-                                p.setNombres(rs.getString(2));
-                                p.setApellidos(rs.getString(3));
-                                
-                                Curso curso = new Curso();
-                                curso.setNombre(rs.getString(4));
-                                p.setCurso(curso);
-                                
-                                Avance avance = new Avance();
-                                avance.setNombre(rs.getString(5));
-                                p.setAvance(avance);
-                                
-                                return p;
-                            }
-                        });        
-        
-        return lstResultados;
-    }
     
     public PersonaDTO getInfo(int id) {
 
@@ -87,29 +54,74 @@ public class AsesorDao {
     }
     
     
-    public List<PersonaDTO> listarCargos(){
-        List<PersonaDTO> lstResultados = null;
-        /*
+    public List<Curso> listarCursos(){
+        List<Curso> lstCursos = null;
+        
         JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);                
         StringBuilder sql = new StringBuilder();
         
-        sql.append(" select c.idCargo, c.nombre from cargo c ");      
+        sql.append(" select c.idCurso, c.nombre from curso c ");      
         sql.append(" order by c.nombre asc");
               
         
-        lstResultados = jdbcTemplate.query(sql.toString(),
-                        new RowMapper<CargoDTO>() {
+        lstCursos = jdbcTemplate.query(sql.toString(),
+                        new RowMapper<Curso>() {
                             @Override
-                            public CargoDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
-                                CargoDTO cargo = new CargoDTO();
-                                cargo.setIdCargo(rs.getInt(1));
-                                cargo.setNombre(rs.getString(2));
+                            public Curso mapRow(ResultSet rs, int rowNum) throws SQLException {
+                                Curso curso = new Curso();
+                                curso.setIdCurso(rs.getInt(1));
+                                curso.setNombre(rs.getString(2));
                                
-                                return cargo;
+                                return curso;
                             }
                         });        
-        */
+        
+        return lstCursos;
+    }
+    
+    public List<PersonaDTO> busqueda(AlumnoFiltro filtros){
+        List<PersonaDTO> lstResultados = null;
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);        
+        List<Object> parametros = new ArrayList<Object>();
+        StringBuilder sql = new StringBuilder();
+        
+        sql.append(" select p.codigo, concat(p.nombres,' ',p.apellidos), c.nombre");
+        sql.append(" from persona p");
+        sql.append(" inner join historial h on (p.idPersona = h.alumno_idPersona)");
+        sql.append(" inner join curso c on (h.curso_idCurso = c.idCurso)");
+        sql.append(" where Rol_idRol=3 AND p.idPersona = ?"); //Falta obtener idPersona
+        
+        if (filtros.getIdCurso()!= null){        
+            sql.append(" AND c.idCurso = ?");
+            parametros.add(filtros.getIdCurso());
+        }
+        
+        sql.append(" order by p.codigo asc");
+              
+        
+        lstResultados = jdbcTemplate.query(sql.toString(), parametros.toArray(),
+                        new RowMapper<PersonaDTO>() {
+                            @Override
+                            public PersonaDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+                                PersonaDTO persona = new PersonaDTO();
+                                persona.setCodigo(rs.getString(1));
+                                persona.setNombres(rs.getString(2));
+                                Curso curso = new Curso();
+                                curso.setNombre(rs.getString(3));
+                                persona.setCurso(curso);
+                                /*falta avance y fecha actualizacion
+                                Avance avance = new Avance();
+                                avance.setNombre(rs.getString(4));
+                                persona.setAvance(avance);*/
+                                return persona;
+                            }
+                        });        
+        
         return lstResultados;
     }
+    
+    
+    
+    
     
 }

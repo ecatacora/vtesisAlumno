@@ -37,10 +37,10 @@ public class AsesorController {
     
     
     @RequestMapping(value = "asesor/profile")
-    public String profileAsesor(Model model){
+    public String profileAsesor(Model model, int id){
         
-        //PersonaDTO persona = asesorDao.getInfo(id);
-        //model.addAttribute("personaDatos", persona);
+        PersonaDTO persona = asesorDao.getInfo(id);
+        model.addAttribute("personaDatos", persona);
         return "asesor/profile";
     }
     

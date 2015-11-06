@@ -486,7 +486,13 @@
                                                     <h2>Busqueda</h2>
                                                 
                                                     <div id="reportrange" class="pull-left" style="margin-top: 5px; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #E6E9ED">
-                                                    <span>2015-1</span> <b class="caret"></b>
+                                                        <form:select path="idCargo" class="form-control">
+                                                            <option value="">Seleccione</option>
+                                                            <c:forEach items="${lstCargos}" var="c">
+                                                                <option value="${c.idCargo}">${c.nombre} </option>
+                                                            </c:forEach>
+                                                        </form:select>
+                                                    <!--<span>2015-1</span> <b class="caret"></b>-->
                                                     </div>
                                                     <br>
                                                      <br>

@@ -87,4 +87,28 @@ public class AsesorDao {
     }
     
     
+    /*public List<CargoDTO> listarCargos(){
+        List<CargoDTO> lstResultados = null;
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);                
+        StringBuilder sql = new StringBuilder();
+        
+        sql.append(" select c.idCargo, c.nombre from cargo c ");      
+        sql.append(" order by c.nombre asc");
+              
+        
+        lstResultados = jdbcTemplate.query(sql.toString(),
+                        new RowMapper<CargoDTO>() {
+                            @Override
+                            public CargoDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+                                CargoDTO cargo = new CargoDTO();
+                                cargo.setIdCargo(rs.getInt(1));
+                                cargo.setNombre(rs.getString(2));
+                               
+                                return cargo;
+                            }
+                        });        
+        
+        return lstResultados;
+    }*/
+    
 }

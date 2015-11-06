@@ -14,11 +14,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import pucp.sw2.horario1.vtesis.dto.AvanceDTO;
 import pucp.sw2.horario1.vtesis.dto.CicloDTO;
 import pucp.sw2.horario1.vtesis.dto.CursoDTO;
 import pucp.sw2.horario1.vtesis.dto.PersonaDTO;
 import pucp.sw2.horario1.vtesis.modelos.Avance;
 import pucp.sw2.horario1.vtesis.modelos.Curso;
+import pucp.sw2.horario1.vtesis.modelos.Estado;
+import pucp.sw2.horario1.vtesis.modelos.Persona;
 import pucp.sw2.horario1.vtesis.ui.AlumnoFiltro;
 
 /**
@@ -124,6 +127,39 @@ public class AsesorDao {
     }
     
     
+        public List<AvanceDTO> listarAvances(Persona alumno){
+        List<AvanceDTO> lstAvances = null;
+        
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);  
+        List<Object> parametros = new ArrayList<Object>();
+        StringBuilder sql = new StringBuilder();
+        
+        sql.append(" select a.idAvances, a.nombre, a.fecha_fin, e.descripcion");      
+        sql.append(" from avances a, historial h, persona p, estado e");
+        sql.append(" where a.idHistorial=h.idHistorial and a.idEstado = e.idEstado ");
+        sql.append(" and h.alumno_idPersona=? ");
+        
+        parametros.add(alumno.getIdPersona());
+        
+        lstAvances = jdbcTemplate.query(sql.toString(),
+                        new RowMapper<AvanceDTO>() {
+                            @Override
+                            public AvanceDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+                                AvanceDTO avance = new AvanceDTO();
+                                avance.setIdAvances(rs.getInt(1));
+                                avance.setNombre(rs.getString(2));
+                                avance.setFecha_fin(rs.getString(3));
+                                Estado estado = new Estado();
+                                estado.setDescripcion(rs.getString(4));
+                                avance.setEstado(estado);
+                               
+                                return avance;
+                            }
+                        });        
+        
+        return lstAvances;
+    }
+
     
     
     

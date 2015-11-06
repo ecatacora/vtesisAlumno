@@ -5,6 +5,8 @@
  */
 package pucp.sw2.horario1.vtesis.dto;
 
+import pucp.sw2.horario1.vtesis.modelos.Estado;
+
 /**
  *
  * @author josesuk
@@ -19,7 +21,7 @@ public class AvanceDTO {
     private String archivo_alumno;
     private String fecha_inicio;
     private String fecha_fin;
-    private String Estado_idEstado;
+    private Estado estado;
     private String obs_asesor;
     private String obs_alumno;
     private String archivo_asesor;
@@ -80,13 +82,15 @@ public class AvanceDTO {
         this.fecha_fin = fecha_fin;
     }
 
-    public String getEstado_idEstado() {
-        return Estado_idEstado;
+    public Estado getEstado() {
+        return estado;
     }
 
-    public void setEstado_idEstado(String Estado_idEstado) {
-        this.Estado_idEstado = Estado_idEstado;
+    public void setEstado(Estado estado) {
+        this.estado = estado;
     }
+
+
 
     public String getObs_asesor() {
         return obs_asesor;

@@ -121,7 +121,34 @@ public class AvanceDAO {
         return resultado;
     }
     
-    
+    public void actualizarEstado(Avance avance) {
+        if (avance != null) {
+            List<Object> parametros = new ArrayList<Object>();
+            JdbcTemplate jdbc = new JdbcTemplate(datasource);
+            StringBuilder sql = new StringBuilder();
+
+            sql.append("UPDATE avance SET ");
+            if (avance.getRegistro_alumno()== null && avance.getObs_alumno()== null) {
+                sql.append("idestado = 2");
+                parametros.add(avance.getIdEstado());
+            }
+            if ((avance.getRegistro_alumno() != null || avance.getObs_alumno()!= null) && (avance.getRegistro_asesor()!=null || avance.getObs_asesor()==null)) {
+                sql.append("idestado = 3");
+                parametros.add(avance.getIdEstado());
+            }
+            if ((avance.getRegistro_alumno() != null || avance.getObs_alumno()!= null) && (avance.getRegistro_asesor()!=null || avance.getObs_asesor()!=null)) {
+                sql.append("idestado = 1");
+                parametros.add(avance.getIdEstado());
+            }
+      
+
+            sql.append("WHERE idAvances= ? ");
+            parametros.add(avance.getIdAvance());
+
+            jdbc.update(sql.toString(), parametros.toArray());
+        }
+    }
+
     
     
 }

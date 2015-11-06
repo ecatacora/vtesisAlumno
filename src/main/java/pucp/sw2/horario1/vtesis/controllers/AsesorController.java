@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import pucp.sw2.horario1.vtesis.dao.AsesorDao;
 import pucp.sw2.horario1.vtesis.dao.AvanceDAO;
 import pucp.sw2.horario1.vtesis.dao.PersonaDAO;
+import pucp.sw2.horario1.vtesis.dto.AvanceDTO;
 import pucp.sw2.horario1.vtesis.dto.PersonaDTO;
 import pucp.sw2.horario1.vtesis.modelos.Avance;
+import pucp.sw2.horario1.vtesis.modelos.Persona;
 import pucp.sw2.horario1.vtesis.ui.AlumnoFiltro;
 
 
@@ -94,6 +96,17 @@ public class AsesorController {
        return "asesor/editarFechas?idAvance=34";
     }
     
+    @RequestMapping(value = "asesor/vistaEntregables")
+    public String vistaEntregable(Model model,@RequestParam(required = false) Persona persona){
+        
+        
+        List<AvanceDTO> lstAvances;
+        lstAvances = asesorDao.listarAvances(persona);
+        model.addAttribute("lstAvances", lstAvances);
+        
+        
+        return "asesor/vista_de_entregables";
+    }
     
     
     

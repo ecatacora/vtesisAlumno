@@ -20,8 +20,7 @@
 
 
     <body class="nav-md">
-        <%@include file="/WEB-INF/jsp/comun/cabecera.jsp" %>
-
+      
         <div class="container body">
 
 
@@ -31,7 +30,7 @@
                     <div class="left_col scroll-view">
 
                         <div class="navbar nav_title" style="border: 0;">
-                            <a href="index.html" class="site_title"><img src="images/logo_mini.png" alt="Logo"><span>V-Tesis</span></a>
+                            <a href="index.html" class="site_title"><img src="images/vtesis-logo.jpg" alt="Logo"><span>V-Tesis</span></a>
                         </div>
                         <div class="clearfix"></div>
 
@@ -63,13 +62,14 @@
                                 <h3>Alumno</h3>
                                 <ul class="nav side-menu">
                                     <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu" style="display: none">                                        <li><a href="alumnoprofile.html">Perfil</a>
+                                        <ul class="nav child_menu" style="display: none">                                      
+                                          <li><a href="<c:url value="alumnoperfil">">Perfil</a>
                                             </li>
                                         </ul>
                                     </li>
                                     <li><a><i class="fa fa-edit"></i> Avances <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
-                                            <li><a href="alumnoentrega.html">Entregar Avances</a>
+                                            <li><a href="<c:url value="l_entrega">">Cronograma Avances</a>
                                             </li>
                                             <!--<li><a href="form_advanced.html">Advanced Components</a>
                                              </li>

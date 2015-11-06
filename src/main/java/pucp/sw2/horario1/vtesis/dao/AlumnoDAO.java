@@ -17,6 +17,7 @@ import org.springframework.stereotype.Repository;
 import pucp.sw2.horario1.vtesis.dto.AlumnoDTO;
 import pucp.sw2.horario1.vtesis.dto.CursoDTO;
 import pucp.sw2.horario1.vtesis.dto.HistorialDTO;
+import pucp.sw2.horario1.vtesis.modelos.Avance;
 
 /**
  *
@@ -30,37 +31,35 @@ public class AlumnoDAO {
     @Autowired
     DataSource datasource;
     
-    //Avances de alumno    
-    public List<AlumnoDTO> listarAvances() {
-        List<AlumnoDTO> lstResultados = null;
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
+    public List<Avance> listarAvances(Integer id) {
+        List<Avance> lstResultados = null;
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);        
         List<Object> parametros = new ArrayList<Object>();
         StringBuilder sql = new StringBuilder();
-
-        sql.append("select a.idAvances, a.nombre, a.version, a.historial_idHistorial, a.archivo_alumno, a.fecha_inicio, a.fecha_fin,  a.Estado_idEstado, a.obs_asesor, a.obs_alumno, a.archivo_asesor ");
-        sql.append("from avances a ");
-        sql.append("inner join historial h on (a.historial_idHistorial = h.idHistorial) ");
-        sql.append("inner join persona p on (h.alumno_idPersona = p.idPersona) ");
-
+        sql.append("SELECT av.idAvances, av.nombre,av.version, av.historial_idHistorial, av.fecha_inicio, av.fecha_fin, av.Estado_idEstado, av.obs_asesor, av.obs_alumno, av.archivo_alumno, av.archivo_asesor");
+        sql.append(" FROM Avances av ");
+        sql.append(" where av.historial_idHistorial = ? ");
+        parametros.add(id);
         lstResultados = jdbcTemplate.query(sql.toString(), parametros.toArray(),
-                new RowMapper<AlumnoDTO>() {
-                    @Override
-                    public AlumnoDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
-                        
-                        AlumnoDTO m = new AlumnoDTO();
-                        m.setIdPersona(rs.getInt(1));
-                        m.setNombres(rs.getString(2));
-                        m.setApellidos(rs.getString(3));
-                        m.setCodigo(rs.getString(4));
-                        m.setCorreo(rs.getString(5));
-                        m.setContrasena(rs.getString(6));
-                        m.setFoto(rs.getString(7));
-                        m.setEnabled(rs.getInt(8));
-                        m.setRol_idRol(rs.getInt(9));
-                        return m;
-                    }
-                });
-
+                        new RowMapper<Avance>() {
+                            @Override
+                            public Avance mapRow(ResultSet rs, int rowNum) throws SQLException {
+                                Avance avance = new Avance();    
+                                avance.setIdAvance(rs.getInt("av.idAvances"));
+                                avance.setNombre(rs.getString("av.nombre"));
+                                avance.setVersion(rs.getInt("av.version"));
+                                avance.setIdRegistro(rs.getInt("av.historial_idHistorial"));
+                                avance.setFecha_inicio(rs.getInt("av.fecha_inicio"));
+                                avance.setFecha_fin(rs.getInt("av.fecha_fin"));
+                                avance.setIdEstado(rs.getInt("av.Estado_idEstado"));
+                                avance.setObs_asesor(rs.getString("av.obs_asesor"));
+                                avance.setObs_alumno(rs.getString("av.obs_alumno"));
+                                avance.setRegistro_alumno(rs.getString("av.archivo_alumno"));
+                                avance.setRegistro_asesor(rs.getString("av.archivo_asesor"));
+                
+                return avance;
+            }
+        });
         return lstResultados;
     }
 
@@ -129,5 +128,6 @@ public class AlumnoDAO {
                 });
 
         return lstResultados;
-    } 
+    }       
+    
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import pucp.sw2.horario1.vtesis.dao.AsesorDao;
 import pucp.sw2.horario1.vtesis.dao.AvanceDAO;
 import pucp.sw2.horario1.vtesis.dao.PersonaDAO;
+import pucp.sw2.horario1.vtesis.dto.PersonaDTO;
 import pucp.sw2.horario1.vtesis.modelos.Avance;
 
 /**
@@ -38,6 +39,8 @@ public class AsesorController {
     @RequestMapping(value = "asesor/profile")
     public String profileAsesor(Model model){
         
+        //PersonaDTO persona = asesorDao.getInfo(id);
+        //model.addAttribute("personaDatos", persona);
         return "asesor/profile";
     }
     

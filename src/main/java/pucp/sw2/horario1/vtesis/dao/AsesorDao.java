@@ -64,6 +64,27 @@ public class AsesorDao {
         return lstResultados;
     }
     
+    public PersonaDTO getInfo(int id) {
+
+        String query = "select p.idPersona, "
+                + "p.nombres, "
+                + "p.apellidos, "
+                + "p.codigo, "
+                + "p.contraseña "
+                + "p.foto, "
+                + "p.Rol_idRol, "
+                + "from persona p "
+                + "where p.idPersona = ?";
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
+        PersonaDTO persona = jdbcTemplate.queryForObject(query, new Object[]{id}, new RowMapper<PersonaDTO>() {
+            @Override
+            public PersonaDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+        return persona;
+    }
     
     
 }

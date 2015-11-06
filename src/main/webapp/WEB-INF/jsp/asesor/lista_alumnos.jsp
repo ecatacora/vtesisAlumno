@@ -162,7 +162,7 @@
                                                 <c:forEach items="${lstAlumnos}" var="p">
                                                     <tr>
                                                         <td>${p.codigo}</td>
-                                                        <td><!--nombre y apellido--></td>                                
+                                                        <td>${p.nombres} ${p.apellidos}</td>                                
                                                         <td>${p.curso}</td>
                                                         <td><a href="<c:url value= "/asesor/vistaEntregables"/>"> ${p.avance}</a></td>
                                                         <td><!--fecha de actualizacion--></td>

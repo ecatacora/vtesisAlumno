@@ -1,3 +1,4 @@
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -62,7 +63,7 @@
                                 <ul class="nav side-menu">
                                     <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">                                        
-                                            <li><a href="<c:url value="/alumnoperfil"/>">Perfil</a>
+                                            <li><a href="<c:url value='/profile'/>">Perfil</a>
                                             </li>
                                             <!--<li><a href="index2.html">Dashboard2</a>
                                             </li>
@@ -361,17 +362,22 @@
                                                         </form:select>
                                                         <br>
                                                         <h3>Curso: </h3>
+
+
                                                         <form:select path="ciclo" class="form-control">                                                            
                                                             <c:forEach items="${lstCursos}" var="lc">
-                                                                <option value="${lc}"  ${lc==persona.curso?"selected":""}>${lc} </option>
+                                                                <option value="${lc}"  ${lc.idcurso==persona.curso.idcurso?"selected":""}>${lc} </option>
                                                             </c:forEach>
                                                         </form:select>
                                                     </form> 
 
+
                                                     <br>
 
                                                     <br>
-                                                    <a href="alumnocronograma.html"><button class="btn btn-primary" type="button">Avances</button></a>
+
+                                                    <a href=<c:url value="/profile"/>><button class="btn btn-default" type="button">Avances</button></a>
+
                                                 </div>
 
                                             </div>                                                                               

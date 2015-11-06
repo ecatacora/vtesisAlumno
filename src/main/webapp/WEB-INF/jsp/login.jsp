@@ -31,8 +31,8 @@
                         <form:form modelAttribute="userLogin" method="POST" action="login">
                             <h1>V-Tesis</h1>
                             <div class="modal-body">
-                               
-                                <form class="well form-inline" role="form" action="/dologin.do" method="POST">
+                                <spring:url value="/dologin.do" var="url" />
+                                <form class="well form-inline" role="form" action="${url}" method="POST">
                                     <% if (request.getParameter("error") != null) {%><div class="alert alert-error">Los datos ingresados son incorrectos</div> <% }%>
                                     <div class="control-group">
                                         <label class="control-label">Código</label>

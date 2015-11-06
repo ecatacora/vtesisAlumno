@@ -1,3 +1,4 @@
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -61,7 +62,7 @@
                                 <ul class="nav side-menu">
                                     <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">                                      
-                                            <li><a href="<c:url value="/alumnoperfil"/>">Perfil</a>
+                                            <li><a href="<c:url value="/profile"/>">Perfil</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -241,12 +242,12 @@
                                         <div class="clearfix"></div>
                                     </div>
                                     <div class="x_content">
-                                        <p class="lead">Entregable:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Entregable 1</p>
+                                        <p class="lead">Entregable:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${avance.nomnbre}/p>
                                         <p>Resultado Final: </p>
                                         </br>
                                         <p>Comentarios del Asesor:</p>
                                         </br>
-                                        <p style="color:#000000">&nbsp;&nbsp;Es un buen avance, habrÃ­a que corregir el orden del indice y tambiÃ©n colocar las referencias debidas...</p>
+                                        <p style="color:#000000">&nbsp;&nbsp;${avance.obs_asesor}</p>
                                         </br>
                                         <div class="col-md-3 center-block">
                                         </div>
@@ -257,7 +258,10 @@
                                             </br>
                                             </br>
                                             </br>
-                                            <a href="alumnocronograma.html"><button type="button" class="btn btn-primary">Regresar</button></a>
+
+                                            <a href=<c:url value="/l_entrega" />><button type="button" class="btn btn-default">Regresar</button></a>
+
+               
 
                                         </div>
                                         <div class="col-md-3 center-block">
@@ -453,3 +457,13 @@
     </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+

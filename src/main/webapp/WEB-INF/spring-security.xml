@@ -44,7 +44,7 @@
             <security:jdbc-user-service
                 data-source-ref="dataSource" role-prefix="ROLE_"
                 users-by-username-query="SELECT codigo, password, CASE enabled WHEN 1 THEN 'true' ELSE 'false' END FROM persona WHERE codigo = ?"
-                authorities-by-username-query="SELECT e.codigo, e.Rol_idRol from persona e WHERE e.codigo = ? and e.enabled = 1" />
+                authorities-by-username-query="SELECT e.codigo, e.idRol from persona e WHERE e.codigo = ? and e.enabled = 1" />
         </security:authentication-provider>
     </security:authentication-manager>
 </beans>

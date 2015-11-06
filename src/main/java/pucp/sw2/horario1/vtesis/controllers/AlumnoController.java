@@ -34,7 +34,7 @@ public class AlumnoController {
     /* se configura un log para este controlador*/
     private static final Logger log = Logger.getLogger("PersonaController");
     
-    @RequestMapping(value = "profile")
+    @RequestMapping(value = "alumno/profile")
     public String verPerfil(HttpSession session, Model model) {
 
         

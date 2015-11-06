@@ -37,8 +37,9 @@
                         <!-- menu prile quick info -->
                         <div class="profile">
                             <div class="profile_pic">
-
-                                <img src="${persona.foto}" alt="">${persona.nombre}  class="img-circle profile_img"> <!--   Cambio no seguro por la foto-->
+                                  <c:if test="${persona.id != null}">
+                                   <img src="${persona.foto}" alt="..." class="img-circle profile_img"> <!--   Cambio no seguro por la foto-->
+                                   </c:if>
                             </div>
 
 
@@ -63,7 +64,7 @@
                                 <ul class="nav side-menu">
                                     <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">                                      
-                                            <li><a href="<c:url value="/alumnoperfil"/>">Perfil</a>
+                                            <li><a href="<c:url value="/profile"/>">Perfil</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -121,7 +122,7 @@
                                         <li><a href="javascript:;">  Profile</a>
                                         </li>                                   
 
-                                        <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                        <li><a href=<c:url value="/logout.do"/>><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -227,39 +228,27 @@
                                     <div class="x_title">
                                         <h1>Entrega de Avance</h1>
 
-                                        <ul class="nav navbar-right panel_toolbox">
-
-                                            <li class="dropdown">
-
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li><a href="#">Settings 1</a>
-                                                    </li>
-                                                    <li><a href="#">Settings 2</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-
-                                        </ul>                                    
+                                                                            
                                         <div class="clearfix"></div>
                                     </div>
-                                    <div class="x_content">
-                                        <form:form modelAttribute="proyecto" action="grabar" role="form" class="form-horizontal" method="POST">
-                                            <form:hidden path="id"/>
-                                            <p class="lead">Avance:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Avance 1</p>
-                                            <p>Resultado Final: </p>
-                                            <p>Comentarios del Alumno:</p>
-                                            </br>
-                                            <textarea id="message" required class="form-control" name="message" rows="3">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terr.</textarea>
-                                            </br>
-                                            <p>Archivo (opcional)</p>
-                                            <a href=""><img src="images/Upload.png" alt=""></a>
-                                            </br>
-                                            <div class="col-md-3 center-block">
-                                            </div>
-                                            <div class="col-md-3 center-block">
-                                                <button type="submit" class="btn btn-primary">Registrar</button>
-                                                <button type="button" class="btn btn-primary">Regresar</button>
-                                            </div>
+
+                                    <div class="x_content" >
+                                        <form:form modelAttribute="persona" action="grabar" role="form" class="form-horizontal" method="POST">
+                                        <p class="lead">Avance:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Avance 1</p>
+                                        <p>Comentarios del Alumno:</p>
+                                        </br>
+                                        <textarea id="message" required class="form-control" name="message" rows="3">${persona.avance.obs_alumno}</textarea>
+                                        </br>
+                                        <p>Archivo (opcional)</p>
+                                        <a href=""><img src="images/Upload.png" alt=""></a>
+                                        </br>
+                                        <div class="col-md-3 center-block">
+                                        </div>
+                                        <div class="col-md-3 center-block">
+                                            <button type="submit" class="btn btn-primary">Registrar</button>
+                                            <a href=<c:url value="/l_entrega"/>><button type="button" class="btn btn-default">Regresar</button>
+                                        </div>
+
                                         </form:form>
                                     </div>
                                 </div>
@@ -443,3 +432,4 @@ labels: ['Hours worked', 'SORN'],
     </body>
 
 </html>
+

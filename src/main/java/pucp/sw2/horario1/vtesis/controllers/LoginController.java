@@ -44,7 +44,8 @@ public class LoginController {
             return "login";
         }
     }
-
+    
+    
     @RequestMapping(value = {"/home.do"}, method = RequestMethod.GET)
     public String home(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

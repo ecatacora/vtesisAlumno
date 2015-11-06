@@ -63,7 +63,7 @@
                         <div class="form-group">
                             <div class="col-sm-offset-9">
                               <button type="submit" class="btn btn-primary">Grabar</button>
-                              <button type="button" class="btn btn-default cancelar" >Cancelar</button>
+                              <button type="button" class="btn btn-primary cancelar" >Cancelar</button>
                             </div>
                         </div>    
                     </form:form>

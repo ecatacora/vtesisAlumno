@@ -317,7 +317,7 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Search for...">
                                     <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">Go!</button>
+                            <button class="btn btn-primary" type="button">Go!</button>
                         </span>
                                 </div>
                             </div>-->
@@ -414,7 +414,7 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                                                                     </div>
                                                                 </div>-->
                                                                 <!-- <div class="modal-footer">
-                                                  <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+                                                  <button class="btn btn-primary" data-dismiss="modal" type="button">Close</button>
                                                 </div> -->
                                                            <!-- </form>
                                                         </div>

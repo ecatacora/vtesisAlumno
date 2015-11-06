@@ -258,8 +258,8 @@
                                         <div class="col-md-3 center-block">
                                         </div>
                                         <div class="col-md-3 center-block">
-                                            <button type="button" class="btn btn-default">Registrar</button>
-                                            <a href="alumnocronograma.html"><button type="button" class="btn btn-default">Regresar</button>
+                                            <button type="button" class="btn btn-primary">Registrar</button>
+                                            <a href="alumnocronograma.html"><button type="button" class="btn btn-primary">Regresar</button>
                                         </div>
                                     </div>
                                 </div>

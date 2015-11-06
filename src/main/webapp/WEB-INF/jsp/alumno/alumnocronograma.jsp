@@ -262,7 +262,7 @@
                                                     <div class="col-md-5 center-block">
                                                     </div>
                                                     <div class="col-md-3 center-block">
-                                                        <a href="<c:url value='/alumnoperfil'/>"><button type="button" class="btn btn-default">Regresar</button></a>
+                                                        <a href="<c:url value='/alumnoperfil'/>"><button type="button" class="btn btn-primary">Regresar</button></a>
                                                     </div>
                                                 </div>                                  
 

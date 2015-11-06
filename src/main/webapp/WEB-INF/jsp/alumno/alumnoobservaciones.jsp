@@ -257,7 +257,7 @@
                                             </br>
                                             </br>
                                             </br>
-                                            <a href="alumnocronograma.html"><button type="button" class="btn btn-default">Regresar</button></a>
+                                            <a href="alumnocronograma.html"><button type="button" class="btn btn-primary">Regresar</button></a>
 
                                         </div>
                                         <div class="col-md-3 center-block">

@@ -305,7 +305,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <!-- <div class="modal-footer">
-                                                      <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+                                                      <button class="btn btn-primary" data-dismiss="modal" type="button">Close</button>
                                                     </div> -->
                                                                 </form>
                                                             </div>
@@ -371,7 +371,7 @@
                                                     <br>
 
                                                     <br>
-                                                    <a href="alumnocronograma.html"><button class="btn btn-default" type="button">Avances</button></a>
+                                                    <a href="alumnocronograma.html"><button class="btn btn-primary" type="button">Avances</button></a>
                                                 </div>
 
                                             </div>                                                                               

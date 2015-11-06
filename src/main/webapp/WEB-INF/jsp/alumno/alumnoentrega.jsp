@@ -14,13 +14,13 @@
 
         <title>Virtual Tesis</title>
 
-    <%@include file = "/WEB-INF/jsp/comun/recursos.jsp" %>
+        <%@include file = "/WEB-INF/jsp/comun/recursos.jsp" %>
 
     </head>
 
 
     <body class="nav-md">
-      
+
         <div class="container body">
 
 
@@ -63,7 +63,7 @@
                                 <ul class="nav side-menu">
                                     <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">                                      
-                                          <li><a href="<c:url value="/alumnoperfil"/>">Perfil</a>
+                                            <li><a href="<c:url value="/alumnoperfil"/>">Perfil</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -243,21 +243,24 @@
                                         <div class="clearfix"></div>
                                     </div>
                                     <div class="x_content">
-                                        <p class="lead">Avance:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Avance 1</p>
-                                        <p>Resultado Final: </p>
-                                        <p>Comentarios del Alumno:</p>
-                                        </br>
-                                        <textarea id="message" required class="form-control" name="message" rows="3">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terr.</textarea>
-                                        </br>
-                                        <p>Archivo (opcional)</p>
-                                        <a href=""><img src="images/Upload.png" alt=""></a>
-                                        </br>
-                                        <div class="col-md-3 center-block">
-                                        </div>
-                                        <div class="col-md-3 center-block">
-                                            <button type="button" class="btn btn-default">Registrar</button>
-                                            <a href="alumnocronograma.html"><button type="button" class="btn btn-default">Regresar</button>
-                                        </div>
+                                        <form:form modelAttribute="proyecto" action="grabar" role="form" class="form-horizontal" method="POST">
+                                            <form:hidden path="id"/>
+                                            <p class="lead">Avance:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Avance 1</p>
+                                            <p>Resultado Final: </p>
+                                            <p>Comentarios del Alumno:</p>
+                                            </br>
+                                            <textarea id="message" required class="form-control" name="message" rows="3">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terr.</textarea>
+                                            </br>
+                                            <p>Archivo (opcional)</p>
+                                            <a href=""><img src="images/Upload.png" alt=""></a>
+                                            </br>
+                                            <div class="col-md-3 center-block">
+                                            </div>
+                                            <div class="col-md-3 center-block">
+                                                <button type="submit" class="btn btn-primary">Registrar</button>
+                                                <button type="button" class="btn btn-primary">Regresar</button>
+                                            </div>
+                                        </form:form>
                                     </div>
                                 </div>
                             </div>
@@ -310,115 +313,113 @@
         <!-- moris js -->
         <script src="js/moris/raphael-min.js"></script>
         <script src="js/moris/morris.js"></script>
-        <script>
-            $(function () {
-                var day_data = [
-                    {
-                        "period": "Jan",
-                        "Hours worked": 80
-                    },
-                    {
-                        "period": "Feb",
-                        "Hours worked": 125
-                    },
-                    {
-                        "period": "Mar",
-                        "Hours worked": 176
-                    },
-                    {
-                        "period": "Apr",
-                        "Hours worked": 224
-                    },
-                    {
-                        "period": "May",
-                        "Hours worked": 265
-                    },
-                    {
-                        "period": "Jun",
-                        "Hours worked": 314
-                    },
-                    {
-                        "period": "Jul",
-                        "Hours worked": 347
-                    },
-                    {
-                        "period": "Aug",
-                        "Hours worked": 287
-                    },
-                    {
-                        "period": "Sep",
-                        "Hours worked": 240
-                    },
-                    {
-                        "period": "Oct",
-                        "Hours worked": 211
-                    }
-                ];
-                Morris.Bar({
-                    element: 'graph_bar',
-                    data: day_data,
-                    xkey: 'period',
-                    hideHover: 'auto',
-                    barColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
-                    ykeys: ['Hours worked', 'sorned'],
-                    labels: ['Hours worked', 'SORN'],
-                    xLabelAngle: 60
-                });
-            });
+                        <script>             $(function () {
+    var day_data = [
+    {
+        "period": "Jan",
+        "Hours worked": 80
+    },
+    {
+        "period": "Feb",
+        "Hours worked": 125
+    },
+    {
+        "period": "Mar",
+        "Hours worked": 176
+    },
+    {
+        "period": "Apr",
+        "Hours worked": 224
+    },
+    {
+        "period": "May",
+        "Hours worked": 265
+    },
+    {
+        "period": "Jun",
+        "Hours worked": 314
+    },
+    {
+        "period": "Jul",
+        "Hours worked": 347
+    },
+    {
+        "period": "Aug",
+        "Hours worked": 287
+    },
+{
+    "period": "Sep",
+    "Hours worked": 240
+    },
+    {
+    "period": "Oct",
+    "Hours worked": 211
+    }
+];
+    Morris.Bar({
+    element: 'graph_bar',
+    data: day_data,
+    xkey: 'period',
+hideHover: 'auto',
+barColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
+ykeys: ['Hours worked', 'sorned'],
+labels: ['Hours worked', 'SORN'],
+    xLabelAngle: 60
+});
+});
         </script>
         <!-- datepicker -->
         <script type="text/javascript">
             $(document).ready(function () {
 
-                var cb = function (start, end, label) {
+                    var cb = function (start, end, label) {
                     console.log(start.toISOString(), end.toISOString(), label);
                     $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
                     //alert("Callback has fired: [" + start.format('MMMM D, YYYY') + " to " + end.format('MMMM D, YYYY') + ", label = " + label + "]");
                 }
 
-                var optionSet1 = {
+                        var optionSet1 = {
                     startDate: moment().subtract(29, 'days'),
                     endDate: moment(),
                     minDate: '01/01/2012',
                     maxDate: '12/31/2015',
                     dateLimit: {
-                        days: 60
-                    },
+                    days: 60
+                        },
                     showDropdowns: true,
-                    showWeekNumbers: true,
+                        showWeekNumbers: true,
                     timePicker: false,
-                    timePickerIncrement: 1,
+                        timePickerIncrement: 1,
                     timePicker12Hour: true,
-                    ranges: {
+                        ranges: {
                         'Today': [moment(), moment()],
                         'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
                         'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                        'This Month': [moment().startOf('month'), moment().endOf('month')],
-                        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
                     },
                     opens: 'left',
-                    buttonClasses: ['btn btn-default'],
-                    applyClass: 'btn-small btn-primary',
-                    cancelClass: 'btn-small',
-                    format: 'MM/DD/YYYY',
-                    separator: ' to ',
-                    locale: {
+                        buttonClasses: ['btn btn-default'],
+                        applyClass: 'btn-small btn-primary',
+                        cancelClass: 'btn-small',
+                        format: 'MM/DD/YYYY',
+                        separator: ' to ',                     locale: {
                         applyLabel: 'Submit',
                         cancelLabel: 'Clear',
                         fromLabel: 'From',
                         toLabel: 'To',
                         customRangeLabel: 'Custom',
-                        daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-                        monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+                monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
                         firstDay: 1
-                    }
+                }
                 };
                 $('#reportrange span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
-                $('#reportrange').daterangepicker(optionSet1, cb);
+                    $('#reportrange').daterangepicker(optionSet1, cb);
                 $('#reportrange').on('show.daterangepicker', function () {
                     console.log("show event fired");
-                });
+                    });
                 $('#reportrange').on('hide.daterangepicker', function () {
                     console.log("hide event fired");
                 });
@@ -428,11 +429,10 @@
                 $('#reportrange').on('cancel.daterangepicker', function (ev, picker) {
                     console.log("cancel event fired");
                 });
-                $('#options1').click(function () {
-                    $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
+                    $('#options1').click(function () {                     $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
                 });
                 $('#options2').click(function () {
-                    $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
+            $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
                 });
                 $('#destroy').click(function () {
                     $('#reportrange').data('daterangepicker').remove();

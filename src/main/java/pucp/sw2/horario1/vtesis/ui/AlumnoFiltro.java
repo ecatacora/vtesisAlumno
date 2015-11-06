@@ -5,33 +5,32 @@
  */
 package pucp.sw2.horario1.vtesis.ui;
 
-import pucp.sw2.horario1.vtesis.modelos.Avance;
-import pucp.sw2.horario1.vtesis.modelos.Curso;
-
 /**
  *
  * @author Lisseth
  */
 public class AlumnoFiltro {
     
+    private Integer idCiclo;
+    private String ciclo;
+
+    public Integer getIdCiclo() {
+        return idCiclo;
+    }
+
+    public void setIdCiclo(Integer idCiclo) {
+        this.idCiclo = idCiclo;
+    }
+
+    public String getCiclo() {
+        return ciclo;
+    }
+
+    public void setCiclo(String ciclo) {
+        this.ciclo = ciclo;
+    }
     
-    private Integer idCurso;
-    /*private Integer idPersona;
-
-    public Integer getIdPersona() {
-        return idPersona;
-    }
-
-    public void setIdPersona(Integer idPersona) {
-        this.idPersona = idPersona;
-    }*/
     
-    public Integer getIdCurso() {
-        return idCurso;
-    }
-
-    public void setIdCurso(Integer idCurso) {
-        this.idCurso = idCurso;
-    }
+    
     
 }

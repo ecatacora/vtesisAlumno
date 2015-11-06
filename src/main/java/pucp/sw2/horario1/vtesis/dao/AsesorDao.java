@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import pucp.sw2.horario1.vtesis.dto.CicloDTO;
 import pucp.sw2.horario1.vtesis.dto.CursoDTO;
 import pucp.sw2.horario1.vtesis.dto.PersonaDTO;
 import pucp.sw2.horario1.vtesis.modelos.Avance;
@@ -38,7 +39,7 @@ public class AsesorDao {
                 + "p.nombres, "
                 + "p.apellidos, "
                 + "p.codigo, "
-                + "p.contraseña, "
+                + "p.password, "
                 + "p.email,"
                 + "p.foto, "
                 + "p.idRol, "
@@ -56,29 +57,29 @@ public class AsesorDao {
     }
     
     
-    public List<CursoDTO> listarCursos(){
-        List<CursoDTO> lstCursos = null;
         
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);                
+    public List<CicloDTO> listarCiclos(Integer idPersona) {
+        List<CicloDTO> lstResultados = null;
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
+        List<Object> parametros = new ArrayList<Object>();
         StringBuilder sql = new StringBuilder();
-        
-        sql.append(" select c.idCurso, c.nombre from curso c ");      
-        sql.append(" order by c.nombre asc");
-              
-        
-        lstCursos = jdbcTemplate.query(sql.toString(),
-                        new RowMapper<CursoDTO>() {
-                            @Override
-                            public CursoDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
-                                CursoDTO curso = new CursoDTO();
-                                curso.setIdCurso(rs.getInt(1));
-                                curso.setNombre(rs.getString(2));
-                               
-                                return curso;
-                            }
-                        });        
-        
-        return lstCursos;
+
+        sql.append("SELECT h.ciclo ");
+        sql.append("FROM historial h");
+        sql.append("where asesor_idPersona = ? ");
+        parametros.add(idPersona);
+        lstResultados = jdbcTemplate.query(sql.toString(), parametros.toArray(),
+                new RowMapper<CicloDTO>() {
+                    @Override
+                    public CicloDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+                        
+                        CicloDTO c = new CicloDTO();
+                        c.setCiclo(rs.getString("ciclo"));
+                        return c;
+                    }
+                });
+
+        return lstResultados;
     }
     
     public List<PersonaDTO> busqueda(AlumnoFiltro filtros){
@@ -91,11 +92,11 @@ public class AsesorDao {
         sql.append(" from persona p");
         sql.append(" inner join historial h on (p.idPersona = h.alumno_idPersona)");
         sql.append(" inner join curso c on (h.idCurso = c.idCurso)");
-        sql.append(" where idRol=3 AND p.idPersona = ?"); //Falta obtener idPersona
+        sql.append(" where idRol=3 "); 
         
-        if (filtros.getIdCurso()!= null){        
-            sql.append(" AND c.idCurso = ?");
-            parametros.add(filtros.getIdCurso());
+        if (filtros.getIdCiclo()!= null){        
+            sql.append(" AND c.idCiclo = ?");
+            parametros.add(filtros.getIdCiclo());
         }
         
         sql.append(" order by p.codigo asc");

@@ -7,6 +7,7 @@ package pucp.sw2.horario1.vtesis.controllers;
 
 import java.util.List;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,31 +36,38 @@ public class AsesorController {
     AvanceDAO avanceDAO;
     
     
+    
+    
+    
     /* se configura un log para este controlador*/
     private static final Logger log = Logger.getLogger("asesorController");
     
     
     @RequestMapping(value = "asesor/profile")
-    public String profileAsesor(Model model, int id){
+    public String profileAsesor(Model model, HttpSession session){
         
-        PersonaDTO persona = asesorDao.getInfo(id); //editar 
-        model.addAttribute("personaDatos", persona); 
+        PersonaDTO personaDTO = (PersonaDTO) session.getAttribute("personaDTO");
+        
+        model.addAttribute("ListaCiclos", asesorDao.listarCiclos(personaDTO.getIdPersona()));   
+        
         return "asesor/profile";
     }
     
     @RequestMapping(value = "asesor/lista_alumnos")
-    public String listarAlumnos(Model model, @RequestParam(required = false) Integer idCurso){
+    public String listarAlumnos(Model model, HttpSession session ,@RequestParam(required = false) Integer idCiclo){
+        
+        PersonaDTO personaDTO = (PersonaDTO) session.getAttribute("personaDTO");
         
         AlumnoFiltro filtros = new AlumnoFiltro();
         List<PersonaDTO> lstAlumnos;
         
-        filtros.setIdCurso(idCurso);
+        filtros.setIdCiclo(idCiclo);
         
         lstAlumnos = asesorDao.busqueda(filtros);
         
         
         model.addAttribute("filtros", filtros);
-        model.addAttribute("lstCursos",asesorDao.listarCursos());
+        model.addAttribute("lstCiclos",asesorDao.listarCiclos(personaDTO.getIdPersona()));
         model.addAttribute("lstAlumnos", lstAlumnos);
         
         

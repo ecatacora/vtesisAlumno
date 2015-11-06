@@ -492,8 +492,8 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                                                             <div class="form-group">
                                                                 <form:select path="idCurso" class="form-control">
                                                                     <option value="">Seleccione</option>
-                                                                    <c:forEach items="${lstCursos}" var="c">
-                                                                        <option value="${c.idCurso}">${c.nombre} </option>
+                                                                    <c:forEach items="${lstCiclos}" var="c">
+                                                                        <option value="">${c.ciclo} </option>
                                                                     </c:forEach>
                                                                 </form:select>
                                                             </div>

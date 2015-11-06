@@ -12,9 +12,9 @@ import java.io.Serializable;
  * @author Unknown
  */
 public class CicloDTO implements Serializable {
-
+    
     private String ciclo;
-
+    
     public String getCiclo() {
         return ciclo;
     }

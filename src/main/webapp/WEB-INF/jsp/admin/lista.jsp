@@ -34,7 +34,7 @@
                     <div class="left_col scroll-view">
 
                         <div class="navbar nav_title" style="border: 0;">
-                            <a href="<c:url value="/home.do">" class="site_title"><img src="images/logo_mini.png" alt="Logo"><span>V-Tesis</span></a>
+                            <a href="<c:url value="/home.do"/>" class="site_title"><img src="images/logo_mini.png" alt="Logo"><span>V-Tesis</span></a>
                         </div>
                         <div class="clearfix"></div>
 

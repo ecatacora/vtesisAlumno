@@ -70,7 +70,7 @@ public class PersonaDAO {
         List<Object> parametros = new ArrayList<Object>();
         StringBuilder sql = new StringBuilder();
 
-        sql.append("select p.codigo, p.nombres, p.apellidos from persona p;");
+        sql.append("select p.codigo, p.nombres, p.apellidos  from persona p");
         //Listando todos los alumnos, asesores o administradores
         //cursos, entregable y fecha de actualizacion.              
 

@@ -183,9 +183,10 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                         <a data-toggle="tooltip" data-placement="top" title="Lock">
                             <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
                         </a>-->
-                        <a href="login.html" data-toggle="tooltip" data-placement="top" title="Logout">
+                        <a href="<c:url value="/logout.do"/>" data-toggle="tooltip" data-placement="top" title="Logout">
                             <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                         </a>
+                        
                     </div>
                     <!-- /menu footer buttons -->
                 </div>
@@ -218,7 +219,7 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                                     <li>
                                         <a href="javascript:;">Help</a>
                                     </li> -->
-                                    <li><a href="<c:url value= "/login.do"/>"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                    <li><a href="<c:url value= "/logout.do"/>"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                                     </li>
                                 </ul>
                             </li>

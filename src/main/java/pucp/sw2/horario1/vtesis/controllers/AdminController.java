@@ -21,7 +21,8 @@ import pucp.sw2.horario1.vtesis.dto.PersonaDTO;
  *
  * @author josesuk
  */
-@Controller
+@Controller(value = "adminController")
+
 public class AdminController {
     @Autowired
     PersonaDAO personaDAO;
@@ -31,6 +32,7 @@ public class AdminController {
     @RequestMapping(value="/admin/lista")
     public String lista(Model model){
         List<PersonaDTO> lstpersonas = personaDAO.listarPersona();
+        System.out.println(lstpersonas.size());
         model.addAttribute("lstpersonas", lstpersonas);
         return "admin/lista";
     }

@@ -48,7 +48,8 @@
                         </div>
                         <div class="profile_info">
                             <span>Bienvenido,</span>
-                            <h2 id="username">${persona.nombres} - ADMIN</h2>
+                            <h2 id="username">${persona.nombres} ${persona.apellidos}</h2>
+                            <h4>ADMIN</h4>
                         </div>
                     </div>
                     <!-- /menu prile quick info -->
@@ -95,7 +96,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <img src="<c:url value="/images/img.jpg"/>" alt="">ADMIN
+                                    <img src="<c:url value="/images/img.jpg"/>" alt="">${persona.nombres} ${persona.apellidos} - ADMIN
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
@@ -148,7 +149,9 @@
                                                 <th>C&oacute;digo</th>
                                                 <th>Nombres</th>  
                                                 <th>Apellidos</th>
-                                                
+                                                <th>Editar</th>
+                                                <th>Borrar</th>
+                                                <th>Enable</th>
                                             </thead>
                                             
                                             <tbody>
@@ -157,8 +160,15 @@
                                                         <td>${p.codigo}</td>
                                                         <td>${p.nombres}</td>                                
                                                         <td>${p.apellidos}</td>
-                                                       
-                                                      
+                                                        <td>
+                                                            <a href="<c:url value="/admin/edit?codigo=${p.codigo}"/>">Editar</a>
+                                                        </td>
+                                                        <td>
+                                                            Borrar
+                                                        </td>
+                                                        <td>
+                                                            Enable
+                                                        </td>
                                                     </tr> 
                                                 </c:forEach>
                                             </tbody>
@@ -173,11 +183,7 @@
                                     <br>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-6" align="right">
-                                    
-                                    <label for="registrar">&nbsp;</label><br>
-                                    <a href="<c:url value= "/asesor/profile"/>">
-                                    <span class="btn btn-primary" id="registrar" name="registrar">Regresar</span>
-                                    </a>
+                                    <!-- DIV de boton derecho -->
                                 </div>
                             </div>
                             

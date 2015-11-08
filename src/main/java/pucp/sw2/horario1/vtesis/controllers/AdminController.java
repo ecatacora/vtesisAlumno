@@ -32,9 +32,11 @@ public class AdminController {
     private static final Logger log = Logger.getLogger("AdminController");
     
     @RequestMapping(value="/admin/lista")
-    public String lista(Model model){
+    public String lista(Model model, HttpSession session){
+        PersonaDTO persona = (PersonaDTO)session.getAttribute("personaDTO");
         List<PersonaDTO> lstpersonas = personaDAO.listarPersona();
         System.out.println(lstpersonas.size());
+        model.addAttribute("persona", persona);
         model.addAttribute("lstpersonas", lstpersonas);
         return "admin/lista";
     }
@@ -42,6 +44,14 @@ public class AdminController {
     @RequestMapping(value="/admin/registro")
     public String registroPersona(Model model){
         PersonaDTO persona = new PersonaDTO();
+        model.addAttribute("persona", persona);
+        model.addAttribute("lstRol", rolDAO.listarRol());
+        return "admin/registro";
+    }
+    
+    @RequestMapping(value="/admin/edit")
+    public String editarPersona(Model model, @RequestParam String codigo){
+        PersonaDTO persona = personaDAO.get(codigo);
         model.addAttribute("persona", persona);
         model.addAttribute("lstRol", rolDAO.listarRol());
         return "admin/registro";

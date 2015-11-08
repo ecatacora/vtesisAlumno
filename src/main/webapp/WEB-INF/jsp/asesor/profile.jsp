@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,7 +37,7 @@
                     <!-- menu prile quick info -->
                     <div class="profile">
                         <div class="profile_pic">
-                            <img src="images/vtesis-logo.jpg" alt="..." class="img-circle profile_img">
+                            <img src="<c:url value="/images/vtesis-logo.jpg"/>" alt="..." class="img-circle profile_img">
                         </div>
                         <div class="profile_info">
                             <!--<span>Welcome,</span>
@@ -57,7 +57,7 @@
                             <ul class="nav side-menu">
                                 <li><a><i class="fa fa-home"></i> Inicio <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="profile.html">Perfil</a>
+                                        <li><a href="<c:url value="/home.do"/>">Perfil</a>
                                         </li>
                                         <!--<li><a href="index2.html">Dashboard2</a>
                                         </li>
@@ -360,7 +360,7 @@
                                             <div id="crop-avatar">
                                                 <!-- Current avatar -->
                                                 <div class="avatar-view" title="Change the avatar">
-                                                    <img src="images/img.jpg" alt="Avatar">
+                                                    <img src="<c:url value="/images/img.jpg"/>" alt="Avatar">
                                                 </div>
 
                                                 <!-- Cropping modal -->
@@ -494,19 +494,17 @@
                                                     <div id="reportrange" class="pull-left" style="margin-top: 5px; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #E6E9ED">
                                                     <span>2015-1</span> <b class="caret"></b>
                                                     </div>-->
-                                                    <form:form  role="form" modelAttribute="lstCiclos" method="POST">
+                                                    <form:form action="${pageContext.request.contextPath}/asesor/listar_alumnos" role="form" modelAttribute="ciclo" method="POST">
                                                     <div class="form-group">
                                                         <h2>Busqueda</h2>
                                                         <div id="reportrange" class="pull-left" style="margin-top: 5px; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #E6E9ED">
                                                             <form:select path="ciclo" class="form-control">
-                                                                <option value="">Seleccionar</option>
-                                                                <c:forEach items="${lstCiclos}" var="c">
-                                                                    <option value="">${c.ciclo}</option>
-                                                                </c:forEach>
+                                                                <form:option value="0" label="Seleccionar"/>
+                                                                <form:options items="${lstCiclos}" itemValue="ciclo" itemLabel="ciclo"/>                                                                
                                                             </form:select>
                                                         </div>
                                                     </div>
-                                                    </form:form>
+                                                    
                                                     
                                                     <br>
                                                     <br>
@@ -514,11 +512,10 @@
                                                     <br>
                                                     <br>
                                                     <br>
-                                                    <a href="asesor_busqueda.html" class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Ver Alumnos</a>
+                                                    <button class="btn btn-success" type="submit"><i class="fa fa-edit m-right-xs"></i>Ver Alumnos</button>
+                                                    </form:form>                                                   
                                                     <br>
-                                                    <br>
-                                                    <br>
-                                                    <a href="" class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Busqueda Avanzada</a>
+                                                    <a href="#" class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Busqueda Avanzada</a>
                                                 </div>
                                                     <div class="col-md-4"></div>   
                                             </div>
@@ -712,29 +709,29 @@
         <div id="notif-group" class="tabbed_notifications"></div>
     </div>
 
-    <script src="js/bootstrap.min.js"></script>
+    <script src="<c:url value="/js/bootstrap.min.js"/>"></script>
 
     <!-- chart js -->
-    <script src="js/chartjs/chart.min.js"></script>
+    <script src="<c:url value="/js/chartjs/chart.min.js"/>"></script>
     <!-- bootstrap progress js -->
-    <script src="js/progressbar/bootstrap-progressbar.min.js"></script>
-    <script src="js/nicescroll/jquery.nicescroll.min.js"></script>
+    <script src="<c:url value="/js/progressbar/bootstrap-progressbar.min.js"/>"></script>
+    <script src="<c:url value="/js/nicescroll/jquery.nicescroll.min.js"/>"></script>
     <!-- icheck -->
-    <script src="js/icheck/icheck.min.js"></script>
+    <script src="<c:url value="/js/icheck/icheck.min.js"/>"></script>
 
-    <script src="js/custom.js"></script>
+    <script src="<c:url value="/js/custom.js"/>"></script>
 
     <!-- image cropping -->
-    <script src="js/cropping/cropper.min.js"></script>
-    <script src="js/cropping/main.js"></script>
+    <script src="<c:url value="/js/cropping/cropper.min.js"/>"></script>
+    <script src="<c:url value="/js/cropping/main.js"/>"></script>
 
     
     <!-- daterangepicker -->
-    <script type="text/javascript" src="js/moment.min.js"></script>
-    <script type="text/javascript" src="js/datepicker/daterangepicker.js"></script>
+    <script type="text/javascript" src="<c:url value="/js/moment.min.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/datepicker/daterangepicker.js"/>"></script>
     <!-- moris js -->
-    <script src="js/moris/raphael-min.js"></script>
-    <script src="js/moris/morris.js"></script>
+    <script src="<c:url value="/js/moris/raphael-min.js"/>"></script>
+    <script src="<c:url value="/js/moris/morris.js"/>"></script>
     <script>
         $(function () {
             var day_data = [

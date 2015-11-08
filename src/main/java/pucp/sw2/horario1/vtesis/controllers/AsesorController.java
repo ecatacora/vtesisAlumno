@@ -17,6 +17,7 @@ import pucp.sw2.horario1.vtesis.dao.AsesorDao;
 import pucp.sw2.horario1.vtesis.dao.AvanceDAO;
 import pucp.sw2.horario1.vtesis.dao.PersonaDAO;
 import pucp.sw2.horario1.vtesis.dto.AvanceDTO;
+import pucp.sw2.horario1.vtesis.dto.CicloDTO;
 import pucp.sw2.horario1.vtesis.dto.PersonaDTO;
 import pucp.sw2.horario1.vtesis.modelos.Avance;
 import pucp.sw2.horario1.vtesis.modelos.Persona;
@@ -50,20 +51,21 @@ public class AsesorController {
         
 
         PersonaDTO personaDTO = (PersonaDTO) session.getAttribute("personaDTO");
+        CicloDTO ciclo = new CicloDTO();
         
         model.addAttribute("persona", personaDTO);
         model.addAttribute("codigo", personaDTO.getCodigo());  
         model.addAttribute("nombres", personaDTO.getNombres());  
         model.addAttribute("apellidos", personaDTO.getApellidos());  
         model.addAttribute("email", personaDTO.getEmail());  
-          
+        model.addAttribute("ciclo", ciclo);
         
         model.addAttribute("lstCiclos", asesorDao.listarCiclos(personaDTO.getIdPersona()));   
         
         return "/asesor/profile";
     }
     
-    @RequestMapping(value = "lista_alumnos")
+    @RequestMapping(value = "/asesor/listar_alumnos")
     public String listarAlumnos(Model model, HttpSession session ,@RequestParam(required = false) String ciclo){
         
         PersonaDTO personaDTO = (PersonaDTO) session.getAttribute("personaDTO");
@@ -75,7 +77,7 @@ public class AsesorController {
         
         lstAlumnos = asesorDao.busqueda(filtros);
         
-        
+        model.addAttribute("persona", personaDTO);
         model.addAttribute("filtros", filtros);
         model.addAttribute("lstCiclos",asesorDao.listarCiclos(personaDTO.getIdPersona()));
         model.addAttribute("lstAlumnos", lstAlumnos);

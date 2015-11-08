@@ -77,7 +77,7 @@ public class AsesorDao {
         sql.append(" where idRol=3 "); 
         
                
-        sql.append(" AND c.ciclo = ?");
+        sql.append(" AND h.ciclo = ?");
         parametros.add(filtros.getCiclo());
                 
         sql.append(" order by p.codigo asc");

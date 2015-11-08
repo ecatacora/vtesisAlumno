@@ -4,14 +4,14 @@
 <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet">
 
     <link href="<c:url value="/fonts/css/font-awesome.min.css"/>" rel="stylesheet">
-    <link href="<c:url value="css/animate.min.css"/>" rel="stylesheet">
+    <link href="<c:url value="/css/animate.min.css"/>" rel="stylesheet">
 
     <!-- Custom styling plus plugins -->
-    <link href="<c:url value="css/custom.css"/>" rel="stylesheet">
-    <link href="<c:url value="css/icheck/flat/green.css"/>" rel="stylesheet">
+    <link href="<c:url value="/css/custom.css"/>" rel="stylesheet">
+    <link href="<c:url value="/css/icheck/flat/green.css"/>" rel="stylesheet">
 
 
-    <script src="<c:url value="js/jquery.min.js"/>"></script>
+    <script src="<c:url value="/js/jquery.min.js"/>"></script>
 
     <!--[if lt IE 9]>
         <script src="../assets/js/ie8-responsive-file-warning.js"></script>

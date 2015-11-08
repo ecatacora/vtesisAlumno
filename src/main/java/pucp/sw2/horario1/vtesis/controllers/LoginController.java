@@ -54,9 +54,9 @@ public class LoginController {
         if (persona.getIdRol() == 1) {
             return "redirect:/admin/lista";
         } else if (persona.getIdRol() == 2) {
-            return "/asesor/profile";
+            return "redirect:/asesor/profile";
         } else {
-            return "/alumno/profile";
+            return "redirect:/alumno/profile";
         }
     }
 

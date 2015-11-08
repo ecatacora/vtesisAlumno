@@ -35,7 +35,7 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                     <!-- menu prile quick info -->
                     <div class="profile">
                         <div class="profile_pic">
-                            <img src="images/vtesis-logo.jpg" alt="..." class="img-circle profile_img">
+                            <img src="<c:url value="/images/vtesis-logo.jpg"/>" alt="..." class="img-circle profile_img">
                         </div>
                         <div class="profile_info">
                             <!--<span>Welcome,</span>

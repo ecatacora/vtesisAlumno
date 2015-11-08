@@ -69,7 +69,7 @@ public class AsesorDao {
 
         sql.append("SELECT h.ciclo ");
         sql.append("FROM historial h ");
-        sql.append("where asesor_idPersona = ? ");
+        sql.append("where asesor_idPersona1 = ? ");
         parametros.add(idPersona);
         lstResultados = jdbcTemplate.query(sql.toString(), parametros.toArray(),
                 new RowMapper<CicloDTO>() {

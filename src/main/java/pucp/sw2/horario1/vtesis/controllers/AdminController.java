@@ -29,6 +29,8 @@ public class AdminController {
     @Autowired
     RolDAO rolDAO;
     
+    private static final Logger log = Logger.getLogger("AdminController");
+    
     @RequestMapping(value="/admin/lista")
     public String lista(Model model){
         List<PersonaDTO> lstpersonas = personaDAO.listarPersona();
@@ -42,6 +44,28 @@ public class AdminController {
         PersonaDTO persona = new PersonaDTO();
         model.addAttribute("persona", persona);
         model.addAttribute("lstRol", rolDAO.listarRol());
-        return "admin/registro_persona";
+        return "admin/registro";
+    }
+    
+     @RequestMapping(value = "/admin/save")
+    public String grabarProyecto(PersonaDTO persona, Model model, HttpSession sesion){
+        try{                                                      
+            if (persona.getIdPersona()== null){                
+                personaDAO.registrarPersona(persona);
+                model.addAttribute("mensaje", "Persona código: "+persona.getCodigo()+" agregada!");
+                model.addAttribute("nuevo", true);
+            }else{
+                personaDAO.update(persona);
+                model.addAttribute("mensaje", "Persona código "+persona.getCodigo()+" actualizada");
+                model.addAttribute("nuevo", false);
+            }
+            model.addAttribute("idPersona", persona.getIdPersona());
+            sesion.setAttribute("idPersona",persona.getIdPersona());
+            return "redirect:/admin/lista";
+        }catch(Exception ex){
+            log.warning(ex.getMessage());
+            model.addAttribute("error", true);            
+            return "redirect:/admin/registro";
+        }
     }
 }

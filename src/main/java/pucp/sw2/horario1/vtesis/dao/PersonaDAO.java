@@ -92,7 +92,7 @@ public class PersonaDAO {
     public void registrarPersona(PersonaDTO persona) {
         StringBuilder sb = new StringBuilder();
         Map params = new HashMap();
-        sb.append(" insert into persona (nombres, apellidos, codigo, password, idRol) values(:nombres, :apellidos, :codigo, contraseña, :idRol); ");
+        sb.append(" insert into persona (nombres, apellidos, codigo, password, idRol) values(:nombres, :apellidos, :codigo, SHA2(:password,256), :idRol); ");
         params.put("nombres", persona.getNombres());
         params.put("apellidos", persona.getApellidos());
         params.put("codigo", persona.getCodigo());

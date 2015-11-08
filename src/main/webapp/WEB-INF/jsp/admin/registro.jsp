@@ -11,16 +11,26 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Editar MENU</title>
+        <c:if test="${persona.idPersona != 0}">
+        <title>Editar Usuario</title>
+        </c:if>
+        <c:if test="${persona.idPersona == 0}">
+        <title>Nuevo Usuario</title>
+        </c:if>
         <%@include file="/WEB-INF/jsp/comun/recursos.jsp" %>
     </head>
     <body>
         <div class="container">
-            <h2>Editar Menu</h2>
+            <c:if test="${persona.idPersona != 0}">
+                <h2>Editar Usuario</h2>
+            </c:if>
+            <c:if test="${persona.idPersona == 0}">
+                <h2>Nuevo Usuario</h2>
+            </c:if>
             <div class="row">
                 <div class="panel panel-default">
                     <div class="panel-heading">Registrar Persona</div>
-                    <form:form modelAttribute="persona" action="grabar" role="form" class="form-horizontal" method="POST">
+                    <form:form modelAttribute="persona" action="save" role="form" class="form-horizontal" method="POST">
                         <form:hidden path="idPersona"/>
                         <div class="form-group">
                             <label class="control-label col-sm-2">Nombre</label>
@@ -50,7 +60,7 @@
                         <div class="form-group">
                             <label class="control-label col-sm-2">Rol</label>
                             <div class="col-sm-6">
-                                <form:select path="idCafeteria" class="form-control">
+                                <form:select path="idRol" class="form-control">
                                     <option value="">Seleccione</option>
                                     <c:forEach items="${lstRol}" var="p">
                                         <option value="${p.getIdRol()}" ${p.getIdRol()==persona.getIdRol()?"selected":""}>${p.getTipo()} </option>

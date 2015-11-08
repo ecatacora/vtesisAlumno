@@ -33,6 +33,9 @@
         <security:intercept-url pattern="/alumno/**" access="hasRole('ROLE_ALUMNO')" />
             
         <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
+        
+        <security:intercept-url pattern="/comun/**"
+                                        access="hasAnyRole('ROLE_ASESOR', 'ROLE_ALUMNO', 'ROLE_ADMIN')" />
                                                 
         <security:access-denied-handler error-page="/accessdenied.do" />
 

@@ -36,31 +36,6 @@ public class AsesorDao {
     @Autowired
     DataSource datasource;
     
-    public PersonaDTO getInfo(int id) {
-
-        String query = "select p.idPersona, "
-                + "p.nombres, "
-                + "p.apellidos, "
-                + "p.codigo, "
-                + "p.password, "
-                + "p.email,"
-                + "p.foto, "
-                + "p.idRol, "
-                + "from persona p "
-                + "where p.idPersona = ?";
-
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
-        PersonaDTO persona = jdbcTemplate.queryForObject(query, new Object[]{id}, new RowMapper<PersonaDTO>() {
-            @Override
-            public PersonaDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-        });
-        return persona;
-    }
-    
-    
-        
     public List<CicloDTO> listarCiclos(Integer idPersona) {
         List<CicloDTO> lstResultados = null;
         JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
@@ -69,8 +44,12 @@ public class AsesorDao {
 
         sql.append("SELECT h.ciclo ");
         sql.append("FROM historial h ");
-        sql.append("where asesor_idPersona1 = ? ");
+        sql.append("inner join persona p on (p.idPersona=h.asesor_idPersona1) ");
+        sql.append("where idPersona = ? ");
         parametros.add(idPersona);
+        
+        sql.append("group by h.ciclo order by h.ciclo desc");
+        
         lstResultados = jdbcTemplate.query(sql.toString(), parametros.toArray(),
                 new RowMapper<CicloDTO>() {
                     @Override
@@ -97,11 +76,10 @@ public class AsesorDao {
         sql.append(" inner join curso c on (h.idCurso = c.idCurso)");
         sql.append(" where idRol=3 "); 
         
-        if (filtros.getIdCiclo()!= null){        
-            sql.append(" AND c.idCiclo = ?");
-            parametros.add(filtros.getIdCiclo());
-        }
-        
+               
+        sql.append(" AND c.ciclo = ?");
+        parametros.add(filtros.getCiclo());
+                
         sql.append(" order by p.codigo asc");
               
         

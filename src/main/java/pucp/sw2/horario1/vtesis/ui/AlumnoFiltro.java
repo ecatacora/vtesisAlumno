@@ -11,16 +11,8 @@ package pucp.sw2.horario1.vtesis.ui;
  */
 public class AlumnoFiltro {
     
-    private Integer idCiclo;
+    
     private String ciclo;
-
-    public Integer getIdCiclo() {
-        return idCiclo;
-    }
-
-    public void setIdCiclo(Integer idCiclo) {
-        this.idCiclo = idCiclo;
-    }
 
     public String getCiclo() {
         return ciclo;

@@ -22,7 +22,7 @@
                                 <sec:authorize access="hasRole('ROLE_ADMIN')"> Administrador : </sec:authorize>
                                 <sec:authorize access="hasRole('ROLE_MANAGER')"> Gerente : </sec:authorize>
                                 <sec:authorize access="hasRole('ROLE_EMPLOYEE')"> Usuario : </sec:authorize>
-                                ${employeeBean.firstName} ${employeeBean.lastName} (${employeeBean.email})
+                                ${persona.nombres} ${persona.apellidos} (${persona.email})
                             </a>
                         </li>
                     </ul>

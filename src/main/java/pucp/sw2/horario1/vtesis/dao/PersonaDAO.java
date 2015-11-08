@@ -42,7 +42,8 @@ public class PersonaDAO {
                 + "e.codigo, "
                 + "e.password, "                
                 + "e.enabled, "
-                + "e.idRol "
+                + "e.idRol, "
+                + "e.email "
                 + "from persona e "
                 + "where e.codigo = ?";
 
@@ -58,6 +59,7 @@ public class PersonaDAO {
                 p.setContrasena(rs.getString(5));
                 p.setEnabled(rs.getInt(6));
                 p.setIdRol(rs.getInt(7));
+                p.setEmail(rs.getString("email"));
                 return p;
             }
         });

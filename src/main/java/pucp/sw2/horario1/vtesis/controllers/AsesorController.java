@@ -45,25 +45,33 @@ public class AsesorController {
     private static final Logger log = Logger.getLogger("asesorController");
     
     
-    @RequestMapping(value = "asesor/profile")
+    @RequestMapping(value = "/asesor/profile")
     public String profileAsesor(Model model, HttpSession session){
         
+
         PersonaDTO personaDTO = (PersonaDTO) session.getAttribute("personaDTO");
         
-        model.addAttribute("ListaCiclos", asesorDao.listarCiclos(personaDTO.getIdPersona()));   
+        model.addAttribute("persona", personaDTO);
+        model.addAttribute("codigo", personaDTO.getCodigo());  
+        model.addAttribute("nombres", personaDTO.getNombres());  
+        model.addAttribute("apellidos", personaDTO.getApellidos());  
+        model.addAttribute("email", personaDTO.getEmail());  
+          
         
-        return "asesor/profile";
+        model.addAttribute("lstCiclos", asesorDao.listarCiclos(personaDTO.getIdPersona()));   
+        
+        return "/asesor/profile";
     }
     
-    @RequestMapping(value = "asesor/lista_alumnos")
-    public String listarAlumnos(Model model, HttpSession session ,@RequestParam(required = false) Integer idCiclo){
+    @RequestMapping(value = "lista_alumnos")
+    public String listarAlumnos(Model model, HttpSession session ,@RequestParam(required = false) String ciclo){
         
         PersonaDTO personaDTO = (PersonaDTO) session.getAttribute("personaDTO");
         
         AlumnoFiltro filtros = new AlumnoFiltro();
         List<PersonaDTO> lstAlumnos;
         
-        filtros.setIdCiclo(idCiclo);
+        filtros.setCiclo(ciclo);
         
         lstAlumnos = asesorDao.busqueda(filtros);
         
@@ -77,26 +85,26 @@ public class AsesorController {
         return "asesor/lista_alumnos";
     }
     
-    @RequestMapping(value = "asesor/vistaEntregables")
+    @RequestMapping(value = "vistaEntregables")
     public String vistaEntregable(Model model){
         
         return "asesor/vista_de_entregables";
     }
     
-    @RequestMapping(value = "asesor/registro")
+    @RequestMapping(value = "registro")
     public String Registrar(Model model){
        
         return "....";
     }
     
-    @RequestMapping(value = "asesor/editarFechas")
+    @RequestMapping(value = "editarFechas")
     public String registrarFechas(Model model, @RequestParam Integer idAvance){
        Avance avance = avanceDAO.obtener(idAvance); 
        model.addAttribute("avance", avance);
        return "asesor/editarFechas";
     }
     
-    @RequestMapping(value = "asesor/vistaEntregables")
+    @RequestMapping(value = "vistaEntregables")
     public String vistaEntregable(Model model,@RequestParam(required = false) Persona persona){
         
         

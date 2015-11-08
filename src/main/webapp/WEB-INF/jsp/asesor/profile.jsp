@@ -1,16 +1,18 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <%@include file = "/WEB-INF/jsp/comun/recursos.jsp" %>
+    
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <%@include file = "/WEB-INF/jsp/comun/recursos.jsp" %>
     
     <title>Perfil</title>
 
@@ -35,7 +37,7 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                     <!-- menu prile quick info -->
                     <div class="profile">
                         <div class="profile_pic">
-                            <img src="<c:url value="/images/vtesis-logo.jpg"/>" alt="..." class="img-circle profile_img">
+                            <img src="images/vtesis-logo.jpg" alt="..." class="img-circle profile_img">
                         </div>
                         <div class="profile_info">
                             <!--<span>Welcome,</span>
@@ -204,7 +206,7 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <img src="images/img.jpg" alt="">Juan Perez
+                                    <img src="images/img.jpg" alt="">${nombres} ${apellidos}
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
@@ -310,7 +312,7 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 <div class="">
                     <div class="page-title">
                         <div class="title_left">
-                            <h3>Â¡Bienvenido Juan Perez!</h3>
+                            <h3>¡Bienvenido ${nombres} ${apellidos}!</h3>
                         </div>
 
                         <div class="title_right">
@@ -429,14 +431,14 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                                             <!-- end of image cropping -->
 
                                         </div>
-                                        <h3>Juan Perez</h3>
+                                        <h3>${nombres} ${apellidos}</h3>
 
                                         <ul class="list-unstyled user_data">
-                                            <li> juan.perez@pucp.pe
+                                            <li> ${email}
                                             </li>
 
                                             <li>
-                                                 19972015
+                                                 ${codigo}
                                             </li>
 
                                             <!--<li class="m-top-xs">
@@ -486,37 +488,44 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                                                 <div class="col-md-2"></div>
                                                 <div class="col-md-6">
                                                     
-                                                    <h2>Busqueda</h2>
+                                                    
+                                                    <!--<h2>Busqueda</h2>
                                                 
                                                     <div id="reportrange" class="pull-left" style="margin-top: 5px; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #E6E9ED">
-                                                        <form:form  class="form-inline" role="form" modelAttribute="filtros" method="POST">
-                                                            <div class="form-group">
-                                                                <form:select path="idCurso" class="form-control">
-                                                                    <option value="">Seleccione</option>
-                                                                    <c:forEach items="${lstCiclos}" var="c">
-                                                                        <option value="">${c.ciclo} </option>
-                                                                    </c:forEach>
-                                                                </form:select>
-                                                            </div>
-                                                            <!--<button type="submit" class="btn btn-primary">Buscar</button>-->
-                                                            <br>
-                                                            <br>
-                                                            <a href=" LISTA ALUMNOS" class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Ver Alumnos</a>
-                                                        </form:form>
+                                                    <span>2015-1</span> <b class="caret"></b>
+                                                    </div>-->
+                                                    <form:form  role="form" modelAttribute="lstCiclos" method="POST">
+                                                    <div class="form-group">
+                                                        <h2>Busqueda</h2>
+                                                        <div id="reportrange" class="pull-left" style="margin-top: 5px; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #E6E9ED">
+                                                            <form:select path="ciclo" class="form-control">
+                                                                <option value="">Seleccionar</option>
+                                                                <c:forEach items="${lstCiclos}" var="c">
+                                                                    <option value="">${c.ciclo}</option>
+                                                                </c:forEach>
+                                                            </form:select>
+                                                        </div>
                                                     </div>
+                                                    </form:form>
                                                     
-                                                    <!--
                                                     <br>
                                                     <br>
-                                                    <a href="asesor_busqueda.html" class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Ver Alumnos</a>-->
+                                                    <br>
+                                                    <br>
+                                                    <br>
+                                                    <br>
+                                                    <a href="asesor_busqueda.html" class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Ver Alumnos</a>
+                                                    <br>
+                                                    <br>
                                                     <br>
                                                     <a href="" class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Busqueda Avanzada</a>
                                                 </div>
-                                                <div class="col-md-4"></div>   
+                                                    <div class="col-md-4"></div>   
                                             </div>
                                                     
                                             
                                         </div>
+
                                         <!-- start of user-activity-graph -->
                                         <!-- <div id="graph_bar" style="width:100%; height:280px;"></div>
                                         <!-- end of user-activity-graph -->

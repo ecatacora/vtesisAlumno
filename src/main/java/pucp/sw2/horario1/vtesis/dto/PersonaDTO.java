@@ -18,12 +18,21 @@ public class PersonaDTO implements Serializable{
     private String  nombres;
     private String apellidos;
     private String codigo;
+    private String email;
     private String contrasena;
     private Integer idRol;
     private Curso curso;
     private Avance avance;
     private Integer enabled;
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+   
     public Integer getEnabled() {
         return enabled;
     }
@@ -95,17 +104,4 @@ public class PersonaDTO implements Serializable{
     public void setIdRol(Integer idRol) {
         this.idRol = idRol;
     }
-
-   
-
-   
-    
-    
-
-  
-
-    
-    
-    
-    
 }

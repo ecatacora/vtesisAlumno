@@ -35,9 +35,9 @@ public class LoginController {
             if (personaDTO.getIdRol() == 1) {
                 return "redirect:/admin/lista";
             } else if (personaDTO.getIdRol() == 2) {
-                return "/asesor/profile";
+                return "redirect:/asesor/profile";
             } else {
-                return "/alumno/profile";
+                return "redirect:/alumno/profile";
             }
         } else {
             return "login";
@@ -61,7 +61,9 @@ public class LoginController {
     }
 
     @RequestMapping(value = {"/accessdenied.do"}, method = RequestMethod.GET)
-    public String denied() {
+    public String denied(Model model, HttpSession session) {
+        PersonaDTO persona = (PersonaDTO)session.getAttribute("personaDTO");
+        model.addAttribute("persona", persona);
         return "/denied";
     }
 }

@@ -164,7 +164,9 @@
                                                         <td>${p.codigo}</td>
                                                         <td>${p.nombres}</td>                                
                                                         <td>${p.curso.nombre}</td>
-                                                        <td><a href="<c:url value= "/asesor/vistaEntregables?idAvance=${p.avance.idAvance}"/>">${p.avance.nombre}</a></td>
+                                                        
+                                                        <td><a href="<spring:url value='/asesor/vista_de_entregables?codigo=${p.codigo}'/>"> Ver </a></td>
+                                                        
                                                         <td><!--fecha de actualizacion--></td>
                                                     </tr> 
                                                 </c:forEach>

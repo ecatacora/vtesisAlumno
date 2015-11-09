@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import pucp.sw2.horario1.vtesis.dao.AsesorDao;
 import pucp.sw2.horario1.vtesis.dao.AvanceDAO;
@@ -22,6 +23,7 @@ import pucp.sw2.horario1.vtesis.dto.PersonaDTO;
 import pucp.sw2.horario1.vtesis.modelos.Avance;
 import pucp.sw2.horario1.vtesis.modelos.Persona;
 import pucp.sw2.horario1.vtesis.ui.AlumnoFiltro;
+import pucp.sw2.horario1.vtesis.ui.AvanceFiltro;
 
 
 /**
@@ -75,7 +77,7 @@ public class AsesorController {
         
         filtros.setCiclo(ciclo);
         
-        lstAlumnos = asesorDao.busqueda(filtros, personaDTO.getIdPersona());
+        lstAlumnos = asesorDao.busqueda(filtros,personaDTO.getIdPersona());
         
         model.addAttribute("persona", personaDTO);
         model.addAttribute("filtros", filtros);
@@ -87,10 +89,21 @@ public class AsesorController {
         return "asesor/lista_alumnos";
     }
     
-    @RequestMapping(value = "vistaEntregables")
-    public String vistaEntregable(Model model){
+    @RequestMapping(value = {"/asesor/vista_de_entregables"}, method = RequestMethod.GET)
+    public String vistaEntregable(Model model,HttpSession session ,@RequestParam(value = "codigo", required = true) String codigo){
+        
+        AvanceFiltro filtro = new AvanceFiltro();
+        List<AvanceDTO> lstAvances;
+        
+        filtro.setCodigo(codigo);
+        
+        lstAvances = asesorDao.listarAvances(filtro);
+        
+        model.addAttribute("filtro", filtro);
+        model.addAttribute("lstAvances", lstAvances);
         
         return "asesor/vista_de_entregables";
+       
     }
     
     @RequestMapping(value = "registro")
@@ -106,17 +119,7 @@ public class AsesorController {
        return "asesor/editarFechas";
     }
     
-    @RequestMapping(value = "vistaEntregables")
-    public String vistaEntregable(Model model,@RequestParam(required = false) Persona persona){
-        
-        
-        List<AvanceDTO> lstAvances;
-        lstAvances = asesorDao.listarAvances(persona);
-        model.addAttribute("lstAvances", lstAvances);
-        
-        
-        return "asesor/vista_de_entregables";
-    }
+
     
     
     

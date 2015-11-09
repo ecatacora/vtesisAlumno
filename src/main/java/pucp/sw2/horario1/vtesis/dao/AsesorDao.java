@@ -23,6 +23,7 @@ import pucp.sw2.horario1.vtesis.modelos.Curso;
 import pucp.sw2.horario1.vtesis.modelos.Estado;
 import pucp.sw2.horario1.vtesis.modelos.Persona;
 import pucp.sw2.horario1.vtesis.ui.AlumnoFiltro;
+import pucp.sw2.horario1.vtesis.ui.AvanceFiltro;
 
 /**
  *
@@ -70,11 +71,11 @@ public class AsesorDao {
         List<Object> parametros = new ArrayList<Object>();
         StringBuilder sql = new StringBuilder();
         
-        sql.append(" select p.codigo, concat(p.nombres,' ',p.apellidos) as 'Nombre y Apellidos' , c.nombre");
+        sql.append(" select p.codigo, concat(p.nombres,' ',p.apellidos), c.nombre, p.idPersona");
         sql.append(" from persona p");
         sql.append(" inner join historial h on (p.idPersona = h.alumno_idPersona)");
         sql.append(" inner join curso c on (h.idCurso = c.idCurso)");
-        sql.append(" where idRol=3"); 
+        sql.append(" where idRol=3 "); 
         
                
         sql.append(" AND h.ciclo = ?");
@@ -96,6 +97,7 @@ public class AsesorDao {
                                 Curso curso = new Curso();
                                 curso.setNombre(rs.getString(3));
                                 persona.setCurso(curso);
+                                persona.setIdPersona(rs.getInt(4));
                                 /*falta avance y fecha actualizacion
                                 Avance avance = new Avance();
                                 avance.setNombre(rs.getString(4));
@@ -108,21 +110,25 @@ public class AsesorDao {
     }
     
     
-        public List<AvanceDTO> listarAvances(Persona alumno){
-        List<AvanceDTO> lstAvances = null;
+        public List<AvanceDTO> listarAvances(AvanceFiltro filtros){
+        List<AvanceDTO> resultado = null;
         
         JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);  
         List<Object> parametros = new ArrayList<Object>();
         StringBuilder sql = new StringBuilder();
         
-        sql.append(" select a.idAvances, a.nombre, a.fecha_fin, e.descripcion");      
-        sql.append(" from avances a, historial h, persona p, estado e");
-        sql.append(" where a.idHistorial=h.idHistorial and a.idEstado = e.idEstado ");
-        sql.append(" and h.alumno_idPersona=? ");
+        sql.append(" select a.idAvances, a.nombre, a.fecha_fin, e.descripcion ");      
+        sql.append(" from avances a ");
+        sql.append(" inner join historial h on (a.idHistorial = h.idHistorial) ");
+        sql.append(" inner join persona p on (h.alumno_idPersona = p.idPersona) ");
+        sql.append(" inner join estado e on (a.idEstado = e.idEstado) ");
         
-        parametros.add(alumno.getIdPersona());
+        sql.append(" where p.codigo = ? ");
+        parametros.add(filtros.getCodigo());
         
-        lstAvances = jdbcTemplate.query(sql.toString(),
+        
+        
+        resultado = jdbcTemplate.query(sql.toString(), parametros.toArray(),
                         new RowMapper<AvanceDTO>() {
                             @Override
                             public AvanceDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -138,7 +144,7 @@ public class AsesorDao {
                             }
                         });        
         
-        return lstAvances;
+        return resultado;
     }
 
     

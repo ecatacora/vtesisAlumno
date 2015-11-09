@@ -1,4 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,7 +45,7 @@
                         </div>
                         <div class="profile_info">
                             <span>Bienvenido,</span>
-                            <h2 id="username">Juan Perez</h2>
+                            <h2 id="username">${persona.nombres} ${persona.apellidos}</h2>
                         </div>
                     </div>
                     <!-- /menu prile quick info -->
@@ -96,11 +98,11 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <img src="images/img.jpg" alt="">Juan Perez
+                                    <img src="<c:url value="images/img.jpg"/>" alt="">${persona.nombres} ${persona.apellidos}
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
-                                    <li><a href="profile.html">  Profile</a>
+                                    <li><a href="<c:url value= "/asesor/profile"/>">  Profile</a>
                                     </li>
                                     <!-- <li>
                                         <a href="javascript:;">
@@ -111,7 +113,7 @@
                                     <li>
                                         <a href="javascript:;">Help</a>
                                     </li> -->
-                                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                    <li><a href="<c:url value= "/logout.do"/>"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                                     </li>
                                 </ul>
                             </li>
@@ -134,51 +136,59 @@
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="dashboard_graph">
-
-                          	<div class="row x_title">
-                                <div class="col-md-12">
-                                  <h3>Alumno: &nbsp;</h3><h3 id="alumno"><small>20111456 Hiroshi Dospa Titos</small></h3>
-                                </div>
-                         	</div>
-							<div class="dashboard_graph">
-                            	<h4>Lista de entregables: </h4><br>
-                                <form id="entregables">                                
-                                <div class="x_content">
-                                <table class="table table-bordered">
-	<tr>
-		<th>entregables</th> <th>entregable</th> <th>fecha lÃ­mite</th> <th>avance</th> <th>estado</th>
-	</tr>
-	<tr>
-		<td>entregable 1</td> <td>tema 1</td> <td><input type="text" name="fecha" id="fecha" readonly value="03/09/2015" class="hasdatepicker"> <i class="fa fa-calendar"></i> </td> <td><a href="#ver ">tema 1</a></td> <td><a href="inbox.html">revisado</a></td>
-	</tr>
-	<tr>
-		<td>entregable 2</td> <td>tema 2</td> <td><input type="text" name="fecha1" id="fecha1" readonly value="10/09/2015" class="hasdatepicker"> <i class="fa fa-calendar"></i></td> <td><a href="#ver ">tema 2</a></td> <td><a href="#ver ">revisado</a></td>
-	</tr>
-        <tr>
-		<td>entregable 3</td> <td>tema 3</td> <td><input type="text" name="fecha2" id="fecha2" readonly value="17/09/2015" class="hasdatepicker"> <i class="fa fa-calendar"></i></td> <td><a href="#ver ">tema 3</a></td> <td><a href="#ver ">revisado</a></td>
-	</tr>
-        <tr>
-		<td>entregable 4</td> <td>tema 4</td> <td><input type="text" name="fecha3" id="fecha3" readonly value="24/09/2015" class="hasdatepicker"> <i class="fa fa-calendar"></i></td> <td>&nbsp;</td> <td><a href="#ver "><p style="color:#FF5154">pendiente</p></a></td>
-	</tr>
-</table>	
-							
-							</div>
-                            
-                            		<div class="col-md-6 col-sm-6 col-xs-6">
-                                    <label for="uploadbtn">&nbsp;</label><br>
-                                    <a href="#">
-                                    <span class="btn btn-primary" id="uploadbtn" name="uploadbtn">Guardar</span>
-                                    </a>
-                                    <br>
+                            <div class="row x_title">
+                                    <div class="col-md-12">
+                                       <h3>Alumno: </h3>
+                                       <h3 id="alumno"><small>${filtro.codigo} Hiroshi Dospa Titos</small></h3>
                                     </div>
-                            </form> 
-                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                            </div>
+                            <div class="dashboard_graph">
+                                    <h4>Lista de entregables: </h4><br>
+                                    <form id="entregables">                                
+                                        <div class="x_content">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                <tr>
+                                                    <th>Entregable</th> 
+                                                    <th>Nombre</th> 
+                                                    <th>Fecha l&iacute;mite</th>
+                                                    <!--<th>*****</th>-->
+                                                    <th>Estado</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <c:forEach items="${lstAvances}" var="a">
+                                                        <tr>
+                                                            <td>${a.idAvances}</td> 
+                                                            <td>${a.nombre}</td> 
+                                                            <td><input type="text" name="fecha" id="fecha" readonly value="${a.fecha_fin}" class="hasdatepicker"> </td> 
+                                                            <!--<td><a href="#ver ">tema 1</a></td>-->
+                                                            <td><a href="#">${a.estado.descripcion}</a></td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                </tbody>
+                                            </table>	
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-6" >
+                                            <label for="uploadbtn">&nbsp;</label><br>
+                                            <a href="#">
+                                                <span class="btn btn-primary" id="uploadbtn" name="uploadbtn">Guardar</span>
+                                                
+                                            </a>
+                                            <br>
+                                    </div>
+                                        
+                                    </form> 
+                                    
+                                    
+                                    <div class="col-md-6 col-sm-6 col-xs-6" >
                              
                                     <label for="registrar">&nbsp;</label><br>
                                     <a href="Asesor-llenar-calendario.html">
                                     <span class="btn btn-primary" id="registrar" name="registrar">Nuevo entregable</span>
                                     </a>
                                     </div>
+                                    
                                     <div class="col-md-6 col-sm-6 col-xs-6" align="right">
                                     
                                     <label for="registrar">&nbsp;</label><br>

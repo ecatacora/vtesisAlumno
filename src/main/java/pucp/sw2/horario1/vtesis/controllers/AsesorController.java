@@ -75,7 +75,7 @@ public class AsesorController {
         
         filtros.setCiclo(ciclo);
         
-        lstAlumnos = asesorDao.busqueda(filtros);
+        lstAlumnos = asesorDao.busqueda(filtros, personaDTO.getIdPersona());
         
         model.addAttribute("persona", personaDTO);
         model.addAttribute("filtros", filtros);

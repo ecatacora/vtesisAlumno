@@ -121,7 +121,7 @@ public class PersonaDAO {
             sql.append("UPDATE persona SET nombres = ?,"
                     + " apellidos = ? ,"
                     + " codigo = ? ,"
-                    + " contraseña = ? ,"
+                    + " password = ? ,"
                     //                    + " foto = ? ,"
                     + " idRol = ? "
                     + " WHERE idPersona = ?");

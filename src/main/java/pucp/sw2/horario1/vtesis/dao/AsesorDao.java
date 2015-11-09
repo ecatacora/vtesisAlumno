@@ -64,21 +64,24 @@ public class AsesorDao {
         return lstResultados;
     }
     
-    public List<PersonaDTO> busqueda(AlumnoFiltro filtros){
+    public List<PersonaDTO> busqueda(AlumnoFiltro filtros, Integer idAsesor){
         List<PersonaDTO> lstResultados = null;
         JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);        
         List<Object> parametros = new ArrayList<Object>();
         StringBuilder sql = new StringBuilder();
         
-        sql.append(" select p.codigo, concat(p.nombres,' ',p.apellidos), c.nombre");
+        sql.append(" select p.codigo, concat(p.nombres,' ',p.apellidos) as 'Nombre y Apellidos' , c.nombre");
         sql.append(" from persona p");
         sql.append(" inner join historial h on (p.idPersona = h.alumno_idPersona)");
         sql.append(" inner join curso c on (h.idCurso = c.idCurso)");
-        sql.append(" where idRol=3 "); 
+        sql.append(" where idRol=3"); 
         
                
         sql.append(" AND h.ciclo = ?");
         parametros.add(filtros.getCiclo());
+        
+        sql.append(" AND h.asesor_idPersona1 = ?");
+        parametros.add(idAsesor);
                 
         sql.append(" order by p.codigo asc");
               

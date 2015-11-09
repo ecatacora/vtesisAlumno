@@ -11,24 +11,24 @@ import java.io.Serializable;
  *
  * @author Eudomar
  */
-public class AlumnoDTO implements Serializable{
-    
-    private Integer idPersona;
-    private String  nombres;
+public class AlumnoDTO implements Serializable {
+
+    private Integer id;
+    private String nombres;
     private String apellidos;
     private String codigo;
     private String correo;
     private String contrasena;
     private String foto;
-    private int enabled;
-    private Integer Rol_idRol;
+    private Integer enabled;
+    private Integer idRol;
 
-    public Integer getIdPersona() {
-        return idPersona;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdPersona(Integer idPersona) {
-        this.idPersona = idPersona;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNombres() {
@@ -79,20 +79,20 @@ public class AlumnoDTO implements Serializable{
         this.foto = foto;
     }
 
-    public int getEnabled() {
+    public Integer getEnabled() {
         return enabled;
     }
 
-    public void setEnabled(int enabled) {
+    public void setEnabled(Integer enabled) {
         this.enabled = enabled;
     }
 
-    public Integer getRol_idRol() {
-        return Rol_idRol;
+    public Integer getIdRol() {
+        return idRol;
     }
 
-    public void setRol_idRol(Integer Rol_idRol) {
-        this.Rol_idRol = Rol_idRol;
+    public void setIdRol(Integer idRol) {
+        this.idRol = idRol;
     }
-        
+
 }

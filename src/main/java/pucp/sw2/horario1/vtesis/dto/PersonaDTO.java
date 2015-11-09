@@ -24,6 +24,15 @@ public class PersonaDTO implements Serializable{
     private Curso curso;
     private Avance avance;
     private Integer enabled;
+    private String foto;
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
 
     public String getEmail() {
         return email;

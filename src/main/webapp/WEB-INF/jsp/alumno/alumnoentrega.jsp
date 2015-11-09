@@ -1,20 +1,29 @@
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!-- Meta, title, CSS, favicons, etc. -->
-        <%@include file="/WEB-INF/jsp/comun/recursos.jsp" %>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Virtual Tesis</title>
 
+        <!-- Bootstrap core CSS -->
+
         <%@include file = "/WEB-INF/jsp/comun/recursos.jsp" %>
+        <script src="<spring:url value="/js/nprogress.js"/>"></script>
+    <script>
+        NProgress.start();
+    </script>
+
 
     </head>
 
@@ -30,27 +39,19 @@
                     <div class="left_col scroll-view">
 
                         <div class="navbar nav_title" style="border: 0;">
-                            <a href="index.html" class="site_title"><img src="images/vtesis-logo.jpg" alt="Logo"><span>V-Tesis</span></a>
+                            <a href="index.html" class="site_title"><img src="<c:url value='/images/logo_mini.png'/>" alt="Logo"><span>V-Tesis</span></a>
                         </div>
                         <div class="clearfix"></div>
 
                         <!-- menu prile quick info -->
                         <div class="profile">
                             <div class="profile_pic">
-                                  <c:if test="${persona.id != null}">
-                                   <img src="${persona.foto}" alt="..." class="img-circle profile_img"> <!--   Cambio no seguro por la foto-->
-                                   </c:if>
+                                <img src="<c:url value='/images/${personaDTO.foto}'/>" alt="..." class="img-circle profile_img">
                             </div>
-
-
                             <div class="profile_info">
                                 <span>Bienvenido,</span>
-                                <c:if test="${persona.id != null}">
-                                    <h2>${persona.nombre}</h2> <!--   Cambio -->              
-                                </c:if>
-
+                                <h2>${personaDTO.nombres}  ${personaDTO.apellidos}</h2>
                             </div>
-
                         </div>
                         <!-- /menu prile quick info -->
 
@@ -63,27 +64,24 @@
                                 <h3>Alumno</h3>
                                 <ul class="nav side-menu">
                                     <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu" style="display: none">                                      
-                                            <li><a href="<c:url value="/profile"/>">Perfil</a>
+                                        <ul class="nav child_menu" style="display: none">                                        
+                                            <li><a href="<c:url value='/alumno/profile'/>">Perfil</a>
                                             </li>
+                                            <!--<li><a href="index2.html">Dashboard2</a>
+                                            </li>
+                                            <li><a href="index3.html">Dashboard3</a>
+                                            </li>-->
                                         </ul>
+
                                     </li>
+
                                     <li><a><i class="fa fa-edit"></i> Avances <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
-                                            <li><a href="<c:url value="/l_entrega"/>">Cronograma Avances</a>
+                                            <li><a href="<c:url value='/alumno/r_entrega'/>">Entregar Avances</a>
                                             </li>
-                                            <!--<li><a href="form_advanced.html">Advanced Components</a>
-                                             </li>
-                                             <li><a href="form_validation.html">Form Validation</a>
-                                             </li>
-                                             <li><a href="form_wizards.html">Form Wizard</a>
-                                             </li>
-                                             <li><a href="form_upload.html">Form Upload</a>
-                                             </li>
-                                             <li><a href="form_buttons.html">Form Buttons</a>
-                                             </li>-->
                                         </ul>
                                     </li>
+
                                 </ul>
                             </div>
                             <div class="menu_section">
@@ -91,7 +89,6 @@
                             </div>
 
                         </div>
-                        <!-- /sidebar menu -->
 
                         <!-- /menu footer buttons -->
                         <div class="sidebar-footer hidden-small">                        
@@ -115,7 +112,7 @@
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="">
                                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <img src="${persona.foto}" alt="">${persona.nombre}  <!--   Cambio no seguro por la foto-->
+                                        <img src="${personaDTO.foto}" alt="">${personaDTO.nombres}  <!--   Cambio no seguro por la foto-->
                                         <span class=" fa fa-angle-down"></span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
@@ -139,9 +136,9 @@
                                                     <img src="images/img.jpg" alt="Profile Image" />
                                                 </span>
                                                 <span>
-                                                    <c:if test="${persona.id != null}">
-                                                        <span>${persona.nombre}</span> <!--   Cambio -->              
-                                                    </c:if>
+                                                  
+                                                        <span>${personaDTO.nombres}</span> <!--   Cambio -->              
+                                                    
                                                     <span class="time">3 mins ago</span>
                                                 </span>
                                                 <span class="message">
@@ -155,9 +152,9 @@
                                                     <img src="images/img.jpg" alt="Profile Image" />
                                                 </span>
                                                 <span>
-                                                    <c:if test="${persona.id != null}">
-                                                        <span>${persona.nombre}</span> <!--   Cambio -->              
-                                                    </c:if>
+                                                   
+                                                        <span>${personaDTO.nombres}</span> <!--   Cambio -->              
+                                                 
                                                     <span class="time">3 mins ago</span>
                                                 </span>
                                                 <span class="message">
@@ -171,9 +168,9 @@
                                                     <img src="images/img.jpg" alt="Profile Image" />
                                                 </span>
                                                 <span>
-                                                    <c:if test="${persona.id != null}">
-                                                        <span>${persona.nombre}</span> <!--   Cambio -->              
-                                                    </c:if>
+                                                   
+                                                        <span>${personaDTO.nombres}</span> <!--   Cambio -->              
+                                                   
                                                     <span class="time">3 mins ago</span>
                                                 </span>
                                                 <span class="message">
@@ -184,12 +181,12 @@
                                         <li>
                                             <a>
                                                 <span class="image">
-                                                    <img src="images/img.jpg" alt="Profile Image" />
+                                                    <img src="<c:url value='/images/img.jpg'/>" alt="Profile Image" />
                                                 </span>
                                                 <span>
-                                                    <c:if test="${persona.id != null}">
-                                                        <span>${persona.nombre}</span> <!--   Cambio -->              
-                                                    </c:if>
+                                                 
+                                                        <span>${personaDTO.nombres}</span> <!--   Cambio -->              
+                                                   
                                                     <span class="time">3 mins ago</span>
                                                 </span>
                                                 <span class="message">
@@ -233,14 +230,17 @@
                                     </div>
 
                                     <div class="x_content" >
-                                        <form:form modelAttribute="persona" action="grabar" role="form" class="form-horizontal" method="POST">
-                                        <p class="lead">Avance:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Avance 1</p>
+                                        <form:form modelAttribute="avance" action="r_entrega" role="form" class="form-horizontal" method="POST">
+                                        <form:hidden path="idAvances"/>
+                                        <p class="lead">Avance:</p> 
+                                        <h4>${avance.nombre}</h4>
+                                        <form:hidden path="nombre" />
                                         <p>Comentarios del Alumno:</p>
                                         </br>
-                                        <textarea id="message" required class="form-control" name="message" rows="3">${persona.avance.obs_alumno}</textarea>
+                                        <textarea id="obs_alumno" required class="form-control" path="obs_alumno" name="obs_alumno" rows="3"></textarea>
                                         </br>
                                         <p>Archivo (opcional)</p>
-                                        <a href=""><img src="images/Upload.png" alt=""></a>
+                                        <a href=""><img src="<c:url value='/images/Upload.png'/>" alt=""></a>
                                         </br>
                                         <div class="col-md-3 center-block">
                                         </div>

@@ -2,214 +2,125 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!-- Meta, title, CSS, favicons, etc. -->
-        <%@include file="/WEB-INF/jsp/comun/recursos.jsp" %>
+        <%@include file = "/WEB-INF/jsp/comun/recursos.jsp" %>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Virtual Tesis</title>
 
+        <!-- Bootstrap core CSS -->
+
         <%@include file = "/WEB-INF/jsp/comun/recursos.jsp" %>
+        <script src="<spring:url value="/js/nprogress.js"/>"></script>
+        <script>
+            NProgress.start();
+        </script>
+
 
     </head>
 
 
     <body class="nav-md">
 
-        <div class="container body">
+    <div class="container body">
 
 
-            <div class="main_container">
+        <div class="main_container">
 
-                <div class="col-md-3 left_col">
-                    <div class="left_col scroll-view">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                
+                    <div class="navbar nav_title" style="border: 0;"><a href="<c:url value="/home.do"/>" class="site_title"><em class="fa fa-paw"></em> V-Tesis!</a></div>
+                    <div class="clearfix"></div>
 
-                        <div class="navbar nav_title" style="border: 0;">
-                            <a href="index.html" class="site_title"><img src="images/vtesis-logo.jpg" alt="Logo"><span>V-Tesis</span></a>
+                    <!-- menu prile quick info -->
+                    <div class="profile">
+                        <div class="profile_pic">
+                            <img src="<c:url value="/images/vtesis-logo.jpg"/>" alt="..." class="img-circle profile_img">
                         </div>
-                        <div class="clearfix"></div>|
-
-                        <!-- menu prile quick info -->
-                        <div class="profile">
-                            <div class="profile_pic">
-                                <c:if test="${persona.id != null}">
-                                    <img src="${persona.foto}" alt="..." class="img-circle profile_img">
-                                </c:if>
-                            </div>
-
-                            <div class="profile_info">
-                                <span>Bienvenido,</span>
-                                <c:if test="${persona.id != null}">
-                                    <h2>${persona.nombre}</h2> <!--   Cambio -->              
-                                </c:if>
-
-                            </div>
+                        <div class="profile_info">
+                            <span>Bienvenido,</span>
+                            <h2 id="username">${persona.nombres} ${persona.apellidos}</h2>
                         </div>
-                        <!-- /menu prile quick info -->
-
-                        <br />
-
-                        <!-- sidebar menu -->
-                        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-
-                            <div class="menu_section">
-                                <h3>Alumno</h3>
-                                <ul class="nav side-menu">
-                                    <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu" style="display: none">                                        
-                                            <li><a href="<c:url value='/profile'/>">Perfil</a>
-                                            </li>
-                                            <!--<li><a href="index2.html">Dashboard2</a>
-                                            </li>
-                                            <li><a href="index3.html">Dashboard3</a>
-                                            </li>-->
-                                        </ul>
-
-                                    </li>
-                                    <li><a><i class="fa fa-edit"></i> Avances <span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu" style="display: none">
-                                            <li><a href="<c:url value="/l_entrega"/>">Cronograma Avances</a>
-                                            </li>
-                                            <!--<li><a href="form_advanced.html">Advanced Components</a>
-                                             </li>
-                                             <li><a href="form_validation.html">Form Validation</a>
-                                             </li>
-                                             <li><a href="form_wizards.html">Form Wizard</a>
-                                             </li>
-                                             <li><a href="form_upload.html">Form Upload</a>
-                                             </li>
-                                             <li><a href="form_buttons.html">Form Buttons</a>
-                                             </li>-->
-                                        </ul>
-                                    </li>
-
-                                </ul>
-                            </div>
-                            <div class="menu_section">
-
-                            </div>
-
-                        </div>
-                        <!-- /sidebar menu -->
-
-                        <!-- /menu footer buttons -->
-                        <div class="sidebar-footer hidden-small">                        
-                            <a data-toggle="tooltip" data-placement="top" title="Logout">
-                                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                            </a>
-                        </div>
-                        <!-- /menu footer buttons -->
                     </div>
-                </div>
+                    <!-- /menu prile quick info -->
 
-                <!-- top navigation -->
-                <div class="top_nav">
+                    <br />
 
-                    <div class="nav_menu">
-                        <nav class="" role="navigation">
-                            <div class="nav toggle">
-                                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-                            </div>                                                      
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="">
-                                    <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <img src="${persona.foto}" alt="">${persona.nombre}  <!--   Cambio -->
-                                        <span class=" fa fa-angle-down"></span>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
-                                        <li><a href="javascript:;">  Profile</a>
-                                        </li>                                   
-
-                                        <li><a href=<c:url value='/login.do'/>><i class="fa fa-sign-out pull-right"></i> Log Out</a>
-                                        </li>
+                        <div class="menu_section">
+                            <h3>General</h3>
+                            <ul class="nav side-menu">
+                                <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu" style="display: none">
+                                        <li><a href="<c:url value= "/home.do"/>">Perfil</a></li>
+                                                                         
                                     </ul>
                                 </li>
-
-                                <!-- <li role="presentation" class="dropdown">
-                                    <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-envelope-o"></i>
-                                        <span class="badge bg-green">6</span>
-                                    </a>
-                                    <ul id="menu1" class="dropdown-menu list-unstyled msg_list animated fadeInDown" role="menu">
-                                        <li>
-                                            <a>
-                                                <span class="image">
-                                            <img src="images/img.jpg" alt="Profile Image" />
-                                        </span>
-                                                <span>
-                                            <span>John Smith</span>
-                                                <span class="time">3 mins ago</span>
-                                                </span>
-                                                <span class="message">
-                                            Film festivals used to be do-or-die moments for movie makers. They were where... 
-                                        </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a>
-                                                <span class="image">
-                                            <img src="images/img.jpg" alt="Profile Image" />
-                                        </span>
-                                                <span>
-                                            <span>John Smith</span>
-                                                <span class="time">3 mins ago</span>
-                                                </span>
-                                                <span class="message">
-                                            Film festivals used to be do-or-die moments for movie makers. They were where... 
-                                        </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a>
-                                                <span class="image">
-                                            <img src="images/img.jpg" alt="Profile Image" />
-                                        </span>
-                                                <span>
-                                            <span>John Smith</span>
-                                                <span class="time">3 mins ago</span>
-                                                </span>
-                                                <span class="message">
-                                            Film festivals used to be do-or-die moments for movie makers. They were where... 
-                                        </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a>
-                                                <span class="image">
-                                            <img src="images/img.jpg" alt="Profile Image" />
-                                        </span>
-                                                <span>
-                                            <span>John Smith</span>
-                                                <span class="time">3 mins ago</span>
-                                                </span>
-                                                <span class="message">
-                                            Film festivals used to be do-or-die moments for movie makers. They were where... 
-                                        </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <div class="text-center">
-                                                <a>
-                                                    <strong>See All Alerts</strong>
-                                                    <i class="fa fa-angle-right"></i>
-                                                </a>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li> -->
-
+                                
                             </ul>
-                        </nav>
+                        </div>
                     </div>
+                    <!-- /sidebar menu -->
 
+                    <!-- /menu footer buttons -->
+                    <div class="sidebar-footer hidden-small">                    
+                        <a href="<c:url value="/logout.do"/>" data-toggle="tooltip" data-placement="top" title="Logout">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                    <!-- /menu footer buttons -->
                 </div>
+            </div>
+
+            <!-- top navigation -->
+            <div class="top_nav">
+
+                <div class="nav_menu">
+                    <nav class="" role="navigation">
+                        <div class="nav toggle">
+                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                        </div>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="">
+                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <img src="<c:url value="/images/img.jpg"/>" alt="">${persona.nombres} ${persona.apellidos} - ALUMNO
+                                    <span class=" fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
+                                    <li><a href="<c:url value= "/alumno/profile"/>">  Perfil</a>
+                                    </li>
+                                    <!-- <li>
+                                        <a href="javascript:;">
+                                            <span class="badge bg-red pull-right">50%</span>
+                                            <span>Settings</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">Help</a>
+                                    </li> -->
+                                    <li><a href="<c:url value= "/logout.do"/>"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </nav>
+                </div>
+
+            </div>
                 <!-- /top navigation -->
 
                 <!-- page content -->
@@ -249,7 +160,7 @@
                                                 <div id="crop-avatar">
                                                     <!-- Current avatar -->
                                                     <div class="avatar-view" title="Change the avatar">
-                                                        <img src="images/Hiro.jpg" alt="Avatar">
+                                                        <img src="<c:url value="/images/${persona.foto}"/> " alt="Avatar">
                                                     </div>
 
                                                     <!-- Cropping modal -->
@@ -306,7 +217,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <!-- <div class="modal-footer">
-                                                      <button class="btn btn-primary" data-dismiss="modal" type="button">Close</button>
+                                                      <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
                                                     </div> -->
                                                                 </form>
                                                             </div>
@@ -320,18 +231,17 @@
                                                 <!-- end of image cropping -->
 
                                             </div>
-                                            <c:if test="${persona.id != null}">   <!-- cambio -->
-                                                <h4>${persona.nombre}</h4>
+                                            <h4>${persona.apellidos}, ${persona.nombres}  </h4>
 
-                                                <ul class="list-unstyled user_data">
-                                                    <li>${persona.correo}
-                                                    </li>
+                                            <ul class="list-unstyled user_data">
+                                                <li>${persona.correo} 
+                                                </li>
 
-                                                    <li>
-                                                        ${persona.codigo}
-                                                    </li>                                            
-                                                </ul>
-                                            </c:if>
+                                                <li>
+                                                    ${persona.codigo} 
+                                                </li>                                            
+                                            </ul>
+
 
                                             <br />
 
@@ -339,102 +249,114 @@
 
                                             <!-- end of skills -->
 
-
-
-
-                                        </div> 
-
+                                        </div>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
 
                                             <div class="profile_title">
-                                                <div class="col-md-3">
-                                                </div>
                                                 <div class="col-md-5">
-
-
-                                                    <form class="well form-inline" modelAttribute="busquedaFiltro" role="form" action="l_entrega" method="POST">      
-                                                        <h2>Busqueda</h2>
-                                                        <h3>Ciclo: </h3>
-                                                        <form:select path="idCurso" class="form-control">
-                                                            <c:forEach items="${lstCiclos}" var="c">
-                                                                <option value="${c}"  ${c==persona.ciclo?"selected":""}>${c} </option>
-                                                            </c:forEach>
-                                                        </form:select>
-                                                        <br>
-                                                        <h3>Curso: </h3>
-
-
-                                                        <form:select path="ciclo" class="form-control">                                                            
-                                                            <c:forEach items="${lstCursos}" var="lc">
-                                                                <option value="${lc}"  ${lc.idcurso==persona.curso.idcurso?"selected":""}>${lc} </option>
-                                                            </c:forEach>
-                                                        </form:select>
-                                                    </form> 
-
-
-                                                    <br>
-
-                                                    <br>
-
-                                                    <a href=<c:url value="/profile"/>><button class="btn btn-default" type="button">Avances</button></a>
-
                                                 </div>
+                                                <div class="col-md-3">
+                                                    <h2>Busqueda:</h2>
+                                                    <form:form modelAttribute="busquedaFiltro" action="l_entrega" role="form" class="form-horizontal" method="POST">
 
-                                            </div>                                                                               
-                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-2"><h3>Ciclo</h3></label>
+                                                            <br>
+                                                            <br>
+                                                            <div class="col-sm-12">
+                                                                <form:select path="ciclo" class="form-control">
+                                                                    <option value="">Seleccione</option>
+                                                                    <c:forEach items="${historial}" var="h">
+                                                                        <c:forEach items="${ListaCiclos}" var="p">
+                                                                            <c:if test="${h.ciclo.equals(p.ciclo)}">
+                                                                                <option  value="${p.ciclo}" ${p.ciclo==busquedaFiltro.ciclo?"selected":""}>${p.ciclo} </option>
+                                                                            </c:if>
+                                                                        </c:forEach>
+                                                                    </c:forEach>
+                                                                </form:select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-2"><h3>Cursos</h3></label>
+                                                            <br>
+                                                            <br>
+                                                            <div class="col-sm-12">
+                                                                <form:select path="idCurso" class="form-control">
+                                                                    <option value="">Seleccione</option>
+                                                                    <c:forEach items="${ListaCursos}" var="p">
+                                                                        <option  value="${p.idCurso}" ${p.idCurso==busquedaFiltro.idCurso?"selected":""}>${p.nombre} </option>
+                                                                    </c:forEach>
+                                                                </form:select>
+                                                            </div>
+                                                        </div>  
+
+
+                                                        <div class="form-group">
+                                                            <div class="col-sm-12">
+                                                                <button type="submit" class="btn btn-primary">Avances</button>
+
+                                                            </div>
+                                                        </div>    
+                                                    </form:form>
+                                                </div>
+                                            </div>
+
+                                        </div>                                                                               
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- footer content -->
-                    <footer>
-                        <div class="">
-
-
-                        </div>
-                        <div class="clearfix"></div>
-                    </footer>
-                    <!-- /footer content -->
-
                 </div>
-                <!-- /page content -->
+
+                <!-- footer content -->
+                <footer>
+                    <div class="">
+
+
+                    </div>
+                    <div class="clearfix"></div>
+                </footer>
+                <!-- /footer content -->
+
             </div>
-
+            <!-- /page content -->
         </div>
 
-        <div id="custom_notifications" class="custom-notifications dsp_none">
-            <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">
-            </ul>
-            <div class="clearfix"></div>
-            <div id="notif-group" class="tabbed_notifications"></div>
-        </div>
+    </div>
 
-        <script src="js/bootstrap.min.js"></script>
+    <div id="custom_notifications" class="custom-notifications dsp_none">
+        <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">
+        </ul>
+        <div class="clearfix"></div>
+        <div id="notif-group" class="tabbed_notifications"></div>
+    </div>
 
-        <!-- chart js -->
-        <script src="js/chartjs/chart.min.js"></script>
-        <!-- bootstrap progress js -->
-        <script src="js/progressbar/bootstrap-progressbar.min.js"></script>
-        <script src="js/nicescroll/jquery.nicescroll.min.js"></script>
-        <!-- icheck -->
-        <script src="js/icheck/icheck.min.js"></script>
+    <script src="<c:url value="/js/bootstrap.min.js"/>"></script>
 
-        <script src="js/custom.js"></script>
+    <!-- chart js -->
+    <script src="<c:url value="/js/chartjs/chart.min.js"/>"></script>
+    <!-- bootstrap progress js -->
+    <script src="<c:url value="/js/progressbar/bootstrap-progressbar.min.js"/>"></script>
+    <script src="<c:url value="/js/nicescroll/jquery.nicescroll.min.js"/>"></script>
+    <!-- icheck -->
+    <script src="<c:url value="/js/icheck/icheck.min.js"/>"></script>
 
-        <!-- image cropping -->
-        <script src="js/cropping/cropper.min.js"></script>
-        <script src="js/cropping/main.js"></script>
+    <script src="<c:url value="/js/custom.js"/>"></script>
+
+    <!-- image cropping -->
+    <script src="<c:url value="/js/cropping/cropper.min.js"/>"></script>
+    <script src="<c:url value="/js/cropping/main.js"/>"></script>
 
 
-        <!-- daterangepicker -->
-        <script type="text/javascript" src="js/moment.min.js"></script>
-        <script type="text/javascript" src="js/datepicker/daterangepicker.js"></script>
-        <!-- moris js -->
-        <script src="js/moris/raphael-min.js"></script>
-        <script src="js/moris/morris.js"></script>
-        <script>
+    <!-- daterangepicker -->
+    <script type="text/javascript" src="<c:url value="/js/moment.min.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/datepicker/daterangepicker.js"/>"></script>
+    <!-- moris js -->
+    <script src="<c:url value="/js/moris/raphael-min.js"/>"></script>
+    <script src="<c:url value="/js/moris/morris.js"/>"></script>
+    <script>
             $(function () {
                 var day_data = [
                     {
@@ -489,81 +411,85 @@
                     xLabelAngle: 60
                 });
             });
-        </script>
-        <!-- datepicker -->
-        <script type="text/javascript">
-            $(document).ready(function () {
+    </script>
+    <!-- datepicker -->
+    <script type="text/javascript">
+        $(document).ready(function () {
 
-                var cb = function (start, end, label) {
-                    console.log(start.toISOString(), end.toISOString(), label);
-                    $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-                    //alert("Callback has fired: [" + start.format('MMMM D, YYYY') + " to " + end.format('MMMM D, YYYY') + ", label = " + label + "]");
+            var cb = function (start, end, label) {
+                console.log(start.toISOString(), end.toISOString(), label);
+                $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+                //alert("Callback has fired: [" + start.format('MMMM D, YYYY') + " to " + end.format('MMMM D, YYYY') + ", label = " + label + "]");
+            }
+
+            var optionSet1 = {
+                startDate: moment().subtract(29, 'days'),
+                endDate: moment(),
+                minDate: '01/01/2012',
+                maxDate: '12/31/2015',
+                dateLimit: {
+                    days: 60
+                },
+                showDropdowns: true,
+                showWeekNumbers: true,
+                timePicker: false,
+                timePickerIncrement: 1,
+                timePicker12Hour: true,
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                },
+                opens: 'left',
+                buttonClasses: ['btn btn-default'],
+                applyClass: 'btn-small btn-primary',
+                cancelClass: 'btn-small',
+                format: 'MM/DD/YYYY',
+                separator: ' to ',
+                locale: {
+                    applyLabel: 'Submit',
+                    cancelLabel: 'Clear',
+                    fromLabel: 'From',
+                    toLabel: 'To',
+                    customRangeLabel: 'Custom',
+                    daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+                    monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                    firstDay: 1
                 }
-
-                var optionSet1 = {
-                    startDate: moment().subtract(29, 'days'),
-                    endDate: moment(),
-                    minDate: '01/01/2012',
-                    maxDate: '12/31/2015',
-                    dateLimit: {
-                        days: 60
-                    },
-                    showDropdowns: true,
-                    showWeekNumbers: true,
-                    timePicker: false,
-                    timePickerIncrement: 1,
-                    timePicker12Hour: true,
-                    ranges: {
-                        'Today': [moment(), moment()],
-                        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                        'This Month': [moment().startOf('month'), moment().endOf('month')],
-                        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                    },
-                    opens: 'left',
-                    buttonClasses: ['btn btn-default'],
-                    applyClass: 'btn-small btn-primary',
-                    cancelClass: 'btn-small',
-                    format: 'MM/DD/YYYY',
-                    separator: ' to ',
-                    locale: {
-                        applyLabel: 'Submit',
-                        cancelLabel: 'Clear',
-                        fromLabel: 'From',
-                        toLabel: 'To',
-                        customRangeLabel: 'Custom',
-                        daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-                        monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-                        firstDay: 1
-                    }
-                };
-                $('#reportrange span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
-                $('#reportrange').daterangepicker(optionSet1, cb);
-                $('#reportrange').on('show.daterangepicker', function () {
-                    console.log("show event fired");
-                });
-                $('#reportrange').on('hide.daterangepicker', function () {
-                    console.log("hide event fired");
-                });
-                $('#reportrange').on('apply.daterangepicker', function (ev, picker) {
-                    console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
-                });
-                $('#reportrange').on('cancel.daterangepicker', function (ev, picker) {
-                    console.log("cancel event fired");
-                });
-                $('#options1').click(function () {
-                    $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
-                });
-                $('#options2').click(function () {
-                    $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
-                });
-                $('#destroy').click(function () {
-                    $('#reportrange').data('daterangepicker').remove();
-                });
+            };
+            $('#reportrange span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+            $('#reportrange').daterangepicker(optionSet1, cb);
+            $('#reportrange').on('show.daterangepicker', function () {
+                console.log("show event fired");
             });
-        </script>
-        <!-- /datepicker -->
-    </body>
+            $('#reportrange').on('hide.daterangepicker', function () {
+                console.log("hide event fired");
+            });
+            $('#reportrange').on('apply.daterangepicker', function (ev, picker) {
+                console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
+            });
+            $('#reportrange').on('cancel.daterangepicker', function (ev, picker) {
+                console.log("cancel event fired");
+            });
+            $('#options1').click(function () {
+                $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
+            });
+            $('#options2').click(function () {
+                $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
+            });
+            $('#destroy').click(function () {
+                $('#reportrange').data('daterangepicker').remove();
+            });
+        });
+    </script>
+    <script>
+        NProgress.done();
+    </script>
+    <!-- /datepicker -->
+    <!-- /footer content -->
+</body>
 
 </html>

@@ -9,15 +9,14 @@ import pucp.sw2.horario1.vtesis.modelos.Estado;
 
 /**
  *
- * @author josesuk
- * modified by Eudomar
+ * @author josesuk modified by Eudomar
  */
 public class AvanceDTO {
-    
+
     private int idAvances;
     private String nombre;
     private String version;
-    private int historial_idHistorial;
+    private int idHistorial;
     private String archivo_alumno;
     private String fecha_inicio;
     private String fecha_fin;
@@ -50,12 +49,12 @@ public class AvanceDTO {
         this.version = version;
     }
 
-    public int getHistorial_idHistorial() {
-        return historial_idHistorial;
+    public int getIdHistorial() {
+        return idHistorial;
     }
 
-    public void setHistorial_idHistorial(int historial_idHistorial) {
-        this.historial_idHistorial = historial_idHistorial;
+    public void setIdHistorial(int idHistorial) {
+        this.idHistorial = idHistorial;
     }
 
     public String getArchivo_alumno() {
@@ -90,8 +89,6 @@ public class AvanceDTO {
         this.estado = estado;
     }
 
-
-
     public String getObs_asesor() {
         return obs_asesor;
     }
@@ -114,6 +111,6 @@ public class AvanceDTO {
 
     public void setArchivo_asesor(String archivo_asesor) {
         this.archivo_asesor = archivo_asesor;
-    }   
-    
+    }
+
 }

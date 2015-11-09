@@ -1,19 +1,28 @@
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!-- Meta, title, CSS, favicons, etc. -->
-        <%@include file="/WEB-INF/jsp/comun/recursos.jsp" %>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Virtual Tesis</title>
+
+        <!-- Bootstrap core CSS -->
+
         <%@include file = "/WEB-INF/jsp/comun/recursos.jsp" %>
+        <script src="<spring:url value="/js/nprogress.js"/>"></script>
+        <script>
+            NProgress.start();
+        </script>
 
 
     </head>
@@ -30,21 +39,17 @@
                     <div class="left_col scroll-view">
 
                         <div class="navbar nav_title" style="border: 0;">
-                            <a href="<c:url value='/profile'/>" class="site_title"><img src="images/vtesis-logo.jpg" alt="Logo"><span>V-Tesis</span></a>
+                            <a href="index.html" class="site_title"><img src="<c:url value='/images/logo_mini.png'/>" alt="Logo"><span>V-Tesis</span></a>
                         </div>
                         <div class="clearfix"></div>
 
                         <!-- menu prile quick info -->
                         <div class="profile">
                             <div class="profile_pic">
-                                <img src="${persona.foto}" alt="${persona.nombre}"  class="img-circle profile_img">
+                                <img src="<c:url value='/images/${personaDTO.foto}'/>" alt="..." class="img-circle profile_img">
                             </div>
                             <div class="profile_info">
-                                <span>Bienvenido,</span>
-                                <c:if test="${persona.id != null}">
-                                    <h2>${persona.nombre}</h2> <!--   Cambio -->              
-                                </c:if>
-
+                                <h2>${personaDTO.nombres}  ${personaDTO.apellidos}</h2>
                             </div>
                         </div>
                         <!-- /menu prile quick info -->
@@ -55,30 +60,27 @@
                         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 
                             <div class="menu_section">
-                                <h3>Alumno</h3>   
+                                <h3>Alumno</h3>
                                 <ul class="nav side-menu">
                                     <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu" style="display: none">                                    
-                                            <li><a href="<c:url value='/profile'/>">Perfil</a>
+                                        <ul class="nav child_menu" style="display: none">                                        
+                                            <li><a href="<c:url value='/alumno/profile'/>">Perfil</a>
                                             </li>
+                                            <!--<li><a href="index2.html">Dashboard2</a>
+                                            </li>
+                                            <li><a href="index3.html">Dashboard3</a>
+                                            </li>-->
                                         </ul>
+
                                     </li>
+
                                     <li><a><i class="fa fa-edit"></i> Avances <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
-                                            <li><a href="<c:url value="/l_entrega"/>">Cronograma Avances</a>
+                                            <li><a href="<c:url value='/alumno/r_entrega'/>">Entregar Avances</a>
                                             </li>
-                                            <!--<li><a href="form_advanced.html">Advanced Components</a>
-                                             </li>
-                                             <li><a href="form_validation.html">Form Validation</a>
-                                             </li>
-                                             <li><a href="form_wizards.html">Form Wizard</a>
-                                             </li>
-                                             <li><a href="form_upload.html">Form Upload</a>
-                                             </li>
-                                             <li><a href="form_buttons.html">Form Buttons</a>
-                                             </li>-->
                                         </ul>
                                     </li>
+
                                 </ul>
                             </div>
                             <div class="menu_section">
@@ -103,14 +105,12 @@
 
                     <div class="nav_menu">
                         <nav class="" role="navigation">
-                            <div class="nav toggle">
-                                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-                            </div>
+
 
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="">
                                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <img src="${persona.foto}" alt="">${persona.nombre}
+                                        <img src="<c:url value='/images/${personaDTO.foto}'/> " alt="">${PersonaDTO.nombres}
                                         <span class=" fa fa-angle-down"></span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
@@ -121,168 +121,14 @@
                                         </li>
                                     </ul>
                                 </li>
+                            </ul>
+                        </nav>
+                    </div>
 
-                                <li role="presentation" class="dropdown">
-                                    <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-envelope-o"></i>
-                                        <span class="badge bg-green">6</span>
-                                    </a>
-                                    <ul id="menu1" class="dropdown-menu list-unstyled msg_list animated fadeInDown" role="menu">
-                                        <li>
-                                            <a>
-                                                <span class="image">
-                                                    <img src="${persona.foto}" alt="Profile Image" />
-                                                </span>
-                                                <span>
-                                                    <c:if test="${persona.id != null}">
-                                                        <span>${persona.nombre}</span> <!--   Cambio -->              
-                                                    </c:if>
-                                                    <span class="time">3 mins ago</span>
-                                                </span>
-                                                <span class="message">
-                                                    Film festivals used to be do-or-die moments for movie makers. They were where... 
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a>
-                                                <span class="image">
-                                                    <img src="images/img.jpg" alt="Profile Image" />
-                                                </span>
-                                                <span>
-                                                    <c:if test="${persona.id != null}">
-                                                        <span>${persona.nombre}</span> <!--   Cambio -->              
-                                                    </c:if>
-                                                    <span class="time">3 mins ago</span>
-                                                </span>
-                                                <span class="message">
-                                                    Film festivals used to be do-or-die moments for movie makers. They were where... 
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a>
-                                                <span class="image">
-                                                    <img src="images/img.jpg" alt="Profile Image" />
-                                                </span>
-                                                <span>
-                                                    <c:if test="${persona.id != null}">
-                                                        <span>${persona.nombre}</span> <!--   Cambio -->              
-                                                    </c:if>
-                                                    <span class="time">3 mins ago</span>
-                                                </span>
-                                                <span class="message">
-                                                    Film festivals used to be do-or-die moments for movie makers. They were where... 
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a>
-                                                <span class="image">
-                                                    <img src="images/img.jpg" alt="Profile Image" />
-                                                </span>
-                                                <span>
-                                                    <c:if test="${persona.id != null}">
-                                                        <span>${persona.nombre}</span> <!--   Cambio -->              
-                                                    </c:if>
-                                                    <span class="time">3 mins ago</span>
-                                                </span>
-                                                <span class="message">
-                                                    Film festivals used to be do-or-die moments for movie makers. They were where... 
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <div class="text-center">
-                                                <a>
-                                                    <strong>See All Alerts</strong>
-                                                    <i class="fa fa-angle-right"></i>
-                                                </a>
+                </div>
+                <!-- /top navigation -->
 
-                                                <ul id="menu1" class="dropdown-menu list-unstyled msg_list animated fadeInDown" role="menu">
-                                                    <li>
-                                                        <a>
-                                                            <span class="image">
-                                                                <img src="${persona.foto}" alt="Profile Image" />
-                                                            </span>
-                                                            <span>
-                                                                <c:if test="${persona.id != null}">
-                                                                    <span>${persona.nombre}</span> <!--   Cambio -->              
-                                                                </c:if>
-                                                                <span class="time">3 mins ago</span>
-                                                            </span>
-                                                            <span class="message">
-                                                                Film festivals used to be do-or-die moments for movie makers. They were where... 
-                                                            </span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a>
-                                                            <span class="image">
-                                                                <img src="images/img.jpg" alt="Profile Image" />
-                                                            </span>
-                                                            <span>
-                                                                <c:if test="${persona.id != null}">
-                                                                    <span>${persona.nombre}</span> <!--   Cambio -->              
-                                                                </c:if>
-                                                                <span class="time">3 mins ago</span>
-                                                            </span>
-                                                            <span class="message">
-                                                                Film festivals used to be do-or-die moments for movie makers. They were where... 
-                                                            </span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a>
-                                                            <span class="image">
-                                                                <img src="images/img.jpg" alt="Profile Image" />
-                                                            </span>
-                                                            <span>
-                                                                <c:if test="${persona.id != null}">
-                                                                    <span>${persona.nombre}</span> <!--   Cambio -->              
-                                                                </c:if>
-                                                                <span class="time">3 mins ago</span>
-                                                            </span>
-                                                            <span class="message">
-                                                                Film festivals used to be do-or-die moments for movie makers. They were where... 
-                                                            </span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a>
-                                                            <span class="image">
-                                                                <img src="images/img.jpg" alt="Profile Image" />
-                                                            </span>
-                                                            <span>
-                                                                <c:if test="${persona.id != null}">
-                                                                    <span>${persona.nombre}</span> <!--   Cambio -->              
-                                                                </c:if>
-                                                                <span class="time">3 mins ago</span>
-                                                            </span>
-                                                            <span class="message">
-                                                                Film festivals used to be do-or-die moments for movie makers. They were where... 
-                                                            </span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <div class="text-center">
-                                                            <a>
-                                                                <strong>See All Alerts</strong>
-                                                                <i class="fa fa-angle-right"></i>
-                                                            </a>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </li>
 
-                                        </ul>
-                                    </nav>
-                                </div>
-
-                            </div>
-                            <!-- /top navigation -->
-
-                         
 
                 <!-- page content -->
                 <div class="right_col" role="main">
@@ -308,7 +154,8 @@
                                             <thead>
                                                 <tr>
                                                     <th style="text-align:center;">Entregables</th>
-                                                    <th style="text-align:center;">Fecha LÃ­mite</th>
+                                                    <th style="text-align:center;">Fecha Inicio</th>
+                                                    <th style="text-align:center;">Fecha Límite</th>
                                                     <th style="text-align:center;">Avance</th>
                                                     <th style="text-align:center;">Estado</th>
                                                 </tr>
@@ -317,33 +164,31 @@
                                                 <%
                                                     int contador = 0;
                                                 %>
-                                                <c:forEach items="${lstAvances}" var="p">
+                                                <c:forEach items="${ListaAvances}" var="p">
                                                     <%
                                                         contador++;
+                                                       
                                                     %>
                                                     <tr>
-                                                        <td scope="row" style="text-align:center;">Entregable <%=contador%></td>
-                                                        <td style="text-align:center;">${p.fecha}</td>
-                                                        <td style="text-align:center;">${p.nombre}</td>
+                             <!-- Entregable 01 -->     <td scope="row" style="text-align:center;">Entregable <%=contador%></td>
+                                                        <td style="text-align:center;">${p.fecha_inicio}</td>
+                                                        <td style="text-align:center;">${p.fecha_fin}</td>
+                                                        <td style="text-align:center;"><a href="<c:url value='r_entrega?idavance=${p.idAvances}'/>">${p.nombre}</a>
+                                                        </td>
                                                         <td style="text-align:center;"> <!-- Cambiar Descargar archivo-->
-                                                            <a href="<c:url value='avance?idavance=${p.idavance}'/>">${p.estado}</a>
+                                                            <a href="<c:url value='inf_avance?idavance=${p.idAvances}'/>">${p.estado.descripcion}</a>
                                                         </td>
                                                     </tr> 
 
                                                 </c:forEach>
-                                                <tr>
-                                                    <th scope="row" style="text-align:center;">Entregable <%=contador++%></th>
-                                                    <td style="text-align:center;">17-09-15</td>  <!-- Cambiar fecha-->
-                                                    <td style="text-align:center;"><a href="<c:url value="/r_entrega"/>"><i class="fa fa-plus-square"></i></a></td>
-                                                    <td style="text-align:center;">-</td>
-                                                </tr> 
+                                                
 
                                             </tbody>
                                         </table>
                                         <div class="col-md-5 center-block">
                                         </div>
                                         <div class="col-md-3 center-block">
-                                            <a href="<c:url value='/profile'/>"><button type="button" class="btn btn-default">Regresar</button></a>
+                                            <a href="<c:url value='/alumno/profile'/>"><button type="button" class="btn btn-default">Regresar</button></a>
                                         </div>
                                     </div>                                  
 

@@ -96,7 +96,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <img src="<c:url value="/images/img.jpg"/>" alt="">${persona.nombres} ${persona.apellidos} - ALUMNO
+                                    <img src="<c:url value="/images/${persona.foto}"/>" alt="">${persona.nombres} ${persona.apellidos} - ALUMNO
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
@@ -267,7 +267,7 @@
                                                                 <form:select path="ciclo" class="form-control">
                                                                     <option value="">Seleccione</option>
                                                                     <c:forEach items="${historial}" var="h">
-                                                                        <c:forEach items="${ListaCiclos}" var="p">
+                                                                        <c:forEach items="${ListaCiclos}" var="p"> <!-- Consultar el generar el combo a partir del curso dado -->
                                                                             <c:if test="${h.ciclo.equals(p.ciclo)}">
                                                                                 <option  value="${p.ciclo}" ${p.ciclo==busquedaFiltro.ciclo?"selected":""}>${p.ciclo} </option>
                                                                             </c:if>

@@ -12,16 +12,16 @@
     <title>V-Tesis!</title>
 
     <%@include file = "/WEB-INF/jsp/comun/recursos.jsp" %>
-    <script src="<spring:url value="js/nprogress.js"/>"></script>
+    <script src="<c:url value="/js/nprogress.js"/>"></script>
     <script>
         NProgress.start();
     </script>
 
     <!-- Custom styling plus plugins -->
-    <link href="css/custom.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/maps/jquery-jvectormap-2.0.1.css" />
-    <link href="css/icheck/flat/green.css" rel="stylesheet" />
-    <link href="css/floatexamples.css" rel="stylesheet" type="text/css" />
+    <link href="<c:url value="/css/custom.css"/>" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/maps/jquery-jvectormap-2.0.1.css"/>" />
+    <link href="<c:url value="/css/icheck/flat/green.css"/>" rel="stylesheet" />
+    <link href="<c:url value="/css/floatexamples.css"/>" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -34,21 +34,21 @@
         <div class="main_container">
 
             <div class="col-md-3 left_col">
-                <2div class="left_col scroll-view">
+                <div class="left_col scroll-view">
 
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>V-Tesis</span></a>
+                        <a href="<c:url value="/home.do"/>" class="site_title"><i class="fa fa-paw"></i> <span>V-Tesis</span></a>
                     </div>
                     <div class="clearfix"></div>
 
                     <!-- menu prile quick info -->
                     <div class="profile">
                         <div class="profile_pic">
-                            <img src="images/vtesis-logo.jpg" alt="..." class="img-circle profile_img">
+                            <img src="<c:url value="/images/vtesis-logo.jpg"/>" alt="..." class="img-circle profile_img">
                         </div>
                         <div class="profile_info">
                             <span>Welcome,</span>
-                            <h2>Anthony Fernando</h2>
+                            <h2>${persona.nombres} ${persona.apellidos}</h2>
                         </div>
                     </div>
                     <!-- /menu prile quick info -->
@@ -63,14 +63,14 @@
                             <ul class="nav side-menu">
                                 <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="profile.html">Perfil</a>
+                                        <li><a href="<c:url value="/home.do"/>">Perfil</a>
                                         </li>
                                         
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-calendar"></i> Acciones <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="Asesor-llenar-calendario.html">Llenar calendario</a>
+                                        <li><a href="<c:url value= "/asesor/llenarFechas"/>">Llenar calendario</a>
                                         </li>
                                         
                                     </ul>
@@ -82,16 +82,7 @@
 
                     <!-- /menu footer buttons -->
                     <div class="sidebar-footer hidden-small">
-                        <a data-toggle="tooltip" data-placement="top" title="Settings">
-                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                        </a>
-                        <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-                        </a>
-                        <a data-toggle="tooltip" data-placement="top" title="Lock">
-                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-                        </a>
-                        <a data-toggle="tooltip" data-placement="top" title="Logout">
+                        <a data-toggle="tooltip" data-placement="top" title="Logout" href="<c:url value="/logout.do"/>">
                             <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                         </a>
                     </div>
@@ -111,7 +102,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <img src="images/img.jpg" alt="">Juan Perez
+                                    <img src="<c:url value="/images/img.jpg"/>" alt="">${persona.nombres} ${persona.apellidos}
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
@@ -126,83 +117,12 @@
                                     <li>
                                         <a href="javascript:;">Help</a>
                                     </li> -->
-                                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                    <li><a href="<c:url value="/logout.do"/>"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                                     </li>
                                 </ul>
                             </li>
 
-                            <li role="presentation" class="dropdown">
-                                <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa fa-envelope-o"></i>
-                                    <span class="badge bg-green">6</span>
-                                </a>
-                                <ul id="menu1" class="dropdown-menu list-unstyled msg_list animated fadeInDown" role="menu">
-                                    <li>
-                                        <a>
-                                            <span class="image">
-                                        <img src="images/img.jpg" alt="Profile Image" />
-                                    </span>
-                                            <span>
-                                        <span>Alumno X</span>
-                                            <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                        Film festivals used to be do-or-die moments for movie makers. They were where... 
-                                    </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a>
-                                            <span class="image">
-                                        <img src="images/img.jpg" alt="Profile Image" />
-                                    </span>
-                                            <span>
-                                        <span>Alumno Y</span>
-                                            <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                        Film festivals used to be do-or-die moments for movie makers. They were where... 
-                                    </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a>
-                                            <span class="image">
-                                        <img src="images/img.jpg" alt="Profile Image" />
-                                    </span>
-                                            <span>
-                                        <span>Alumno Z</span>
-                                            <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                        Film festivals used to be do-or-die moments for movie makers. They were where... 
-                                    </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a>
-                                            <span class="image">
-                                        <img src="images/img.jpg" alt="Profile Image" />
-                                    </span>
-                                            <span>
-                                        <span>John Smith</span>
-                                            <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                        Film festivals used to be do-or-die moments for movie makers. They were where... 
-                                    </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <div class="text-center">
-                                            <a>
-                                                <strong><a href="inbox.html">See All Alerts</strong>
-                                                <i class="fa fa-angle-right"></i>
-                                            </a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
+                        <!-- :v -->    
 
                         </ul>
                     </nav>
@@ -263,7 +183,7 @@
                                                     <td id="reportrange" class="pull-right" style="background:#ffff;cursor:pointer;padding: 5px 10px; border:1px solid #ccc">
                                                     <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
                                                     <span>August 26, 2015 - September 24, 2015</span>
-                                                    <bclass="caret"></b></td>
+                                                    <b class="caret"></b></td>
                                                     <td>
                                                         <li>
                                                     <p>
@@ -276,7 +196,7 @@
                                                     <td id="reportrange" class="pull-right" style="background:#ffff;cursor:pointer;padding: 5px 10px; border:1px solid #ccc">
                                                     <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
                                                     <span>August 26, 2015 - September 24, 2015</span>
-                                                    <bclass="caret"></b></td>
+                                                    <b class="caret"></b></td>
                                                     <td>
                                                         <li>
                                                     <p>
@@ -289,7 +209,7 @@
                                                     <td id="reportrange" class="pull-right" style="background:#ffff;cursor:pointer;padding: 5px 10px; border:1px solid #ccc">
                                                     <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
                                                     <span>August 26, 2015 - September 24, 2015</span>
-                                                    <bclass="caret"></b></td>
+                                                    <b class="caret"></b></td>
                                                     <td>
                                                         <li>
                                                     <p>
@@ -302,7 +222,7 @@
                                                     <td id="reportrange" class="pull-right" style="background:#ffff;cursor:pointer;padding: 5px 10px; border:1px solid #ccc">
                                                     <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
                                                     <span>August 26, 2015 - September 24, 2015</span>
-                                                    <bclass="caret"></b></td>
+                                                    <b class="caret"></b></td>
                                                     <td>
                                                         <li>
                                                     <p>
@@ -315,7 +235,7 @@
                                                     <td id="reportrange" class="pull-right" style="background:#ffff;cursor:pointer;padding: 5px 10px; border:1px solid #ccc">
                                                     <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
                                                     <span>August 26, 2015 - September 24, 2015</span>
-                                                    <bclass="caret"></b></td>
+                                                    <b class="caret"></b></td>
                                                     <td>
                                                         <li>
                                                     <p>
@@ -328,7 +248,7 @@
                                                     <td id="reportrange" class="pull-right" style="background:#ffff;cursor:pointer;padding: 5px 10px; border:1px solid #ccc">
                                                     <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
                                                     <span>August 26, 2015 - September 24, 2015</span>
-                                                    <bclass="caret"></b></td>
+                                                    <b class="caret"></b></td>
                                                     <td>
                                                         <li>
                                                     <p>
@@ -341,7 +261,7 @@
                                                     <td id="reportrange" class="pull-right" style="background:#ffff;cursor:pointer;padding: 5px 10px; border:1px solid #ccc">
                                                     <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
                                                     <span>August 26, 2015 - September 24, 2015</span>
-                                                    <bclass="caret"></b></td>
+                                                    <b class="caret"></b></td>
                                                     <td>
                                                         <li>
                                                     <p>
@@ -354,7 +274,7 @@
                                                     <td id="reportrange" class="pull-right" style="background:#ffff;cursor:pointer;padding: 5px 10px; border:1px solid #ccc">
                                                     <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
                                                     <span>August 26, 2015 - September 24, 2015</span>
-                                                    <bclass="caret"></b></td>
+                                                    <b class="caret"></b></td>
                                                     <td>
                                                         <li>
                                                     <p>
@@ -374,13 +294,13 @@
                         </div>
                         <div class="row">
                             <div class="col-md-md-20 col-sm-20 col-xs-23">
-                                            <button type="submit" class="btn btn-primary">Nueva Entrega</button>
+                                <button type="button" class="btn btn-primary">Nueva Entrega</button>
                                        
                             
                                             <button type="submit" class="btn btn-primary">Guardar</button>
                                         
                             
-                                            <button type="submit" class="btn btn-primary">Borrar Seleccionados</button>
+                                            <button type="reset" class="btn btn-primary">Borrar Seleccionados</button>
                                         </div>
 
 
@@ -431,35 +351,35 @@
         <div id="notif-group" class="tabbed_notifications"></div>
     </div>
 
-    <script src="js/bootstrap.min.js"></script>
+    <script src="<c:url value="/js/bootstrap.min.js"/>"></script>
 
     <!-- gauge js -->
-    <script type="text/javascript" src="js/gauge/gauge.min.js"></script>
-    <script type="text/javascript" src="js/gauge/gauge_demo.js"></script>
+    <script type="text/javascript" src="<c:url value="/js/gauge/gauge.min.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/gauge/gauge_demo.js"/>"></script>
     <!-- chart js -->
-    <script src="js/chartjs/chart.min.js"></script>
+    <script src="<c:url value="/js/chartjs/chart.min.js"/>"></script>
     <!-- bootstrap progress js -->
-    <script src="js/progressbar/bootstrap-progressbar.min.js"></script>
-    <script src="js/nicescroll/jquery.nicescroll.min.js"></script>
+    <script src="<c:url value="/js/progressbar/bootstrap-progressbar.min.js"/>"></script>
+    <script src="<c:url value="/js/nicescroll/jquery.nicescroll.min.js"/>"></script>
     <!-- icheck -->
-    <script src="js/icheck/icheck.min.js"></script>
+    <script src="<c:url value="/js/icheck/icheck.min.js"/>"></script>
     <!-- daterangepicker -->
-    <script type="text/javascript" src="js/moment.min.js"></script>
-    <script type="text/javascript" src="js/datepicker/daterangepicker.js"></script>
+    <script type="text/javascript" src="<c:url value="/js/moment.min.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/datepicker/daterangepicker.js"/>"></script>
 
-    <script src="js/custom.js"></script>
+    <script src="<c:url value="/js/custom.js"/>"></script>
 
     <!-- flot js -->
     <!--[if lte IE 8]><script type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
-    <script type="text/javascript" src="js/flot/jquery.flot.js"></script>
-    <script type="text/javascript" src="js/flot/jquery.flot.pie.js"></script>
-    <script type="text/javascript" src="js/flot/jquery.flot.orderBars.js"></script>
-    <script type="text/javascript" src="js/flot/jquery.flot.time.min.js"></script>
-    <script type="text/javascript" src="js/flot/date.js"></script>
-    <script type="text/javascript" src="js/flot/jquery.flot.spline.js"></script>
-    <script type="text/javascript" src="js/flot/jquery.flot.stack.js"></script>
-    <script type="text/javascript" src="js/flot/curvedLines.js"></script>
-    <script type="text/javascript" src="js/flot/jquery.flot.resize.js"></script>
+    <script type="text/javascript" src="<c:url value="/js/flot/jquery.flot.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/flot/jquery.flot.pie.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/flot/jquery.flot.orderBars.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/flot/jquery.flot.time.min.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/flot/date.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/flot/jquery.flot.spline.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/flot/jquery.flot.stack.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/flot/curvedLines.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/flot/jquery.flot.resize.js"/>"></script>
     <script>
         $(document).ready(function () {
             // [17, 74, 6, 39, 20, 85, 7]
@@ -522,10 +442,10 @@
     </script>
 
     <!-- worldmap -->
-    <script type="text/javascript" src="js/maps/jquery-jvectormap-2.0.1.min.js"></script>
-    <script type="text/javascript" src="js/maps/gdp-data.js"></script>
-    <script type="text/javascript" src="js/maps/jquery-jvectormap-world-mill-en.js"></script>
-    <script type="text/javascript" src="js/maps/jquery-jvectormap-us-aea-en.js"></script>
+    <script type="text/javascript" src="<c:url value="/js/maps/jquery-jvectormap-2.0.1.min.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/maps/gdp-data.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/maps/jquery-jvectormap-world-mill-en.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/maps/jquery-jvectormap-us-aea-en.js"/>"></script>
     <script>
         $(function () {
             $('#world-map-gdp').vectorMap({
@@ -546,7 +466,7 @@
         });
     </script>
     <!-- skycons -->
-    <script src="js/skycons/skycons.js"></script>
+    <script src="<c:url value="/js/skycons/skycons."/>"></script>
     <script>
         var icons = new Skycons({
                 "color": "#73879C"
@@ -661,6 +581,115 @@
             });
             $('#destroy').click(function () {
                 $('#reportrange').data('daterangepicker').remove();
+            });
+        });
+    </script>
+    <!-- /datepicker -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#single_cal1').daterangepicker({
+                singleDatePicker: true,
+                calender_style: "picker_1"
+            }, function (start, end, label) {
+                console.log(start.toISOString(), end.toISOString(), label);
+            });
+            $('#single_cal2').daterangepicker({
+                singleDatePicker: true,
+                calender_style: "picker_2"
+            }, function (start, end, label) {
+                console.log(start.toISOString(), end.toISOString(), label);
+            });
+            $('#single_cal3').daterangepicker({
+                singleDatePicker: true,
+                calender_style: "picker_3"
+            }, function (start, end, label) {
+                console.log(start.toISOString(), end.toISOString(), label);
+            });
+            $('#single_cal4').daterangepicker({
+                singleDatePicker: true,
+                calender_style: "picker_4"
+            }, function (start, end, label) {
+                console.log(start.toISOString(), end.toISOString(), label);
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#reservation').daterangepicker(null, function (start, end, label) {
+                console.log(start.toISOString(), end.toISOString(), label);
+            });
+        });
+    </script>
+    <!-- /datepicker -->
+    <!-- input_mask -->
+    <script>
+        $(document).ready(function () {
+            $(":input").inputmask();
+        });
+    </script>
+    <!-- /input mask -->
+    <!-- ion_range -->
+    <script>
+        $(function () {
+            $("#range_27").ionRangeSlider({
+                type: "double",
+                min: 1000000,
+                max: 2000000,
+                grid: true,
+                force_edges: true
+            });
+            $("#range").ionRangeSlider({
+                hide_min_max: true,
+                keyboard: true,
+                min: 0,
+                max: 5000,
+                from: 1000,
+                to: 4000,
+                type: 'double',
+                step: 1,
+                prefix: "$",
+                grid: true
+            });
+            $("#range_25").ionRangeSlider({
+                type: "double",
+                min: 1000000,
+                max: 2000000,
+                grid: true
+            });
+            $("#range_26").ionRangeSlider({
+                type: "double",
+                min: 0,
+                max: 10000,
+                step: 500,
+                grid: true,
+                grid_snap: true
+            });
+            $("#range_31").ionRangeSlider({
+                type: "double",
+                min: 0,
+                max: 100,
+                from: 30,
+                to: 70,
+                from_fixed: true
+            });
+            $(".range_min_max").ionRangeSlider({
+                type: "double",
+                min: 0,
+                max: 100,
+                from: 30,
+                to: 70,
+                max_interval: 50
+            });
+            $(".range_time24").ionRangeSlider({
+                min: +moment().subtract(12, "hours").format("X"),
+                max: +moment().format("X"),
+                from: +moment().subtract(6, "hours").format("X"),
+                grid: true,
+                force_edges: true,
+                prettify: function (num) {
+                    var m = moment(num, "X");
+                    return m.format("Do MMMM, HH:mm");
+                }
             });
         });
     </script>

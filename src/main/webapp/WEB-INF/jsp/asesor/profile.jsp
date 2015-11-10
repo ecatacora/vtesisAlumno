@@ -67,7 +67,7 @@
                                 </li>
                                 <li><a><i class="fa fa-calendar"></i> Acciones <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="Asesor-llenar-calendario.html">Llenar calendario</a>
+                                        <li><a href="<c:url value= "/asesor/llenarFechas"/>">Llenar calendario</a>
                                         </li>
                                         
                                     </ul>

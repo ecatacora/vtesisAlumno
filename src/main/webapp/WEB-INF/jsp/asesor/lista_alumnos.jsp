@@ -69,7 +69,7 @@
                                 </li>
                                 <li><a><i class="fa fa-calendar"></i> Acciones <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="<c:url value= "/asesor/llenar_calendario"/>">Llenar calendario</a>
+                                        <li><a href="<c:url value= "/asesor/llenarFechas"/>">Llenar calendario</a>
                                         </li>
                                         
                                     </ul>
@@ -176,7 +176,7 @@
                                 </form>
                                 <div class="col-md-6 col-sm-6 col-xs-6">
                                     <label for="uploadbtn">&nbsp;</label><br>
-                                    <a href="<c:url value= "/asesor/llenar_calendario"/>">
+                                    <a href="<c:url value= "/asesor/llenarFechas"/>">
                                         <span class="btn btn-primary" id="uploadbtn" name="uploadbtn">Llenar calendario</span>
                                     </a>
                                     <br>

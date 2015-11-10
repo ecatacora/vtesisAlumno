@@ -106,17 +106,19 @@ public class AsesorController {
        
     }
     
-    @RequestMapping(value = "registro")
-    public String Registrar(Model model){
-       
-        return "....";
+    @RequestMapping(value = "/asesor/llenarFechas")
+    public String llenarFechas(Model model, HttpSession session){
+        
+        PersonaDTO persona = (PersonaDTO)session.getAttribute("personaDTO");
+        model.addAttribute("persona", persona);
+        return "asesor/llenar_calendario";
     }
     
-    @RequestMapping(value = "editarFechas")
+    @RequestMapping(value = "/asesor/registrarFechas")
     public String registrarFechas(Model model, @RequestParam Integer idAvance){
        Avance avance = avanceDAO.obtener(idAvance); 
        model.addAttribute("avance", avance);
-       return "asesor/editarFechas";
+       return "redirect:/asesor/llenarFechas";
     }
     
     @RequestMapping(value = "/asesor/busqueda_avanzada")

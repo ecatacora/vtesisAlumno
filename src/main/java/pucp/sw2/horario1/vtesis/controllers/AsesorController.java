@@ -119,6 +119,30 @@ public class AsesorController {
        return "asesor/editarFechas";
     }
     
+    @RequestMapping(value = "/asesor/busqueda_avanzada")
+    public String busquedaAvanzada(Model model){
+        PersonaDTO persona = new PersonaDTO();
+        model.addAttribute("persona", persona);
+       
+        return "/asesor/busqueda_avanzada";
+    }
+
+
+
+    @RequestMapping(value = "/asesor/resultado_busqueda")
+    public String resultadoBusqueda(Model model, HttpSession session,@RequestParam(required = false) String parametro){
+        PersonaDTO personaDTO = (PersonaDTO) session.getAttribute("personaDTO");
+        
+        AlumnoFiltro filtros = new AlumnoFiltro();
+        
+        
+        List<PersonaDTO> lstBusqueda;
+        
+        lstBusqueda = asesorDao.listarAlumno(personaDTO.getIdPersona(),filtros);
+       
+        return "/asesor/busqueda_avanzada";
+    }
+    
 
     
     

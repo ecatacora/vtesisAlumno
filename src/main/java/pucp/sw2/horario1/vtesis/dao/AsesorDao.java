@@ -147,7 +147,54 @@ public class AsesorDao {
         return resultado;
     }
 
-    
+     public List<PersonaDTO> listarAlumno(Integer idAsesor,AlumnoFiltro filtro) {
+        List<PersonaDTO> lstResultados = null;
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
+        List<Object> parametros = new ArrayList<Object>();
+        StringBuilder sql = new StringBuilder();
+
+        
+        sql.append(" select p.codigo, concat(p.nombres,' ',p.apellidos), c.nombre, p.idPersona");
+        sql.append(" from persona p");
+        sql.append(" inner join historial h on (p.idPersona = h.alumno_idPersona)");
+        sql.append(" inner join curso c on (h.idCurso = c.idCurso)");
+        sql.append(" where idRol=3 "); 
+        
+        sql.append(" AND h.asesor_idPersona1 = ?");
+        parametros.add(idAsesor);
+        sql.append(" AND p.nombres= ?");
+        parametros.add(filtro.getNombre());
+        sql.append(" AND p.apellidos= ?");
+        parametros.add(filtro.getApellido());
+        sql.append(" AND p.codigo= ?");
+        parametros.add(filtro.getCodigo());
+        sql.append(" AND p.email= ?");
+        parametros.add(filtro.getEmail());
+        
+                lstResultados = jdbcTemplate.query(sql.toString(), parametros.toArray(),
+                        new RowMapper<PersonaDTO>() {
+                            @Override
+                            public PersonaDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+                                PersonaDTO persona = new PersonaDTO();
+                                persona.setCodigo(rs.getString(1));
+                                persona.setNombres(rs.getString(2));
+                                Curso curso = new Curso();
+                                curso.setNombre(rs.getString(3));
+                                persona.setCurso(curso);
+                                persona.setIdPersona(rs.getInt(4));
+                                /*falta avance y fecha actualizacion
+                                Avance avance = new Avance();
+                                avance.setNombre(rs.getString(4));
+                                persona.setAvance(avance);*/
+                                return persona;
+                            }
+                        });        
+        
+
+
+
+        return lstResultados;
+    }
     
     
 }

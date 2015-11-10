@@ -512,7 +512,7 @@
                                                     <button class="btn btn-success" type="submit"><i class="fa fa-edit m-right-xs"></i>Ver Alumnos</button>
                                                     </form:form>                                                   
                                                     <br>
-                                                    <a href="#" class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Busqueda Avanzada</a>
+                                                    <a href="busqueda_avanzada" class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Busqueda Avanzada</a>
                                                 </div>
                                                     <div class="col-md-4"></div>   
                                             </div>

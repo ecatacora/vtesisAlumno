@@ -188,7 +188,7 @@
                                         <div class="col-md-5 center-block">
                                         </div>
                                         <div class="col-md-3 center-block">
-                                            <a href="<c:url value='/alumno/profile'/>"><button type="button" class="btn btn-default">Regresar</button></a>
+                                            <a href="javascript:history.back()"><button type="button" class="btn btn-default">Regresar</button></a>
                                         </div>
                                     </div>                                  
 
@@ -221,29 +221,29 @@
             <div id="notif-group" class="tabbed_notifications"></div>
         </div>
 
-        <script src="js/bootstrap.min.js"></script>
+        <script src="<c:url value="/js/bootstrap.min.js"/>"></script>
 
         <!-- chart js -->
-        <script src="js/chartjs/chart.min.js"></script>
+        <script src="<c:url value="/js/chartjs/chart.min.js"/>"></script>
         <!-- bootstrap progress js -->
-        <script src="js/progressbar/bootstrap-progressbar.min.js"></script>
-        <script src="js/nicescroll/jquery.nicescroll.min.js"></script>
+        <script src="<c:url value="/js/progressbar/bootstrap-progressbar.min.js"/>"></script>
+        <script src="<c:url value="/js/nicescroll/jquery.nicescroll.min.js"/>"></script>
         <!-- icheck -->
-        <script src="js/icheck/icheck.min.js"></script>
+        <script src="<c:url value="/js/icheck/icheck.min.js"/>"></script>
 
-        <script src="js/custom.js"></script>
+        <script src="<c:url value="/js/custom.js"/>"></script>
 
         <!-- image cropping -->
-        <script src="js/cropping/cropper.min.js"></script>
-        <script src="js/cropping/main.js"></script>
+        <script src="<c:url value="/js/cropping/cropper.min.js"/>"></script>
+        <script src="<c:url value="/js/cropping/main.js"/>"></script>
 
 
         <!-- daterangepicker -->
-        <script type="text/javascript" src="js/moment.min.js"></script>
-        <script type="text/javascript" src="js/datepicker/daterangepicker.js"></script>
+        <script type="text/javascript" src="<c:url value="/js/moment.min.js"/>"></script>
+        <script type="text/javascript" src="<c:url value="/js/datepicker/daterangepicker.js"/>"></script>
         <!-- moris js -->
-        <script src="js/moris/raphael-min.js"></script>
-        <script src="js/moris/morris.js"></script>
+        <script src="<c:url value="/js/moris/raphael-min.js"/>"></script>
+        <script src="<c:url value="/js/moris/morris.js"/>"></script>
         <script>
             $(function () {
                 var day_data = [

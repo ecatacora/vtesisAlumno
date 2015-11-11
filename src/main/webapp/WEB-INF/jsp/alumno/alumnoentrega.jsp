@@ -20,9 +20,9 @@
 
         <%@include file = "/WEB-INF/jsp/comun/recursos.jsp" %>
         <script src="<spring:url value="/js/nprogress.js"/>"></script>
-    <script>
-        NProgress.start();
-    </script>
+        <script>
+            NProgress.start();
+        </script>
 
 
     </head>
@@ -136,9 +136,9 @@
                                                     <img src="images/img.jpg" alt="Profile Image" />
                                                 </span>
                                                 <span>
-                                                  
-                                                        <span>${personaDTO.nombres}</span> <!--   Cambio -->              
-                                                    
+
+                                                    <span>${personaDTO.nombres}</span> <!--   Cambio -->              
+
                                                     <span class="time">3 mins ago</span>
                                                 </span>
                                                 <span class="message">
@@ -152,9 +152,9 @@
                                                     <img src="images/img.jpg" alt="Profile Image" />
                                                 </span>
                                                 <span>
-                                                   
-                                                        <span>${personaDTO.nombres}</span> <!--   Cambio -->              
-                                                 
+
+                                                    <span>${personaDTO.nombres}</span> <!--   Cambio -->              
+
                                                     <span class="time">3 mins ago</span>
                                                 </span>
                                                 <span class="message">
@@ -168,9 +168,9 @@
                                                     <img src="images/img.jpg" alt="Profile Image" />
                                                 </span>
                                                 <span>
-                                                   
-                                                        <span>${personaDTO.nombres}</span> <!--   Cambio -->              
-                                                   
+
+                                                    <span>${personaDTO.nombres}</span> <!--   Cambio -->              
+
                                                     <span class="time">3 mins ago</span>
                                                 </span>
                                                 <span class="message">
@@ -184,9 +184,9 @@
                                                     <img src="<c:url value='/images/img.jpg'/>" alt="Profile Image" />
                                                 </span>
                                                 <span>
-                                                 
-                                                        <span>${personaDTO.nombres}</span> <!--   Cambio -->              
-                                                   
+
+                                                    <span>${personaDTO.nombres}</span> <!--   Cambio -->              
+
                                                     <span class="time">3 mins ago</span>
                                                 </span>
                                                 <span class="message">
@@ -225,29 +225,29 @@
                                     <div class="x_title">
                                         <h1>Entrega de Avance</h1>
 
-                                                                            
+
                                         <div class="clearfix"></div>
                                     </div>
 
                                     <div class="x_content" >
                                         <form:form modelAttribute="avance" action="r_entrega" role="form" class="form-horizontal" method="POST">
-                                        <form:hidden path="idAvances"/>
-                                        <p class="lead">Avance:</p> 
-                                        <h4>${avance.nombre}</h4>
-                                        <form:hidden path="nombre" />
-                                        <p>Comentarios del Alumno:</p>
-                                        </br>
-                                        <textarea id="obs_alumno" required class="form-control" path="obs_alumno" name="obs_alumno" rows="3"></textarea>
-                                        </br>
-                                        <p>Archivo (opcional)</p>
-                                        <a href=""><img src="<c:url value='/images/Upload.png'/>" alt=""></a>
-                                        </br>
-                                        <div class="col-md-3 center-block">
-                                        </div>
-                                        <div class="col-md-3 center-block">
-                                            <button type="submit" class="btn btn-primary">Registrar</button>
-                                            <a href=<c:url value="/l_entrega"/>><button type="button" class="btn btn-default">Regresar</button>
-                                        </div>
+                                            <form:hidden path="idAvances"/>
+                                            <p class="lead">Avance:</p> 
+                                            <h4>${avance.nombre}</h4>
+                                            <form:hidden path="nombre" />
+                                            <p>Comentarios del Alumno:</p>
+                                            </br>
+                                            <form:textarea path="obs_alumno" name="obs_alumno" rows="3" cols="20"/>
+                                            </br>
+                                            <p>Archivo (opcional)</p>
+                                            <a href=""><img src="<c:url value='/images/Upload.png'/>" alt=""></a>
+                                            </br>
+                                            <div class="col-md-5 center-block">
+                                            </div>
+                                            <div class="col-md-5 center-block">
+                                                <button type="submit" class="btn btn-primary">Registrar</button>
+                                                <a href=<c:url value="/alumno/l_entrega"/>><button type="button" class="btn btn-default">Regresar</button>
+                                            </div>
 
                                         </form:form>
                                     </div>
@@ -279,81 +279,81 @@
             <div id="notif-group" class="tabbed_notifications"></div>
         </div>
 
-      <script src="<c:url value="/js/bootstrap.min.js"/>"></script>
+        <script src="<c:url value="/js/bootstrap.min.js"/>"></script>
 
-    <!-- chart js -->
-    <script src="<c:url value="/js/chartjs/chart.min.js"/>"></script>
-    <!-- bootstrap progress js -->
-    <script src="<c:url value="/js/progressbar/bootstrap-progressbar.min.js"/>"></script>
-    <script src="<c:url value="/js/nicescroll/jquery.nicescroll.min.js"/>"></script>
-    <!-- icheck -->
-    <script src="<c:url value="/js/icheck/icheck.min.js"/>"></script>
+        <!-- chart js -->
+        <script src="<c:url value="/js/chartjs/chart.min.js"/>"></script>
+        <!-- bootstrap progress js -->
+        <script src="<c:url value="/js/progressbar/bootstrap-progressbar.min.js"/>"></script>
+        <script src="<c:url value="/js/nicescroll/jquery.nicescroll.min.js"/>"></script>
+        <!-- icheck -->
+        <script src="<c:url value="/js/icheck/icheck.min.js"/>"></script>
 
-    <script src="<c:url value="/js/custom.js"/>"></script>
+        <script src="<c:url value="/js/custom.js"/>"></script>
 
-    <!-- image cropping -->
-    <script src="<c:url value="/js/cropping/cropper.min.js"/>"></script>
-    <script src="<c:url value="/js/cropping/main.js"/>"></script>
+        <!-- image cropping -->
+        <script src="<c:url value="/js/cropping/cropper.min.js"/>"></script>
+        <script src="<c:url value="/js/cropping/main.js"/>"></script>
 
 
-    <!-- daterangepicker -->
-    <script type="text/javascript" src="<c:url value="/js/moment.min.js"/>"></script>
-    <script type="text/javascript" src="<c:url value="/js/datepicker/daterangepicker.js"/>"></script>
-    <!-- moris js -->
-    <script src="<c:url value="/js/moris/raphael-min.js"/>"></script>
-    <script src="<c:url value="/js/moris/morris.js"/>"></script>
-                        <script>             $(function () {
-    var day_data = [
-    {
-        "period": "Jan",
-        "Hours worked": 80
-    },
-    {
-        "period": "Feb",
-        "Hours worked": 125
-    },
-    {
-        "period": "Mar",
-        "Hours worked": 176
-    },
-    {
-        "period": "Apr",
-        "Hours worked": 224
-    },
-    {
-        "period": "May",
-        "Hours worked": 265
-    },
-    {
-        "period": "Jun",
-        "Hours worked": 314
-    },
-    {
-        "period": "Jul",
-        "Hours worked": 347
-    },
-    {
-        "period": "Aug",
-        "Hours worked": 287
-    },
+        <!-- daterangepicker -->
+        <script type="text/javascript" src="<c:url value="/js/moment.min.js"/>"></script>
+        <script type="text/javascript" src="<c:url value="/js/datepicker/daterangepicker.js"/>"></script>
+        <!-- moris js -->
+        <script src="<c:url value="/js/moris/raphael-min.js"/>"></script>
+        <script src="<c:url value="/js/moris/morris.js"/>"></script>
+        <script>             $(function () {
+var day_data = [
+{
+    "period": "Jan",
+    "Hours worked": 80
+},
+{
+    "period": "Feb",
+    "Hours worked": 125
+},
+{
+    "period": "Mar",
+    "Hours worked": 176
+},
+{
+    "period": "Apr",
+    "Hours worked": 224
+},
+{
+    "period": "May",
+    "Hours worked": 265
+},
+{
+    "period": "Jun",
+    "Hours worked": 314
+},
+{
+    "period": "Jul",
+    "Hours worked": 347
+},
+{
+    "period": "Aug",
+    "Hours worked": 287
+},
 {
     "period": "Sep",
     "Hours worked": 240
-    },
-    {
+},
+{
     "period": "Oct",
     "Hours worked": 211
-    }
+}
 ];
-    Morris.Bar({
-    element: 'graph_bar',
-    data: day_data,
-    xkey: 'period',
+Morris.Bar({
+element: 'graph_bar',
+data: day_data,
+xkey: 'period',
 hideHover: 'auto',
 barColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
 ykeys: ['Hours worked', 'sorned'],
 labels: ['Hours worked', 'SORN'],
-    xLabelAngle: 60
+xLabelAngle: 60
 });
 });
         </script>
@@ -361,54 +361,54 @@ labels: ['Hours worked', 'SORN'],
         <script type="text/javascript">
             $(document).ready(function () {
 
-                    var cb = function (start, end, label) {
+                var cb = function (start, end, label) {
                     console.log(start.toISOString(), end.toISOString(), label);
                     $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
                     //alert("Callback has fired: [" + start.format('MMMM D, YYYY') + " to " + end.format('MMMM D, YYYY') + ", label = " + label + "]");
                 }
 
-                        var optionSet1 = {
+                var optionSet1 = {
                     startDate: moment().subtract(29, 'days'),
                     endDate: moment(),
                     minDate: '01/01/2012',
                     maxDate: '12/31/2015',
                     dateLimit: {
-                    days: 60
-                        },
+                        days: 60
+                    },
                     showDropdowns: true,
-                        showWeekNumbers: true,
+                    showWeekNumbers: true,
                     timePicker: false,
-                        timePickerIncrement: 1,
+                    timePickerIncrement: 1,
                     timePicker12Hour: true,
-                        ranges: {
+                    ranges: {
                         'Today': [moment(), moment()],
                         'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
                         'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                    'This Month': [moment().startOf('month'), moment().endOf('month')],
-                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                        'This Month': [moment().startOf('month'), moment().endOf('month')],
+                        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
                     },
                     opens: 'left',
-                        buttonClasses: ['btn btn-default'],
-                        applyClass: 'btn-small btn-primary',
-                        cancelClass: 'btn-small',
-                        format: 'MM/DD/YYYY',
-                        separator: ' to ',                     locale: {
+                    buttonClasses: ['btn btn-default'],
+                    applyClass: 'btn-small btn-primary',
+                    cancelClass: 'btn-small',
+                    format: 'MM/DD/YYYY',
+                    separator: ' to ', locale: {
                         applyLabel: 'Submit',
                         cancelLabel: 'Clear',
                         fromLabel: 'From',
                         toLabel: 'To',
                         customRangeLabel: 'Custom',
-                daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-                monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                        daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+                        monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
                         firstDay: 1
-                }
+                    }
                 };
                 $('#reportrange span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
-                    $('#reportrange').daterangepicker(optionSet1, cb);
+                $('#reportrange').daterangepicker(optionSet1, cb);
                 $('#reportrange').on('show.daterangepicker', function () {
                     console.log("show event fired");
-                    });
+                });
                 $('#reportrange').on('hide.daterangepicker', function () {
                     console.log("hide event fired");
                 });
@@ -418,10 +418,11 @@ labels: ['Hours worked', 'SORN'],
                 $('#reportrange').on('cancel.daterangepicker', function (ev, picker) {
                     console.log("cancel event fired");
                 });
-                    $('#options1').click(function () {                     $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
+                $('#options1').click(function () {
+                    $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
                 });
                 $('#options2').click(function () {
-            $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
+                    $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
                 });
                 $('#destroy').click(function () {
                     $('#reportrange').data('daterangepicker').remove();

@@ -89,6 +89,28 @@ public class AlumnoDAO {
         return lstResultados;
     }
 
+    public HistorialDTO getcurso(String codigo, String ciclo) {
+        StringBuilder sql = new StringBuilder();
+        sql.append(" SELECT p.idPersona, h.idHistorial ,h.ciclo ,h.idCurso ");
+        sql.append("from historial h, persona p ");
+        sql.append("where p.idPersona =h.alumno_idPersona and p.codigo=? and h.ciclo=?");
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
+        HistorialDTO resultado = jdbcTemplate.queryForObject(sql.toString(), new Object[]{codigo, ciclo}, new RowMapper<HistorialDTO>() {
+            @Override
+            public HistorialDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+                HistorialDTO p = new HistorialDTO();
+                p.setAsesor_idPersona(rs.getInt(1));
+                p.setIdHistorial(rs.getInt(2));
+                p.setCiclo(rs.getString(3));
+                p.setCurso_idCurso(rs.getInt(4));
+
+                return p;
+
+            }
+        });
+        return resultado;
+    }
+
     public HistorialDTO getHistorial(String ciclo, Integer idCurso, Integer idAlumno) {
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT idHistorial,ciclo,idCurso,alumno_idPersona,asesor_idPersona1");
@@ -146,7 +168,7 @@ public class AlumnoDAO {
     }
 
     //Cursos de un alumno
-    public List<CursoDTO> listarCursos(Integer idPersona) {
+    public List<CursoDTO> listarCursos(Integer idPersona, String ciclo) {
         List<CursoDTO> lstResultados = null;
         JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
         List<Object> parametros = new ArrayList<Object>();
@@ -155,8 +177,10 @@ public class AlumnoDAO {
         sql.append("select c.idCurso, c.nombre ");
         sql.append("FROM historial h ");
         sql.append("inner join curso c on (c.idCurso = h.idCurso) ");
-        sql.append("where h.alumno_idPersona = ? ");
+        sql.append("where h.alumno_idPersona = ? and");
+        sql.append(" h.ciclo=?");
         parametros.add(idPersona);
+        parametros.add(ciclo);
 
         lstResultados = jdbcTemplate.query(sql.toString(), parametros.toArray(),
                 new RowMapper<CursoDTO>() {
@@ -197,7 +221,7 @@ public class AlumnoDAO {
 
         return lstResultados;
     }
-    
+
     public AvanceDTO obtenerAvance(Integer id) {
         StringBuilder sql = new StringBuilder();
         sql.append(" SELECT av.idAvances, av.nombre,av.version, av.idHistorial, av.fecha_inicio, av.fecha_fin, av.idEstado, av.obs_asesor, av.obs_alumno, av.archivo_alumno, av.archivo_asesor ");
@@ -208,21 +232,21 @@ public class AlumnoDAO {
             @Override
             public AvanceDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
                 AvanceDTO avance = new AvanceDTO();
-                        avance.setIdAvances(rs.getInt("av.idAvances"));
-                        avance.setNombre(rs.getString("av.nombre"));
-                        avance.setVersion(rs.getString("av.version"));
-                        avance.setIdHistorial(rs.getInt("av.idHistorial"));
-                        avance.setFecha_inicio(rs.getString("av.fecha_inicio"));
-                        avance.setFecha_fin(rs.getString("av.fecha_fin"));
-                        Estado e = new Estado();
-                        e.setId(rs.getInt("av.idEstado"));
-                        avance.setEstado(e);
-                        avance.setObs_asesor(rs.getString("av.obs_asesor"));
-                        avance.setObs_alumno(rs.getString("av.obs_alumno"));
-                        avance.setArchivo_alumno(rs.getString("av.archivo_alumno"));
-                        avance.setArchivo_asesor(rs.getString("av.archivo_asesor"));
+                avance.setIdAvances(rs.getInt("av.idAvances"));
+                avance.setNombre(rs.getString("av.nombre"));
+                avance.setVersion(rs.getString("av.version"));
+                avance.setIdHistorial(rs.getInt("av.idHistorial"));
+                avance.setFecha_inicio(rs.getString("av.fecha_inicio"));
+                avance.setFecha_fin(rs.getString("av.fecha_fin"));
+                Estado e = new Estado();
+                e.setId(rs.getInt("av.idEstado"));
+                avance.setEstado(e);
+                avance.setObs_asesor(rs.getString("av.obs_asesor"));
+                avance.setObs_alumno(rs.getString("av.obs_alumno"));
+                avance.setArchivo_alumno(rs.getString("av.archivo_alumno"));
+                avance.setArchivo_asesor(rs.getString("av.archivo_asesor"));
 
-                        return avance;
+                return avance;
             }
         });
         return resultado;

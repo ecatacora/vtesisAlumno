@@ -35,43 +35,70 @@ public class AlumnoController {
     /* se configura un log para este controlador*/
     private static final Logger log = Logger.getLogger("PersonaController");
 
-    @RequestMapping(value = "/profile")      
+    @RequestMapping(value = "/profile")
     public String verPerfil(HttpSession session, Model model) {
-       
-        
-        
+
         PersonaDTO personaDTO = (PersonaDTO) session.getAttribute("personaDTO");
-        
-        System.out.println("holaaaaaaaaaaaaa  naaaaaada" + personaDTO.getCodigo() );
+
+        //System.out.println("holaaaaaaaaaaaaa  naaaaaada" + personaDTO.getCodigo() );
         AlumnoDTO p = alumnoDAO.get(personaDTO.getCodigo());
-        
-        
-        List<HistorialDTO> his=alumnoDAO.gethis(p.getCodigo());
-        
-        System.out.println(his + "  naaaaaada" );
-        
-        model.addAttribute("historial",his);
-        
-        BusquedaFiltro busquedaFiltro = new BusquedaFiltro();       
+
+        List<HistorialDTO> his = alumnoDAO.gethis(p.getCodigo());
+
+        //System.out.println(his + "  naaaaaada" );
+        model.addAttribute("historial", his);
+
+        BusquedaFiltro busquedaFiltro = new BusquedaFiltro();
         model.addAttribute("busquedaFiltro", busquedaFiltro);
         model.addAttribute("persona", p);
-        model.addAttribute("ListaCursos", alumnoDAO.listarCursos(personaDTO.getIdPersona()));
+        //model.addAttribute("ListaCursos", alumnoDAO.listarCursos(personaDTO.getIdPersona()));
+        System.out.println(busquedaFiltro.getCiclo() + "  naaaaaada");
         model.addAttribute("ListaCiclos", alumnoDAO.listarCiclos(personaDTO.getIdPersona()));
 
         return "alumno/alumnoprofile";
     }
 
+    @RequestMapping(value = "/profile_buscar")
+    public String verPerfil(BusquedaFiltro busquedaFiltro, HttpSession session, Model model) {
+       // System.out.println(busquedaFiltro.getCiclo() + "  naaaaaada");
+        PersonaDTO personaDTO = (PersonaDTO) session.getAttribute("personaDTO");
+        //session.setAttribute("ciclito", busquedaFiltro.getCiclo());
+        //System.out.println("holaaaaaaaaaaaaa  naaaaaada" + personaDTO.getCodigo() );
+        AlumnoDTO p = alumnoDAO.get(personaDTO.getCodigo());
+
+        List<HistorialDTO> his = alumnoDAO.gethis(p.getCodigo());
+
+        model.addAttribute("historial", his);
+        model.addAttribute("busquedaFiltro", busquedaFiltro);
+         if(busquedaFiltro.getCiclo()==""){
+           return "redirect:/alumno/profile";
+        }else{
+            
+        BusquedaFiltro nuevoFiltro = new BusquedaFiltro();
+
+        model.addAttribute("nuevoFiltro", nuevoFiltro);
+        //session.setAttribute("cursito",nuevoFiltro.getIdCurso());
+        model.addAttribute("persona", p);
+        model.addAttribute("ListaCursos", alumnoDAO.listarCursos(personaDTO.getIdPersona(), busquedaFiltro.getCiclo()));
+        //System.out.println(busquedaFiltro.getCiclo() + "  naaaaaada");
+        model.addAttribute("ListaCiclos", alumnoDAO.listarCiclos(personaDTO.getIdPersona()));
+
+        return "alumno/alumnoprofile";
+        }
+    }
+
     @RequestMapping(value = "l_entrega")
-    public String listarEntregas(BusquedaFiltro busquedaFiltro, HttpSession session, Model model) {
+    public String listarEntregas(BusquedaFiltro nuevoFiltro, HttpSession session, Model model) {
 
         //Obtener todas las entregas con los criterios usados en el filtro anterior y con el id del alumno
         //Mandarlos a la vista
-   
-        
+        //String ciclito=(String)session.getAttribute("ciclito");
+        //int cursito=(int)session.getAttribute("cursito");
+        System.out.println(nuevoFiltro.getCiclo() + "  naaaaaada" + nuevoFiltro.getIdCurso());
         PersonaDTO personaDTO = (PersonaDTO) session.getAttribute("personaDTO");
-        AlumnoDTO p = alumnoDAO.get(personaDTO.getCodigo());        
+        AlumnoDTO p = alumnoDAO.get(personaDTO.getCodigo());
         model.addAttribute("personaDTO", p);
-        HistorialDTO historialDTO = alumnoDAO.getHistorial(busquedaFiltro.getCiclo(), busquedaFiltro.getIdCurso(), p.getId());
+        HistorialDTO historialDTO = alumnoDAO.getHistorial(nuevoFiltro.getCiclo(), nuevoFiltro.getIdCurso(), p.getId());
         session.setAttribute("historialDTO", historialDTO);
         List<AvanceDTO> avanceList = alumnoDAO.listarAvances(historialDTO.getIdHistorial());
         model.addAttribute("ListaAvances", avanceList);
@@ -80,20 +107,20 @@ public class AlumnoController {
     }
 
     @RequestMapping(value = "proyectoset")
-    public String setProyecto(HttpSession sesion, @RequestParam Integer idProyecto){
-        sesion.setAttribute("idProyecto",idProyecto);
+    public String setProyecto(HttpSession sesion, @RequestParam Integer idProyecto) {
+        sesion.setAttribute("idProyecto", idProyecto);
         return "redirect:/proyecto/ver";
     }
-    
+
     @RequestMapping(value = "r_entrega")
-    public String registrarEntrega(Model model, HttpSession session, Avance avances,@RequestParam Integer idavance) {
+    public String registrarEntrega(Model model, HttpSession session, Avance avances, @RequestParam Integer idavance) {
 
         //Obtener los datos de que entrega se va registrar, como el nombre de la entrega
         PersonaDTO personaDTO = (PersonaDTO) session.getAttribute("personaDTO");
         AlumnoDTO p = alumnoDAO.get(personaDTO.getCodigo());
         AvanceDTO avance = alumnoDAO.obtenerAvance(idavance);
         model.addAttribute("avance", avance);
-        model.addAttribute("personaDTO", p);        
+        model.addAttribute("personaDTO", p);
         return "alumno/alumnoentrega";
     }
 

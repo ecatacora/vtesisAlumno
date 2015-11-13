@@ -24,6 +24,7 @@ import pucp.sw2.horario1.vtesis.modelos.Avance;
 import pucp.sw2.horario1.vtesis.modelos.Persona;
 import pucp.sw2.horario1.vtesis.ui.AlumnoFiltro;
 import pucp.sw2.horario1.vtesis.ui.AvanceFiltro;
+import pucp.sw2.horario1.vtesis.ui.EntregaFiltro;
 
 
 /**
@@ -47,7 +48,7 @@ public class AsesorController {
     /* se configura un log para este controlador*/
     private static final Logger log = Logger.getLogger("asesorController");
     
-    
+    //Lisseth
     @RequestMapping(value = "/asesor/profile")
     public String profileAsesor(Model model, HttpSession session){
         
@@ -64,9 +65,10 @@ public class AsesorController {
         
         model.addAttribute("lstCiclos", asesorDao.listarCiclos(personaDTO.getIdPersona()));   
         
-        return "/asesor/profile";
+        return "asesor/profile";
     }
     
+    //Lisseth
     @RequestMapping(value = "/asesor/listar_alumnos")
     public String listarAlumnos(Model model, HttpSession session ,@RequestParam(required = false) String ciclo){
         
@@ -89,23 +91,31 @@ public class AsesorController {
         return "asesor/lista_alumnos";
     }
     
+    //Lisseth
     @RequestMapping(value = {"/asesor/vista_de_entregables"}, method = RequestMethod.GET)
     public String vistaEntregable(Model model,HttpSession session ,@RequestParam(value = "codigo", required = true) String codigo){
         
         AvanceFiltro filtro = new AvanceFiltro();
+        
         List<AvanceDTO> lstAvances;
+        
+        PersonaDTO alumno = asesorDao.getInfoAlumno(codigo);
         
         filtro.setCodigo(codigo);
         
         lstAvances = asesorDao.listarAvances(filtro);
         
         model.addAttribute("filtro", filtro);
+        model.addAttribute("nombre", alumno.getNombres());
+        model.addAttribute("apellido", alumno.getApellidos());
+        
         model.addAttribute("lstAvances", lstAvances);
         
         return "asesor/vista_de_entregables";
        
     }
     
+    //Henry
     @RequestMapping(value = "/asesor/llenarFechas")
     public String llenarFechas(Model model, HttpSession session){
         
@@ -114,6 +124,7 @@ public class AsesorController {
         return "asesor/llenar_calendario";
     }
     
+    //Henry
     @RequestMapping(value = "/asesor/registrarFechas")
     public String registrarFechas(Model model, @RequestParam Integer idAvance){
        Avance avance = avanceDAO.obtener(idAvance); 
@@ -121,6 +132,7 @@ public class AsesorController {
        return "redirect:/asesor/llenarFechas";
     }
     
+    //Rosario
     @RequestMapping(value = "/asesor/busqueda_avanzada")
     public String busquedaAvanzada(Model model){
         PersonaDTO persona = new PersonaDTO();
@@ -130,7 +142,7 @@ public class AsesorController {
     }
 
 
-
+    //Rosario
     @RequestMapping(value = "/asesor/resultado_busqueda")
     public String resultadoBusqueda(Model model, HttpSession session,@RequestParam(required = false) String parametro){
         PersonaDTO personaDTO = (PersonaDTO) session.getAttribute("personaDTO");
@@ -145,8 +157,43 @@ public class AsesorController {
         return "/asesor/busqueda_avanzada";
     }
     
-
+    //Lisseth
+    @RequestMapping(value = {"/asesor/entrega_avance"} , method = RequestMethod.GET)
+    public String entregaAvance(Model model, HttpSession session, @RequestParam(value = "id", required = true) int id){
+        
+        EntregaFiltro idFiltro = new EntregaFiltro();
+        
+        idFiltro.setIdAvance(id);
+        
+        model.addAttribute("idFiltro", idFiltro);
+       
+        return "asesor/inbox";
+    }
     
+    //Lisseth
+    @RequestMapping(value = "/asesor/observaciones")
+    public String agregarObs(Model model){
+        
+        
+        return "asesor/observaciones";
+    }
+    
+    //Lisseth
+    @RequestMapping(value = "/asesor/entrega_avance_asesor")
+    public String RegistrarObs(Model model){
+        
+        
+        return "asesor/Entrega_avance_comentario_asesor";
+    }
+    
+    //Lisseth
+    @RequestMapping(value = "/asesor/actualizar_obs")
+    public String ActualizarObs(Model model){
+        
+        
+        return "asesor/observaciones";
+        
+    }
     
     
 }

@@ -297,7 +297,7 @@
                                 <button type="button" class="btn btn-primary">Nueva Entrega</button>
                                        
                             
-                                            <button type="submit" class="btn btn-primary">Guardar</button>
+                                            <button type="submit" class="btn btn-primary">Editar</button>
                                         
                             
                                             <button type="reset" class="btn btn-primary">Borrar Seleccionados</button>

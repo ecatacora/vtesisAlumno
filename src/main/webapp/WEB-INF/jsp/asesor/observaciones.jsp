@@ -12,16 +12,16 @@
     <title>Virtual Tesis! | </title>
 
     <%@include file = "/WEB-INF/jsp/comun/recursos.jsp" %>
-    <script src="<spring:url value="js/nprogress.js"/>"></script>
+    <script src="<c:url value="/js/nprogress.js"/>"></script>
     <script>
         NProgress.start();
     </script>
 
     <!-- Custom styling plus plugins -->
     <link href="css/custom.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/maps/jquery-jvectormap-2.0.1.css" />
-    <link href="css/icheck/flat/green.css" rel="stylesheet" />
-    <link href="css/floatexamples.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/maps/jquery-jvectormap-2.0.1.css"/>" />
+    <link href="<c:url value="/css/icheck/flat/green.css"/>" rel="stylesheet" />
+    <link href="<c:url value="/css/floatexamples.css"/>" rel="stylesheet" type="text/css" />
     
     
 
@@ -38,13 +38,13 @@
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                 
-                    <div class="navbar nav_title" style="border: 0;"><a href="index.html" class="site_title"><em class="fa fa-paw"></em> V-Tesis!</a></div>
+                    <div class="navbar nav_title" style="border: 0;"><a href="<c:url value="/home.do"/>" class="site_title"><em class="fa fa-paw"></em> V-Tesis!</a></div>
                     <div class="clearfix"></div>
 
                     <!-- menu prile quick info -->
                     <div class="profile">
                         <div class="profile_pic">
-                            <img src="images/vtesis-logo.jpg" alt="..." class="img-circle profile_img">
+                            <img src="<c:url value="/images/vtesis-logo.jpg"/>" alt="..." class="img-circle profile_img">
                         </div>
                         <div class="profile_info">
                             <span>Bienvenido,</span>
@@ -63,7 +63,7 @@
                             <ul class="nav side-menu">
                                 <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="index.html">Perfil</a></li>                                   
+                                        <li><a href="<c:url value="/home.do"/>">Perfil</a></li>                                   
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-calendar"></i> Acciones <span class="fa fa-chevron-down"></span></a>
@@ -100,7 +100,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <img src="images/img.jpg" alt="">Juan Perez
+                                    <img src="<c:url value="/images/img.jpg"/>" alt="">Juan Perez
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
@@ -115,7 +115,7 @@
                                     <li>
                                         <a href="javascript:;">Help</a>
                                     </li> -->
-                                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                    <li><a href="<c:url value="/logout.do"/>"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                                     </li>
                                 </ul>
                             </li>
@@ -157,7 +157,7 @@
                                     <div class="col-md-6 col-sm-6 col-xs-6" align="right">
                                     
                                     <label for="registrar">&nbsp;</label><br>
-                                    <span class="btn btn-primary" id="registrar" name="registrar">Registrar</span>
+                                    <a class="btn btn-primary" href="entrega_avance_asesor">Registrar Observaci&oacute;n</a>
                                     </div>
                                 </form>
                             </div>
@@ -185,32 +185,32 @@
 <script src="js/bootstrap.min.js"></script>
 
     <!-- gauge js -->
-    <script type="text/javascript" src="js/gauge/gauge.min.js"></script>
-    <script type="text/javascript" src="js/gauge/gauge_demo.js"></script>
+    <script type="text/javascript" src="<c:url value="/js/gauge/gauge.min.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/gauge/gauge_demo.js"/>"></script>
     <!-- chart js -->
-    <script src="js/chartjs/chart.min.js"></script>
+    <script src="<c:url value="/js/chartjs/chart.min.js"/>"></script>
     <!-- bootstrap progress js -->
-    <script src="js/progressbar/bootstrap-progressbar.min.js"></script>
-    <script src="js/nicescroll/jquery.nicescroll.min.js"></script>
+    <script src="<c:url value="/js/progressbar/bootstrap-progressbar.min.js"/>"></script>
+    <script src="<c:url value="/js/nicescroll/jquery.nicescroll.min.js"/>"></script>
     <!-- icheck -->
-    <script src="js/icheck/icheck.min.js"></script>
+    <script src="<c:url value="/js/icheck/icheck.min.js"/>"></script>
     <!-- daterangepicker -->
-    <script type="text/javascript" src="js/moment.min.js"></script>
-    <script type="text/javascript" src="js/datepicker/daterangepicker.js"></script>
+    <script type="text/javascript" src="<c:url value="/js/moment.min.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/datepicker/daterangepicker.js"/>"></script>
 
-    <script src="js/custom.js"></script>
+    <script src="<c:url value="/js/custom.js"/>"></script>
 
     <!-- flot js -->
     <!--[if lte IE 8]><script type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
-    <script type="text/javascript" src="js/flot/jquery.flot.js"></script>
-    <script type="text/javascript" src="js/flot/jquery.flot.pie.js"></script>
-    <script type="text/javascript" src="js/flot/jquery.flot.orderBars.js"></script>
-    <script type="text/javascript" src="js/flot/jquery.flot.time.min.js"></script>
-    <script type="text/javascript" src="js/flot/date.js"></script>
-    <script type="text/javascript" src="js/flot/jquery.flot.spline.js"></script>
-    <script type="text/javascript" src="js/flot/jquery.flot.stack.js"></script>
-    <script type="text/javascript" src="js/flot/curvedLines.js"></script>
-    <script type="text/javascript" src="js/flot/jquery.flot.resize.js"></script>
+    <script type="text/javascript" src="<c:url value="/js/flot/jquery.flot.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/flot/jquery.flot.pie.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/flot/jquery.flot.orderBars.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/flot/jquery.flot.time.min.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/flot/date.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/flot/jquery.flot.spline.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/flot/jquery.flot.stack.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/flot/curvedLines.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/flot/jquery.flot.resize.js"/>"></script>
     <script>
         $(document).ready(function () {
             // [17, 74, 6, 39, 20, 85, 7]
@@ -273,10 +273,10 @@
     </script>
 
     <!-- worldmap -->
-    <script type="text/javascript" src="js/maps/jquery-jvectormap-2.0.1.min.js"></script>
-    <script type="text/javascript" src="js/maps/gdp-data.js"></script>
-    <script type="text/javascript" src="js/maps/jquery-jvectormap-world-mill-en.js"></script>
-    <script type="text/javascript" src="js/maps/jquery-jvectormap-us-aea-en.js"></script>
+    <script type="text/javascript" src="<c:url value="/js/maps/jquery-jvectormap-2.0.1.min.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/maps/gdp-data.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/maps/jquery-jvectormap-world-mill-en.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/maps/jquery-jvectormap-us-aea-en.js"/>"></script>
     <script>
         $(function () {
             $('#world-map-gdp').vectorMap({
@@ -297,7 +297,7 @@
         });
     </script>
     <!-- skycons -->
-    <script src="js/skycons/skycons.js"></script>
+    <script src="<c:url value="/js/skycons/skycons.js"/>"></script>
     <script>
         var icons = new Skycons({
                 "color": "#73879C"

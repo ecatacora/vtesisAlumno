@@ -196,5 +196,35 @@ public class AsesorDao {
         return lstResultados;
     }
     
-    
+    public PersonaDTO getInfoAlumno(String codigo) {
+
+        String query = "select e.idPersona, "
+                + "e.nombres, "
+                + "e.apellidos, "
+                + "e.codigo, "
+                + "e.password, "                
+                + "e.enabled, "
+                + "e.idRol, "
+                + "e.email "
+                + "from persona e "
+                + "where e.codigo = ?";
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
+        PersonaDTO alumno = jdbcTemplate.queryForObject(query, new Object[]{codigo}, new RowMapper<PersonaDTO>() {
+            @Override
+            public PersonaDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+                PersonaDTO p = new PersonaDTO();
+                p.setIdPersona(rs.getInt(1));
+                p.setNombres(rs.getString(2));
+                p.setApellidos(rs.getString(3));
+                p.setCodigo(rs.getString(4));
+                p.setContrasena(rs.getString(5));
+                p.setEnabled(rs.getInt(6));
+                p.setIdRol(rs.getInt(7));
+                p.setEmail(rs.getString("email"));
+                return p;
+            }
+        });
+        return alumno;
+    }
 }

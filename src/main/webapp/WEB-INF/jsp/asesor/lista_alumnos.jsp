@@ -177,7 +177,7 @@
                                 <div class="col-md-6 col-sm-6 col-xs-6">
                                     <label for="uploadbtn">&nbsp;</label><br>
                                     <a href="<c:url value= "/asesor/llenarFechas"/>">
-                                        <span class="btn btn-primary" id="uploadbtn" name="uploadbtn">Llenar calendario</span>
+                                        <span class="btn btn-primary" id="uploadbtn" name="uploadbtn">Agregar entrega</span>
                                     </a>
                                     <br>
                                 </div>

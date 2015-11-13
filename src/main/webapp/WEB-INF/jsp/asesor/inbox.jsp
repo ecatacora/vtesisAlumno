@@ -34,7 +34,7 @@
                     <!-- menu prile quick info -->
                     <div class="profile">
                         <div class="profile_pic">
-                            <img src="images/vtesis-logo.jpg" alt="..." class="img-circle profile_img">
+                            <img src="<c:url value="/images/vtesis-logo.jpg"/>" alt="..." class="img-circle profile_img">
                         </div>
                         <div class="profile_info">
                             <!--<span>Welcome,</span>
@@ -54,7 +54,7 @@
                             <ul class="nav side-menu">
                                 <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="profile.html">Perfil</a>
+                                        <li><a href="<c:url value="/home.do"/>">Perfil</a>
                                         </li>
                                         <!--<li><a href="index2.html">Dashboard2</a>
                                         </li>
@@ -166,7 +166,7 @@
                         <a data-toggle="tooltip" data-placement="top" title="Lock">
                             <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
                         </a>-->
-                        <a data-toggle="tooltip" data-placement="top" title="Logout">
+                        <a href="<c:url value="/logout.do"/>" data-toggle="tooltip" data-placement="top" title="Logout">
                             <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                         </a>
                     </div>
@@ -186,11 +186,11 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <img src="images/img.jpg" alt="">Juan Perez
+                                    <img src="<c:url value="/images/img.jpg"/>" alt="">Juan Perez
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
-                                    <li><a href="profile.html">  Profile</a>
+                                    <li><a href="<c:url value="/home.do"/>">  Profile</a>
                                     </li>
                                     <!-- <li>
                                         <a href="javascript:;">
@@ -201,7 +201,7 @@
                                     <li>
                                         <a href="javascript:;">Help</a>
                                     </li> -->
-                                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                    <li><a href="<c:url value="/logout.do"/>"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                                     </li>
                                 </ul>
                             </li>
@@ -523,7 +523,7 @@
                                                     
                                                 </div>
                                                 <div class="compose-btn pull-left">
-                                                    <a class="btn btn-sm btn-primary" href="asesor_observaciones.html"><i class=""></i> Agregar observaciones</a>
+                                                    <a class="btn btn-sm btn-primary" href="observaciones"><i class=""></i> Agregar observaciones</a>
                                                     <a href="javascript:history.back()">
                                                     <button class="btn btn-sm "><i ></i>Regresar</button>
                                                     </a>
@@ -566,17 +566,17 @@
         <div id="notif-group" class="tabbed_notifications"></div>
     </div>
 
-    <script src="js/bootstrap.min.js"></script>
+    <script src="<c:url value="/js/bootstrap.min.js"/>"></script>
 
     <!-- chart js -->
-    <script src="js/chartjs/chart.min.js"></script>
+    <script src="<c:url value="/js/chartjs/chart.min.js"/>"></script>
     <!-- bootstrap progress js -->
-    <script src="js/progressbar/bootstrap-progressbar.min.js"></script>
-    <script src="js/nicescroll/jquery.nicescroll.min.js"></script>
+    <script src="<c:url value="/js/progressbar/bootstrap-progressbar.min.js"/>"></script>
+    <script src="<c:url value="/js/nicescroll/jquery.nicescroll.min.js"/>"></script>
     <!-- icheck -->
-    <script src="js/icheck/icheck.min.js"></script>
+    <script src="<c:url value="/js/icheck/icheck.min.js"/>"></script>
 
-    <script src="js/custom.js"></script>
+    <script src="<c:url value="/js/custom.js"/>"></script>
 
 </body>
 

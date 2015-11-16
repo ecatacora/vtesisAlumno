@@ -36,6 +36,7 @@
                             <label class="control-label col-sm-2">Nombre</label>
                             <div class="col-sm-8">
                                 <form:input path="nombres" class="form-control"/>
+                                <form:errors path="nombres" cssStyle="color:red"/>
                             </div>
                         </div>
                         <!--p5-->    

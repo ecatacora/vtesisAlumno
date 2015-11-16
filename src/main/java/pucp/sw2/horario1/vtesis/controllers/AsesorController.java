@@ -194,19 +194,6 @@ public class AsesorController {
         return "asesor/observaciones";
         
     }
-    //Henry
-    @RequestMapping(value="/asesor/agregar_entrega")
-    public String agregarFecha(Model model){
-        AvanceDTO aavance = new AvanceDTO();
-        model.addAttribute("aavance", aavance);
-        return "asesor/parametros_entregable";
-    }
-    //Henry
-    @RequestMapping(value="/asesor/editar_entrega")
-    public String editarFecha(Model model){
-     //   AvanceDTO eavance = Avance.obtener(id);
-        AvanceDTO favance = new AvanceDTO();
-        model.addAttribute("eavance", favance);
-        return "asesor/parametros_entregable";
-    }
+    
+    
 }

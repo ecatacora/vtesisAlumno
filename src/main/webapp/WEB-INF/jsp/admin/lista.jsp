@@ -149,6 +149,7 @@
                                                 <th>C&oacute;digo</th>
                                                 <th>Nombres</th>  
                                                 <th>Apellidos</th>
+                                                <th>Rol</th>
                                                 <th>Editar</th>
                                                 <th>Borrar</th>
                                                 <th>Enable</th>
@@ -160,6 +161,7 @@
                                                         <td>${p.codigo}</td>
                                                         <td>${p.nombres}</td>                                
                                                         <td>${p.apellidos}</td>
+                                                        <td>${p.idrol}</td>
                                                         <td>
                                                             <a href="<c:url value="/admin/edit?codigo=${p.codigo}"/>">Editar</a>
                                                         </td>

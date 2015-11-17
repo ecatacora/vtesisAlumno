@@ -6,6 +6,7 @@
 package pucp.sw2.horario1.vtesis.modelos;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 /**
  *
@@ -17,8 +18,8 @@ public class Avance implements Serializable{
     private String nombre;
     private Integer version;
     private Integer idRegistro;
-    private Integer fecha_inicio;
-    private Integer fecha_fin;
+    private Date fecha_inicio;
+    private Date fecha_fin;
     private Integer idEstado;
     private String obs_asesor;
     private String obs_alumno;
@@ -57,19 +58,19 @@ public class Avance implements Serializable{
         this.idRegistro = idRegistro;
     }
 
-    public Integer getFecha_inicio() {
+    public Date getFecha_inicio() {
         return fecha_inicio;
     }
 
-    public void setFecha_inicio(Integer fecha_inicio) {
+    public void setFecha_inicio(Date fecha_inicio) {
         this.fecha_inicio = fecha_inicio;
     }
 
-    public Integer getFecha_fin() {
+    public Date getFecha_fin() {
         return fecha_fin;
     }
 
-    public void setFecha_fin(Integer fecha_fin) {
+    public void setFecha_fin(Date fecha_fin) {
         this.fecha_fin = fecha_fin;
     }
 

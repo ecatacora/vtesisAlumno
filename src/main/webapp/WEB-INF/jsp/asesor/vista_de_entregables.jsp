@@ -41,7 +41,7 @@
                     <!-- menu prile quick info -->
                     <div class="profile">
                         <div class="profile_pic">
-                            <img src="images/vtesis-logo.jpg" alt="..." class="img-circle profile_img">
+                            <img src="<c:url value="/images/vtesis-logo.jpg"/>" alt="..." class="img-circle profile_img">
                         </div>
                         <div class="profile_info">
                             <span>Bienvenido,</span>
@@ -60,7 +60,7 @@
                             <ul class="nav side-menu">
                                 <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="profile.html">Perfil</a></li>
+                                        <li><a href="<c:url value="/home.do"/>">Perfil</a></li>
                                                                          
                                     </ul>
                                 </li>
@@ -78,7 +78,7 @@
 
                     <!-- /menu footer buttons -->
                     <div class="sidebar-footer hidden-small">                    
-                        <a href="login.html" data-toggle="tooltip" data-placement="top" title="Logout">
+                        <a href="<c:url value="/logout.do"/>" data-toggle="tooltip" data-placement="top" title="Logout">
                             <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                         </a>
                     </div>
@@ -139,7 +139,7 @@
                             <div class="row x_title">
                                     <div class="col-md-12">
                                        <h3>Alumno: </h3>
-                                       <h3 id="alumno"><small>${filtro.codigo} ${nombre} ${apellido}</small></h3>
+                                       <h3 id="alumno"><small>${codigo} ${nombre} ${apellido}</small></h3>
                                     </div>
                             </div>
                             <div class="dashboard_graph">
@@ -149,8 +149,8 @@
                                             <table class="table table-bordered">
                                                 <thead>
                                                 <tr>
-                                                    <th>Entregable</th> 
-                                                    <th>Nombre</th> 
+                                                    
+                                                    <th>Nombre de Entregable</th> 
                                                     <th>Fecha l&iacute;mite</th>
                                                     <!--<th>*****</th>-->
                                                     <th>Estado</th>
@@ -159,11 +159,19 @@
                                                 <tbody>
                                                     <c:forEach items="${lstAvances}" var="a">
                                                         <tr>
-                                                            <td>${a.idAvances}</td> 
+                                                            
                                                             <td>${a.nombre}</td> 
-                                                            <td><input type="text" name="fecha" id="fecha" readonly value="${a.fecha_fin}" class="hasdatepicker"> </td> 
+                                                            <td>${a.fecha_fin}</td> 
                                                             <!--<td><a href="#ver ">tema 1</a></td>-->
-                                                            <td><a href="<spring:url value='/asesor/entrega_avance?id=${a.idAvances}'/>"> ${a.estado.descripcion} </a></td>
+                                                            <c:choose>
+                                                                <c:when test="${a.estado.id == 2 && a.estado.id == 3}">                                       
+                                                                    <td><a href="<spring:url value='/asesor/entrega_avance?id=${a.idAvances}'/>"> ${a.estado.descripcion} </a></td>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <td><a href="<spring:url value='/asesor/entrega_avance_asesor?id=${a.idAvances}'/>"> ${a.estado.descripcion} </a></td>
+                                                                </c:otherwise>
+                                                            </c:choose>
+                                                            
                                                         </tr>
                                                     </c:forEach>
                                                 </tbody>
@@ -171,15 +179,19 @@
                                         </div>
                                                                                 
                                     </form> 
-                                    
-                                                                        
-                                    <div class="col-md-6 col-sm-6 col-xs-6" align="right">
-                                    
-                                    <label for="registrar">&nbsp;</label><br>
-                                    <a href="javascript:history.back()">
-                                    <span class="btn btn-primary" id="back" name="back">Regresar</span>
-                                    </a>
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        
                                     </div>
+                                           
+                                   
+                                            
+                                    <div class="col-md-6 col-sm-6 col-xs-6" align="right">
+                                        <label for="registrar">&nbsp;</label><br>
+                                        <a class="btn btn-primary" href="<spring:url value='/asesor/listar_alumnos?ciclo=${ciclo}'/>">
+                                        Regresar
+                                        </a>
+                                    </div>
+                                            
                             </div>
                             
                         </div>
@@ -203,35 +215,35 @@
         </div>
 
     </div>
-<script src="js/bootstrap.min.js"></script>
+    <script src="<c:url value="/js/bootstrap.min.js"/>"></script>
 
     <!-- gauge js -->
-    <script type="text/javascript" src="js/gauge/gauge.min.js"></script>
-    <script type="text/javascript" src="js/gauge/gauge_demo.js"></script>
+    <script type="text/javascript" src="<c:url value="/js/gauge/gauge.min.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/gauge/gauge_demo.js"/>"></script>
     <!-- chart js -->
-    <script src="js/chartjs/chart.min.js"></script>
+    <script src="<c:url value="/js/chartjs/chart.min.js"/>"></script>
     <!-- bootstrap progress js -->
-    <script src="js/progressbar/bootstrap-progressbar.min.js"></script>
-    <script src="js/nicescroll/jquery.nicescroll.min.js"></script>
+    <script src="<c:url value="/js/progressbar/bootstrap-progressbar.min.js"/>"></script>
+    <script src="<c:url value="/js/nicescroll/jquery.nicescroll.min.js"/>"></script>
     <!-- icheck -->
-    <script src="js/icheck/icheck.min.js"></script>
+    <script src="<c:url value="/js/icheck/icheck.min.js"/>"></script>
     <!-- daterangepicker -->
-    <script type="text/javascript" src="js/moment.min.js"></script>
-    <script type="text/javascript" src="js/datepicker/daterangepicker.js"></script>
+    <script type="text/javascript" src="<c:url value="/js/moment.min.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/datepicker/daterangepicker.js"/>"></script>
 
-    <script src="js/custom.js"></script>
+    <script src="<c:url value="/js/custom.js"/>"></script>
 
     <!-- flot js -->
     <!--[if lte IE 8]><script type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
-    <script type="text/javascript" src="js/flot/jquery.flot.js"></script>
-    <script type="text/javascript" src="js/flot/jquery.flot.pie.js"></script>
-    <script type="text/javascript" src="js/flot/jquery.flot.orderBars.js"></script>
-    <script type="text/javascript" src="js/flot/jquery.flot.time.min.js"></script>
-    <script type="text/javascript" src="js/flot/date.js"></script>
-    <script type="text/javascript" src="js/flot/jquery.flot.spline.js"></script>
-    <script type="text/javascript" src="js/flot/jquery.flot.stack.js"></script>
-    <script type="text/javascript" src="js/flot/curvedLines.js"></script>
-    <script type="text/javascript" src="js/flot/jquery.flot.resize.js"></script>
+    <script type="text/javascript" src="<c:url value="/js/flot/jquery.flot.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/flot/jquery.flot.pie.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/flot/jquery.flot.orderBars.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/flot/jquery.flot.time.min.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/flot/date.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/flot/jquery.flot.spline.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/flot/jquery.flot.stack.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/flot/curvedLines.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/flot/jquery.flot.resize.js"/>"></script>
     <script>
         $(document).ready(function () {
             // [17, 74, 6, 39, 20, 85, 7]
@@ -294,10 +306,10 @@
     </script>
 
     <!-- worldmap -->
-    <script type="text/javascript" src="js/maps/jquery-jvectormap-2.0.1.min.js"></script>
-    <script type="text/javascript" src="js/maps/gdp-data.js"></script>
-    <script type="text/javascript" src="js/maps/jquery-jvectormap-world-mill-en.js"></script>
-    <script type="text/javascript" src="js/maps/jquery-jvectormap-us-aea-en.js"></script>
+    <script type="text/javascript" src="<c:url value="/js/maps/jquery-jvectormap-2.0.1.min.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/maps/gdp-data.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/maps/jquery-jvectormap-world-mill-en.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/maps/jquery-jvectormap-us-aea-en.js"/>"></script>
     <script>
         $(function () {
             $('#world-map-gdp').vectorMap({
@@ -318,7 +330,7 @@
         });
     </script>
     <!-- skycons -->
-    <script src="js/skycons/skycons.js"></script>
+    <script src="<c:url value="/js/skycons/skycons.js"/>"></script>
     <script>
         var icons = new Skycons({
                 "color": "#73879C"

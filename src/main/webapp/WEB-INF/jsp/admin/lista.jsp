@@ -161,7 +161,7 @@
                                                         <td>${p.codigo}</td>
                                                         <td>${p.nombres}</td>                                
                                                         <td>${p.apellidos}</td>
-                                                        <td>${p.idrol}</td>
+                                                        <td>${p.idRol}</td>
                                                         <td>
                                                             <a href="<c:url value="/admin/edit?codigo=${p.codigo}"/>">Editar</a>
                                                         </td>

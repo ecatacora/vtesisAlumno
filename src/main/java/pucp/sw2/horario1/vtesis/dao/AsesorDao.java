@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import pucp.sw2.horario1.vtesis.dto.AlumnoDTO;
 import pucp.sw2.horario1.vtesis.dto.AvanceDTO;
 import pucp.sw2.horario1.vtesis.dto.CicloDTO;
 import pucp.sw2.horario1.vtesis.dto.CursoDTO;
@@ -37,6 +39,7 @@ public class AsesorDao {
     @Autowired
     DataSource datasource;
     
+    //Lisseth
     public List<CicloDTO> listarCiclos(Integer idPersona) {
         List<CicloDTO> lstResultados = null;
         JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
@@ -65,8 +68,9 @@ public class AsesorDao {
         return lstResultados;
     }
     
-    public List<PersonaDTO> busqueda(AlumnoFiltro filtros, Integer idAsesor){
-        List<PersonaDTO> lstResultados = null;
+    //Lisseth
+    public List<AlumnoDTO> busqueda(String ciclo, Integer idAsesor){
+        List<AlumnoDTO> lstResultados = null;
         JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);        
         List<Object> parametros = new ArrayList<Object>();
         StringBuilder sql = new StringBuilder();
@@ -79,7 +83,7 @@ public class AsesorDao {
         
                
         sql.append(" AND h.ciclo = ?");
-        parametros.add(filtros.getCiclo());
+        parametros.add(ciclo);
         
         sql.append(" AND h.asesor_idPersona1 = ?");
         parametros.add(idAsesor);
@@ -88,29 +92,28 @@ public class AsesorDao {
               
         
         lstResultados = jdbcTemplate.query(sql.toString(), parametros.toArray(),
-                        new RowMapper<PersonaDTO>() {
+                        new RowMapper<AlumnoDTO>() {
                             @Override
-                            public PersonaDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
-                                PersonaDTO persona = new PersonaDTO();
-                                persona.setCodigo(rs.getString(1));
-                                persona.setNombres(rs.getString(2));
+                            public AlumnoDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+                                AlumnoDTO alumno = new AlumnoDTO();
+                                alumno.setCodigo(rs.getString(1));
+                                alumno.setNombres(rs.getString(2));
                                 Curso curso = new Curso();
                                 curso.setNombre(rs.getString(3));
-                                persona.setCurso(curso);
-                                persona.setIdPersona(rs.getInt(4));
+                                alumno.setCurso(curso);
+                                alumno.setId(rs.getInt(4));
                                 /*falta avance y fecha actualizacion
                                 Avance avance = new Avance();
                                 avance.setNombre(rs.getString(4));
                                 persona.setAvance(avance);*/
-                                return persona;
+                                return alumno;
                             }
                         });        
         
         return lstResultados;
     }
-    
-    
-        public List<AvanceDTO> listarAvances(AvanceFiltro filtros){
+        //Lisseth
+    public List<AvanceDTO> listarAvances(String codigo){
         List<AvanceDTO> resultado = null;
         
         JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);  
@@ -124,7 +127,7 @@ public class AsesorDao {
         sql.append(" inner join estado e on (a.idEstado = e.idEstado) ");
         
         sql.append(" where p.codigo = ? ");
-        parametros.add(filtros.getCodigo());
+        parametros.add(codigo);
         
         
         
@@ -146,8 +149,9 @@ public class AsesorDao {
         
         return resultado;
     }
-
-     public List<PersonaDTO> listarAlumno(Integer idAsesor,AlumnoFiltro filtro) {
+    
+    //Rosario
+    public List<PersonaDTO> listarAlumno(Integer idAsesor,AlumnoFiltro filtro) {
         List<PersonaDTO> lstResultados = null;
         JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
         List<Object> parametros = new ArrayList<Object>();
@@ -196,7 +200,8 @@ public class AsesorDao {
         return lstResultados;
     }
     
-    public PersonaDTO getInfoAlumno(String codigo) {
+    //Lisseth
+    public AlumnoDTO getInfoAlumno(String codigo) {
 
         String query = "select e.idPersona, "
                 + "e.nombres, "
@@ -210,21 +215,42 @@ public class AsesorDao {
                 + "where e.codigo = ?";
 
         JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
-        PersonaDTO alumno = jdbcTemplate.queryForObject(query, new Object[]{codigo}, new RowMapper<PersonaDTO>() {
+        AlumnoDTO alumno = jdbcTemplate.queryForObject(query, new Object[]{codigo}, new RowMapper<AlumnoDTO>() {
             @Override
-            public PersonaDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
-                PersonaDTO p = new PersonaDTO();
-                p.setIdPersona(rs.getInt(1));
+            public AlumnoDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+                AlumnoDTO p = new AlumnoDTO();
+                p.setId(rs.getInt(1));
                 p.setNombres(rs.getString(2));
                 p.setApellidos(rs.getString(3));
                 p.setCodigo(rs.getString(4));
                 p.setContrasena(rs.getString(5));
                 p.setEnabled(rs.getInt(6));
                 p.setIdRol(rs.getInt(7));
-                p.setEmail(rs.getString("email"));
+                p.setCorreo(rs.getString("email"));
                 return p;
             }
         });
         return alumno;
+    }
+    
+    //Lisseth
+    public AvanceDTO getAvance(int id) {
+
+        String query = " select a.nombre, a.obs_alumno, a.archivo_alumno from avances a " +
+                       " where a.idAvances = ? ";
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
+        AvanceDTO avance = jdbcTemplate.queryForObject(query, new Object[]{id}, new RowMapper<AvanceDTO>() {
+            @Override
+            public AvanceDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+                AvanceDTO a = new AvanceDTO();
+                a.setNombre(rs.getString(1));
+                a.setObs_alumno(rs.getString(2));
+                a.setArchivo_alumno(rs.getString(3));
+                
+                return a;
+            }
+        });
+        return avance;
     }
 }

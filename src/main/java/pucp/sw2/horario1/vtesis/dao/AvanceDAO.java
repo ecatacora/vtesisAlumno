@@ -9,7 +9,6 @@ package pucp.sw2.horario1.vtesis.dao;
  *
  * @author josesuk
  */
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -28,42 +27,38 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import pucp.sw2.horario1.vtesis.modelos.Avance;
 
-
 @Repository(value = "avanceDao")
 public class AvanceDAO {
- 
+
     @Autowired
     DataSource datasource;
-    
-    public void registrar(Avance avance){
+
+    public void registrar(Avance avance) {
         StringBuilder sb = new StringBuilder();
         Map params = new HashMap();
         sb.append(" insert into proyecto(titulo, descripcion,idPersona,idEstado) ");
         sb.append(" values(:titulo, :descripcion,:idPersona,:idEstado) ");
-        params.put("nombre",avance.getNombre());
-        params.put("version",avance.getVersion());
-        params.put("idRegistro",avance.getIdRegistro());
-        params.put("fecha_inicio",avance.getFecha_inicio());
-        params.put("idEstado",avance.getIdEstado());
-        params.put("obs_asesor",avance.getObs_asesor());
-        params.put("obs_alumno",avance.getObs_alumno());
-        params.put("registro_alumno",avance.getRegistro_alumno());
-        params.put("registro_asesor",avance.getRegistro_asesor());
-        
-        
-        
-     
-        NamedParameterJdbcTemplate  jdbcTemplate = new NamedParameterJdbcTemplate (datasource);
+        params.put("nombre", avance.getNombre());
+        params.put("version", avance.getVersion());
+        params.put("idRegistro", avance.getIdRegistro());
+        params.put("fecha_inicio", avance.getFecha_inicio());
+        params.put("idEstado", avance.getIdEstado());
+        params.put("obs_asesor", avance.getObs_asesor());
+        params.put("obs_alumno", avance.getObs_alumno());
+        params.put("registro_alumno", avance.getRegistro_alumno());
+        params.put("registro_asesor", avance.getRegistro_asesor());
+
+        NamedParameterJdbcTemplate jdbcTemplate = new NamedParameterJdbcTemplate(datasource);
         SqlParameterSource paramSource = new MapSqlParameterSource(params);
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        
-        jdbcTemplate.update(sb.toString(),paramSource,keyHolder);
 
-        avance.setIdAvance(keyHolder.getKey().intValue());        
+        jdbcTemplate.update(sb.toString(), paramSource, keyHolder);
+
+        avance.setIdAvance(keyHolder.getKey().intValue());
     }
-    
-    public void actualizar(Avance avance){
-        
+
+    public void actualizar(Avance avance) {
+
         StringBuilder sb = new StringBuilder();
         sb.append(" update Avances ");
         sb.append(" fecha_inicio = ? ");
@@ -72,28 +67,14 @@ public class AvanceDAO {
         sb.append(" obs_alumno = ? ");
         sb.append(" registro_alumno = ? ");
         sb.append(" registro_asesor = ? ");
-                
+
         sb.append(" where idAvance = ? ");
         JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
-        jdbcTemplate.update(sb.toString(),new Object[]{avance.getNombre(),avance.getIdAvance(), avance.getFecha_inicio(),avance.getFecha_fin(),avance.getObs_asesor(),avance.getObs_alumno(), avance.getRegistro_alumno(), avance.getRegistro_asesor()});
-        
+        jdbcTemplate.update(sb.toString(), new Object[]{avance.getNombre(), avance.getIdAvance(), avance.getFecha_inicio(), avance.getFecha_fin(), avance.getObs_asesor(), avance.getObs_alumno(), avance.getRegistro_alumno(), avance.getRegistro_asesor()});
+
     }
-    
-    
-    /*  private Integer idAvance;
-    private String nombre;
-    private Integer version;
-    private Integer idRegistro;
-    private Integer fecha_inicio;
-    private Integer fecha_fin;
-    private Integer idEstado;
-    private String obs_asesor;
-    private String obs_alumno;
-    private String registro_alumno;
-    private String registro_asesor;*/
-    
-    
-     public Avance obtener(Integer id) {
+
+    public Avance obtener(Integer id) {
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT av.idAvances, av.nombre,av.version, av.historial_idHistorial, av.fecha_inicio, av.fecha_fin, av.Estado_idEstado, av.obs_asesor, av.obs_alumno, av.archivo_alumno, av.archivo_asesor");
         sql.append(" FROM Avances av ");
@@ -102,25 +83,25 @@ public class AvanceDAO {
         Avance resultado = jdbcTemplate.queryForObject(sql.toString(), new Object[]{id}, new RowMapper<Avance>() {
             @Override
             public Avance mapRow(ResultSet rs, int rowNum) throws SQLException {
-                Avance avance = new Avance();    
+                Avance avance = new Avance();
                 avance.setIdAvance(rs.getInt("av.idAvances"));
                 avance.setNombre(rs.getString("av.nombre"));
                 avance.setVersion(rs.getInt("av.version"));
                 avance.setIdRegistro(rs.getInt("av.historial_idHistorial"));
-                avance.setFecha_inicio(rs.getInt("av.fecha_inicio"));
-                avance.setFecha_fin(rs.getInt("av.fecha_fin"));
+                avance.setFecha_inicio(rs.getDate("av.fecha_inicio"));
+                avance.setFecha_fin(rs.getDate("av.fecha_fin"));
                 avance.setIdEstado(rs.getInt("av.Estado_idEstado"));
                 avance.setObs_asesor(rs.getString("av.obs_asesor"));
                 avance.setObs_alumno(rs.getString("av.obs_alumno"));
                 avance.setRegistro_alumno(rs.getString("av.archivo_alumno"));
                 avance.setRegistro_asesor(rs.getString("av.archivo_asesor"));
-                
+
                 return avance;
             }
         });
         return resultado;
     }
-    
+
     public void actualizarEstado(Avance avance) {
         if (avance != null) {
             List<Object> parametros = new ArrayList<Object>();
@@ -128,19 +109,18 @@ public class AvanceDAO {
             StringBuilder sql = new StringBuilder();
 
             sql.append("UPDATE avance SET ");
-            if (avance.getRegistro_alumno()== null && avance.getObs_alumno()== null) {
+            if (avance.getRegistro_alumno() == null && avance.getObs_alumno() == null) {
                 sql.append("idestado = 2");
                 parametros.add(avance.getIdEstado());
             }
-            if ((avance.getRegistro_alumno() != null || avance.getObs_alumno()!= null) && (avance.getRegistro_asesor()!=null || avance.getObs_asesor()==null)) {
+            if ((avance.getRegistro_alumno() != null || avance.getObs_alumno() != null) && (avance.getRegistro_asesor() != null || avance.getObs_asesor() == null)) {
                 sql.append("idestado = 3");
                 parametros.add(avance.getIdEstado());
             }
-            if ((avance.getRegistro_alumno() != null || avance.getObs_alumno()!= null) && (avance.getRegistro_asesor()!=null || avance.getObs_asesor()!=null)) {
+            if ((avance.getRegistro_alumno() != null || avance.getObs_alumno() != null) && (avance.getRegistro_asesor() != null || avance.getObs_asesor() != null)) {
                 sql.append("idestado = 1");
                 parametros.add(avance.getIdEstado());
             }
-      
 
             sql.append("WHERE idAvances= ? ");
             parametros.add(avance.getIdAvance());
@@ -149,7 +129,18 @@ public class AvanceDAO {
         }
     }
 
-    
-    
-}
+    public List<Avance> listarAvancesByDate() {
+        List<Avance> avances = new ArrayList<Avance>();
+        JdbcTemplate jdbc = new JdbcTemplate(datasource);
+        StringBuilder sql = new StringBuilder();
+        
+        sql.append("SELECT idAvances, nombre, fecha_inicio, fecha_fin, idHistorial, idEstado ");
+        sql.append("FROM avances ");
+        
+        
+        
+        
+        return avances;
+    }
 
+}

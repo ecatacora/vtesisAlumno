@@ -25,7 +25,18 @@ public class PersonaDTO implements Serializable{
     private Avance avance;
     private Integer enabled;
     private String foto;
+    //
+    private String ciclo;
+    //
+    public String getCiclo() {
+        return ciclo;
+    }
+    //
+    public void setCiclo(String ciclo) {
+        this.ciclo = ciclo;
+    }
 
+    
     public String getFoto() {
         return foto;
     }

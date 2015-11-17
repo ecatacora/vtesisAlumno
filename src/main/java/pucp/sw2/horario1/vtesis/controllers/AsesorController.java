@@ -14,17 +14,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import pucp.sw2.horario1.vtesis.dao.AsesorDao;
 import pucp.sw2.horario1.vtesis.dao.AvanceDAO;
-import pucp.sw2.horario1.vtesis.dao.PersonaDAO;
+import pucp.sw2.horario1.vtesis.dto.AlumnoDTO;
 import pucp.sw2.horario1.vtesis.dto.AvanceDTO;
 import pucp.sw2.horario1.vtesis.dto.CicloDTO;
 import pucp.sw2.horario1.vtesis.dto.PersonaDTO;
 import pucp.sw2.horario1.vtesis.modelos.Avance;
-import pucp.sw2.horario1.vtesis.modelos.Persona;
 import pucp.sw2.horario1.vtesis.ui.AlumnoFiltro;
-import pucp.sw2.horario1.vtesis.ui.AvanceFiltro;
-import pucp.sw2.horario1.vtesis.ui.EntregaFiltro;
 
 
 /**
@@ -32,6 +30,7 @@ import pucp.sw2.horario1.vtesis.ui.EntregaFiltro;
  * @author josesuk
  */
 
+@SessionAttributes("alumnoDTO")
 @Controller(value = "asesorController")
 
 public class AsesorController {
@@ -40,9 +39,6 @@ public class AsesorController {
     AsesorDao asesorDao;
     @Autowired
     AvanceDAO avanceDAO;
-    
-    
-    
     
     
     /* se configura un log para este controlador*/
@@ -74,16 +70,12 @@ public class AsesorController {
         
         PersonaDTO personaDTO = (PersonaDTO) session.getAttribute("personaDTO");
         
-        AlumnoFiltro filtros = new AlumnoFiltro();
-        List<PersonaDTO> lstAlumnos;
+        //Seteando ciclo del asesor
+        personaDTO.setCiclo(ciclo);
         
-        filtros.setCiclo(ciclo);
-        
-        lstAlumnos = asesorDao.busqueda(filtros,personaDTO.getIdPersona());
+        List<AlumnoDTO> lstAlumnos = asesorDao.busqueda(ciclo,personaDTO.getIdPersona());
         
         model.addAttribute("persona", personaDTO);
-        model.addAttribute("filtros", filtros);
-        model.addAttribute("lstCiclos",asesorDao.listarCiclos(personaDTO.getIdPersona()));
         model.addAttribute("lstAlumnos", lstAlumnos);
         
         
@@ -91,43 +83,103 @@ public class AsesorController {
         return "asesor/lista_alumnos";
     }
     
-    //Lisseth
+    //Lisseth (+ Session Alumno)
     @RequestMapping(value = {"/asesor/vista_de_entregables"}, method = RequestMethod.GET)
     public String vistaEntregable(Model model,HttpSession session ,@RequestParam(value = "codigo", required = true) String codigo){
         
-        AvanceFiltro filtro = new AvanceFiltro();
         
-        List<AvanceDTO> lstAvances;
+        PersonaDTO personaDTO = (PersonaDTO) session.getAttribute("personaDTO");
         
-        PersonaDTO alumno = asesorDao.getInfoAlumno(codigo);
+        List<AvanceDTO> lstAvances = asesorDao.listarAvances(codigo);
         
-        filtro.setCodigo(codigo);
+        AlumnoDTO alumno = asesorDao.getInfoAlumno(codigo);
         
-        lstAvances = asesorDao.listarAvances(filtro);
+        //Session Alumno
+        model.addAttribute("alumnoDTO", alumno);
         
-        model.addAttribute("filtro", filtro);
+        //System.out.println(personaDTO);
+        //
+        model.addAttribute("ciclo", personaDTO.getCiclo());
+        
         model.addAttribute("nombre", alumno.getNombres());
         model.addAttribute("apellido", alumno.getApellidos());
-        
         model.addAttribute("lstAvances", lstAvances);
         
         return "asesor/vista_de_entregables";
        
     }
     
+    //Lisseth
+    @RequestMapping(value = {"/asesor/entrega_avance"} , method = RequestMethod.GET)
+    public String entregaAvance(Model model, HttpSession session, @RequestParam(value = "id", required = true) int id){
+        
+        PersonaDTO asesor = (PersonaDTO) session.getAttribute("personaDTO");
+        AlumnoDTO alumno = (AlumnoDTO) session.getAttribute("alumnoDTO");
+        
+        //EntregaFiltro idFiltro = new EntregaFiltro();
+        //idFiltro.setIdAvance(id);
+        
+        AvanceDTO avance = asesorDao.getAvance(id);
+        
+        model.addAttribute("codigo", alumno.getCodigo());
+        model.addAttribute("asesor", asesor);
+        model.addAttribute("alumno", alumno);
+        model.addAttribute("avance", avance);
+        //model.addAttribute("idFiltro", idFiltro);
+       
+        return "asesor/inbox";
+    }
+    
+    //Lisseth
+    @RequestMapping(value = "/asesor/observaciones")
+    public String agregarObs(Model model, HttpSession session){
+        
+        AlumnoDTO alumno = (AlumnoDTO) session.getAttribute("alumnoDTO");
+        
+        return "asesor/observaciones";
+    }
+    
+    //Lisseth
+    @RequestMapping(value = "/asesor/entrega_avance_asesor")
+    public String RegistrarObs(Model model, HttpSession session, @RequestParam(value = "id", required = true) int id){
+        
+        PersonaDTO asesor = (PersonaDTO) session.getAttribute("personaDTO");
+        AlumnoDTO alumno = (AlumnoDTO) session.getAttribute("alumnoDTO");
+        
+        AvanceDTO avance = asesorDao.getAvance(id);
+        
+        model.addAttribute("codigo", alumno.getCodigo());
+        model.addAttribute("asesor", asesor);
+        model.addAttribute("alumno", alumno);
+        model.addAttribute("avance", avance);
+        
+        return "asesor/Entrega_avance_comentario_asesor";
+    }
+    
+    //Lisseth
+    @RequestMapping(value = "/asesor/actualizar_obs")
+    public String ActualizarObs(Model model, HttpSession session){
+        
+        AlumnoDTO alumno = (AlumnoDTO) session.getAttribute("alumnoDTO");
+        return "asesor/observaciones";
+        
+    }
+    
+       
+    
     //Henry
     @RequestMapping(value = "/asesor/llenarFechas")
     public String llenarFechas(Model model, HttpSession session){
         
-        PersonaDTO persona = (PersonaDTO)session.getAttribute("personaDTO");
-        model.addAttribute("persona", persona);
+        Avance avance = new Avance();
+        model.addAttribute("avance", avance);
         return "asesor/llenar_calendario";
     }
     
     //Henry
     @RequestMapping(value = "/asesor/registrarFechas")
     public String registrarFechas(Model model, @RequestParam Integer idAvance){
-       Avance avance = avanceDAO.obtener(idAvance); 
+       Avance avance = avanceDAO.obtener(idAvance);
        model.addAttribute("avance", avance);
        return "redirect:/asesor/llenarFechas";
     }
@@ -157,43 +209,21 @@ public class AsesorController {
         return "/asesor/busqueda_avanzada";
     }
     
-    //Lisseth
-    @RequestMapping(value = {"/asesor/entrega_avance"} , method = RequestMethod.GET)
-    public String entregaAvance(Model model, HttpSession session, @RequestParam(value = "id", required = true) int id){
-        
-        EntregaFiltro idFiltro = new EntregaFiltro();
-        
-        idFiltro.setIdAvance(id);
-        
-        model.addAttribute("idFiltro", idFiltro);
-       
-        return "asesor/inbox";
+    
+    
+    //Henry
+    @RequestMapping(value="/asesor/agregar_entrega")
+    public String agregarFecha(Model model){
+        AvanceDTO aavance = new AvanceDTO();
+        model.addAttribute("aavance", aavance);
+        return "asesor/parametros_entregable";
     }
-    
-    //Lisseth
-    @RequestMapping(value = "/asesor/observaciones")
-    public String agregarObs(Model model){
-        
-        
-        return "asesor/observaciones";
+    //Henry
+    @RequestMapping(value="/asesor/editar_entrega")
+    public String editarFecha(Model model){
+     //   AvanceDTO eavance = Avance.obtener(id);
+        AvanceDTO favance = new AvanceDTO();
+        model.addAttribute("eavance", favance);
+        return "asesor/parametros_entregable";
     }
-    
-    //Lisseth
-    @RequestMapping(value = "/asesor/entrega_avance_asesor")
-    public String RegistrarObs(Model model){
-        
-        
-        return "asesor/Entrega_avance_comentario_asesor";
-    }
-    
-    //Lisseth
-    @RequestMapping(value = "/asesor/actualizar_obs")
-    public String ActualizarObs(Model model){
-        
-        
-        return "asesor/observaciones";
-        
-    }
-    
-    
 }

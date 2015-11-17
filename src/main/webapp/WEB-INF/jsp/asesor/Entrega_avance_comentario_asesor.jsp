@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +17,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Registro de RevisiÃ³n</title>
+    <title>Registro de Revisi&oacute;n</title>
 
     <%@include file = "/WEB-INF/jsp/comun/recursos.jsp" %>
 
@@ -40,7 +42,7 @@
                     <!-- menu prile quick info -->
                     <div class="profile">
                         <div class="profile_pic">
-                            <img src="images/vtesis-logo.jpg" alt="..." class="img-circle profile_img">
+                            <img src="<c:url value="/images/vtesis-logo.jpg"/>" alt="..." class="img-circle profile_img">
                         </div>
                         <div class="profile_info">
                             <!--<span>Welcome,</span>
@@ -60,7 +62,7 @@
                             <ul class="nav side-menu">
                                 <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="profile.html">Perfil</a>
+                                        <li><a href="<c:url value="/home.do"/>">Perfil</a>
                                         </li>
                                         <!--<li><a href="index2.html">Dashboard2</a>
                                         </li>
@@ -192,11 +194,11 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <img src="images/img.jpg" alt="">Juan Perez
+                                    <img src="<c:url value="/images/img.jpg"/>" alt="">Juan Perez
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
-                                    <li><a href="profile.html">  Profile</a>
+                                    <li><a href="<c:url value="/home.do"/>">  Profile</a>
                                     </li>
                                     <!-- <li>
                                         <a href="javascript:;">
@@ -548,11 +550,15 @@
                                                 <div class="compose-btn pull-left">
                                                     <a class="btn btn-sm btn-primary" href="actualizar_obs"><i class=""></i>Editar Observaci&oacute;n</a>
                                                     
-                                                    <a class="btn btn-sm " href="vista_de_entregables"><i ></i>Regresar</a>
-                                                    
                                                     <!--<button title="" data-placement="top" data-toggle="tooltip" type="button" data-original-title="Print" class="btn  btn-sm tooltips"><i class="fa fa-print"></i> </button>
                                                     <button title="" data-placement="top" data-toggle="tooltip" data-original-title="Trash" class="btn btn-sm tooltips"><i class="fa fa-trash-o"></i>
                                                     </button>-->
+                                                </div>
+                                                
+                                                <div class="col-md-9 col-sm-9 col-xs-9" align="right">
+                                                    <label for="registrar">&nbsp;</label>
+                                                    <a class="btn btn-primary" href="<spring:url value='/asesor/vista_de_entregables?codigo=${codigo}'/>">Regresar
+                                                    </a>
                                                 </div>
                                             </div>
 
@@ -589,17 +595,17 @@
         <div id="notif-group" class="tabbed_notifications"></div>
     </div>
 
-    <script src="js/bootstrap.min.js"></script>
+    <script src="<c:url value="/js/bootstrap.min.js"/>"></script>
 
     <!-- chart js -->
-    <script src="js/chartjs/chart.min.js"></script>
+    <script src="<c:url value="/js/chartjs/chart.min.js"/>"></script>
     <!-- bootstrap progress js -->
-    <script src="js/progressbar/bootstrap-progressbar.min.js"></script>
-    <script src="js/nicescroll/jquery.nicescroll.min.js"></script>
+    <script src="<c:url value="/js/progressbar/bootstrap-progressbar.min.js"/>"></script>
+    <script src="<c:url value="/js/nicescroll/jquery.nicescroll.min.js"/>"></script>
     <!-- icheck -->
-    <script src="js/icheck/icheck.min.js"></script>
+    <script src="<c:url value="/js/icheck/icheck.min.js"/>"></script>
 
-    <script src="js/custom.js"></script>
+    <script src="<c:url value="/js/custom.js"/>"></script>
 
 </body>
 

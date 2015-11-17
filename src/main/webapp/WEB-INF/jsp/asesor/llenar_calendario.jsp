@@ -1,4 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -159,11 +161,7 @@
                                 <div class="x_panel">
                                     <div class="x_title">
                                         <h2>Calendario de presentacion de avances 2015-2 <small></small></h2>
-                                        <div class="col-md-md-4 col-sm-4 col-xs-7">
-                                            <a href="javascript:history.back()">
-                                            <button type="submit" class="btn btn-primary">Regresar</button>
-                                            </a>
-                                        </div>
+                                        
                                                                                 
                                        <div class="clearfix"></div>
                                     </div>
@@ -288,20 +286,35 @@
                                             </table>
                                     </div>
                                     
+                                    <div class="col-md-md-6 col-sm-6 col-xs-6">
+                                        <button type="button" class="btn btn-primary">Nueva Entrega</button>
+                                
+                                    </div>
+                            
+                                    <div class="col-md-md-6 col-sm-6 col-xs-6" align="right">
+                                        <button type="submit" class="btn btn-primary">Editar</button>
+                                        <button type="reset" class="btn btn-primary">Borrar Seleccionados</button>
+                                    </div>
+                                    <br>
+                                    
+                                    <div class="col-md-md-6 col-sm-6 col-xs-6">
+                                        
+                            
+                                    </div> 
+                                    
+                                    <div class="col-md-md-6 col-sm-6 col-xs-6" align="right">
+                                        <label for="registrar">&nbsp;</label><br>
+                                        <a class="btn btn-primary" href="<spring:url value='/asesor/listar_alumnos?ciclo=${ciclo}'/>">
+                                        Regresar
+                                        </a>
+                            
+                                    </div>                                    
                                 </div>
                             </div>
 
                         </div>
                         <div class="row">
-                            <div class="col-md-md-20 col-sm-20 col-xs-23">
-                                <button type="button" class="btn btn-primary">Nueva Entrega</button>
-                                       
                             
-                                            <button type="submit" class="btn btn-primary">Editar</button>
-                                        
-                            
-                                            <button type="reset" class="btn btn-primary">Borrar Seleccionados</button>
-                                        </div>
 
 
                             <!-- Start to do list -->

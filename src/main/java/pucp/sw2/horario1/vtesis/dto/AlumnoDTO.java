@@ -6,6 +6,7 @@
 package pucp.sw2.horario1.vtesis.dto;
 
 import java.io.Serializable;
+import pucp.sw2.horario1.vtesis.modelos.Curso;
 
 /**
  *
@@ -22,7 +23,25 @@ public class AlumnoDTO implements Serializable {
     private String foto;
     private Integer enabled;
     private Integer idRol;
+    private int idAvance;
+    private Curso curso;
 
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
+    }
+    
+    public int getIdAvance() {
+        return idAvance;
+    }
+
+    public void setIdAvance(int idAvance) {
+        this.idAvance = idAvance;
+    }
+    
     public Integer getId() {
         return id;
     }

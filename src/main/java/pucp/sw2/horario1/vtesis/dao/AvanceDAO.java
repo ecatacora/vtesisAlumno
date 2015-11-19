@@ -25,6 +25,7 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
+import pucp.sw2.horario1.vtesis.dto.AvanceDTO;
 import pucp.sw2.horario1.vtesis.modelos.Avance;
 
 @Repository(value = "avanceDao")
@@ -57,20 +58,21 @@ public class AvanceDAO {
         avance.setIdAvance(keyHolder.getKey().intValue());
     }
 
-    public void actualizar(Avance avance) {
+    public void actualizar(AvanceDTO avance) {
 
         StringBuilder sb = new StringBuilder();
-        sb.append(" update Avances ");
-        sb.append(" fecha_inicio = ? ");
-        sb.append(" fecha_fin = ? ");
-        sb.append(" obs_asesor = ? ");
-        sb.append(" obs_alumno = ? ");
-        sb.append(" registro_alumno = ? ");
-        sb.append(" registro_asesor = ? ");
+        sb.append(" update avances ");
+        //sb.append(" fecha_inicio = ? ");
+        //sb.append(" fecha_fin = ? ");
+       // sb.append(" obs_asesor = ? ");
+        sb.append(" set obs_alumno = ? ");
+        //sb.append(" registro_alumno = ? ");
+        //sb.append(" registro_asesor = ? ");
 
-        sb.append(" where idAvance = ? ");
+        sb.append(" where idAvances = ? ");
         JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
-        jdbcTemplate.update(sb.toString(), new Object[]{avance.getNombre(), avance.getIdAvance(), avance.getFecha_inicio(), avance.getFecha_fin(), avance.getObs_asesor(), avance.getObs_alumno(), avance.getRegistro_alumno(), avance.getRegistro_asesor()});
+        jdbcTemplate.update(sb.toString(), new Object[]{ avance.getObs_alumno(),avance.getIdAvances()});
+        
 
     }
 

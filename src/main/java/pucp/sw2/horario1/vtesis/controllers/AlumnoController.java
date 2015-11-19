@@ -60,7 +60,7 @@ public class AlumnoController {
 
     @RequestMapping(value = "/profile_buscar")
     public String verPerfil(BusquedaFiltro busquedaFiltro, HttpSession session, Model model) {
-       // System.out.println(busquedaFiltro.getCiclo() + "  naaaaaada");
+        // System.out.println(busquedaFiltro.getCiclo() + "  naaaaaada");
         PersonaDTO personaDTO = (PersonaDTO) session.getAttribute("personaDTO");
         //session.setAttribute("ciclito", busquedaFiltro.getCiclo());
         //System.out.println("holaaaaaaaaaaaaa  naaaaaada" + personaDTO.getCodigo() );
@@ -70,20 +70,20 @@ public class AlumnoController {
 
         model.addAttribute("historial", his);
         model.addAttribute("busquedaFiltro", busquedaFiltro);
-         if(busquedaFiltro.getCiclo()==""){
-           return "redirect:/alumno/profile";
-        }else{
-            
-        BusquedaFiltro nuevoFiltro = new BusquedaFiltro();
+        if (busquedaFiltro.getCiclo() == "") {
+            return "redirect:/alumno/profile";
+        } else {
 
-        model.addAttribute("nuevoFiltro", nuevoFiltro);
-        //session.setAttribute("cursito",nuevoFiltro.getIdCurso());
-        model.addAttribute("persona", p);
-        model.addAttribute("ListaCursos", alumnoDAO.listarCursos(personaDTO.getIdPersona(), busquedaFiltro.getCiclo()));
-        //System.out.println(busquedaFiltro.getCiclo() + "  naaaaaada");
-        model.addAttribute("ListaCiclos", alumnoDAO.listarCiclos(personaDTO.getIdPersona()));
+            BusquedaFiltro nuevoFiltro = new BusquedaFiltro();
 
-        return "alumno/alumnoprofile";
+            model.addAttribute("nuevoFiltro", nuevoFiltro);
+            //session.setAttribute("cursito",nuevoFiltro.getIdCurso());
+            model.addAttribute("persona", p);
+            model.addAttribute("ListaCursos", alumnoDAO.listarCursos(personaDTO.getIdPersona(), busquedaFiltro.getCiclo()));
+            //System.out.println(busquedaFiltro.getCiclo() + "  naaaaaada");
+            model.addAttribute("ListaCiclos", alumnoDAO.listarCiclos(personaDTO.getIdPersona()));
+
+            return "alumno/alumnoprofile";
         }
     }
 
@@ -106,22 +106,35 @@ public class AlumnoController {
         return "alumno/alumnocronograma";
     }
 
-    @RequestMapping(value = "proyectoset")
+   /* @RequestMapping(value = "proyectoset")
     public String setProyecto(HttpSession sesion, @RequestParam Integer idProyecto) {
         sesion.setAttribute("idProyecto", idProyecto);
         return "redirect:/proyecto/ver";
-    }
+    }*/
 
     @RequestMapping(value = "r_entrega")
-    public String registrarEntrega(Model model, HttpSession session, Avance avances, @RequestParam Integer idavance) {
+    public String verRegistrarEntrega(Model model, HttpSession session, Avance avances, @RequestParam Integer idAvances) {
 
         //Obtener los datos de que entrega se va registrar, como el nombre de la entrega
         PersonaDTO personaDTO = (PersonaDTO) session.getAttribute("personaDTO");
         AlumnoDTO p = alumnoDAO.get(personaDTO.getCodigo());
-        AvanceDTO avance = alumnoDAO.obtenerAvance(idavance);
+        AvanceDTO avance = alumnoDAO.obtenerAvance(idAvances);
         model.addAttribute("avance", avance);
         model.addAttribute("personaDTO", p);
         return "alumno/alumnoentrega";
+    }
+
+    @RequestMapping(value = "g_entrega")
+    public String guardarEntrega(Model model, HttpSession session,@RequestParam Integer idAvances) {
+       
+        //Obtener los datos de que entrega se va registrar, como el nombre de la entrega
+        PersonaDTO personaDTO = (PersonaDTO) session.getAttribute("personaDTO");
+        AlumnoDTO p = alumnoDAO.get(personaDTO.getCodigo());
+        AvanceDTO avances = alumnoDAO.obtenerAvance(idAvances);
+        avanceDAO.actualizar(avances);
+        model.addAttribute("avance", avances);
+        model.addAttribute("personaDTO", p);
+        return "redirect: /alumno/r_entrega";
     }
 
     @RequestMapping(value = "inf_avance")

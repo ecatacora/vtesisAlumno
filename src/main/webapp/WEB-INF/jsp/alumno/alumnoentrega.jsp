@@ -230,41 +230,33 @@
                                     </div>
 
                                     <div class="x_content" >
-                                        <form:form modelAttribute="avance" action="r_entrega" role="form" class="form-horizontal" method="POST">
+                                        <form:form modelAttribute="avance" action="g_entrega" role="form" class="form-horizontal" method="POST">
                                             <form:hidden path="idAvances"/>
                                             <p class="lead">Avance:</p> 
                                             <h4>${avance.nombre}</h4>
                                             <form:hidden path="nombre" />
                                             <p>Comentarios del Alumno:</p>
                                             </br>
-                                            <form:textarea path="obs_alumno" name="obs_alumno" rows="3" cols="20"/>
+                                            <form:textarea path="obs_alumno" name="obs_alumno" rows="3" cols="20" />
                                             </br>
                                             <p>Archivo (opcional)</p>
-                                            <a href=""><img src="<c:url value='/images/Upload.png'/>" alt=""></a>
+                                            <input type="file" name="file" path="archivo_alumno"><br /> 
                                             </br>
                                             <div class="col-md-5 center-block">
                                             </div>
                                             <div class="col-md-5 center-block">
                                                 <button type="submit" class="btn btn-primary">Registrar</button>
-                                                <a href=<c:url value="/alumno/l_entrega"/>><button type="button" class="btn btn-default">Regresar</button>
+                                                <a href=<c:url value="/alumno/l_entrega"/>>
+                                                <button type="button" class="btn btn-default">Regresar</button>                                              
                                             </div>
-
                                         </form:form>
-                                    </div>
+                                            
+                                       
+                                    </div> 
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- footer content -->
-                    <footer>
-                        <div class="">
-
-
-                        </div>
-                        <div class="clearfix"></div>
-                    </footer>
-                    <!-- /footer content -->
 
                 </div>
                 <!-- /page content -->

@@ -173,10 +173,10 @@
                              <!-- Entregable 01 -->     <td scope="row" style="text-align:center;">Entregable <%=contador%></td>
                                                         <td style="text-align:center;">${p.fecha_inicio}</td>
                                                         <td style="text-align:center;">${p.fecha_fin}</td>
-                                                        <td style="text-align:center;"><a href="<c:url value='r_entrega?idavance=${p.idAvances}'/>">${p.nombre}</a>
+                                                        <td style="text-align:center;"><a href="<c:url value='r_entrega?idAvances=${p.idAvances}'/>">${p.nombre}</a>
                                                         </td>
                                                         <td style="text-align:center;"> <!-- Cambiar Descargar archivo-->
-                                                            <a href="<c:url value='inf_avance?idavance=${p.idAvances}'/>">${p.estado.descripcion}</a>
+                                                            <a href="<c:url value='inf_avance?idAvances=${p.idAvances}'/>">${p.estado.descripcion}</a>
                                                         </td>
                                                     </tr> 
 
